@@ -7,7 +7,7 @@
 #include "AssetManager.h"
 
 Scene::Scene(const char* sceneName, const char* mapPath, const int windowWidth, const int windowHeight) : name(sceneName) {
-    world.getMap().load(mapPath, TextureManager::load("../asset/spritesheet.png"));
+    world.getMap().load(mapPath, TextureManager::load("../asset/Dungeon_Tileset_at.png"));
     for (auto &collider : world.getMap().colliders) {
         auto& e = world.createEntity();
         e.addComponent<Transform>(Vector2D(collider.rect.x, collider.rect.y), 0.0f, 1.0f);
@@ -17,10 +17,10 @@ Scene::Scene(const char* sceneName, const char* mapPath, const int windowWidth, 
         c.rect.w = collider.rect.w;
         c.rect.h = collider.rect.h;
 
-        SDL_Texture* tex = TextureManager::load("../asset/spritesheet.png");
-        SDL_FRect colSrc {0, 32, 32, 32};
-        SDL_FRect colDst {c.rect.x, c.rect.y, c.rect.w, c.rect.h};
-        e.addComponent<Sprite>(tex, colSrc, colDst);
+        // SDL_Texture* tex = TextureManager::load("../asset/spritesheet.png");
+        // SDL_FRect colSrc {0, 32, 32, 32};
+        // SDL_FRect colDst {c.rect.x, c.rect.y, c.rect.w, c.rect.h};
+        // e.addComponent<Sprite>(tex, colSrc, colDst);
     }
     // Assignment 6
     SDL_Texture* itemTex = TextureManager::load("../asset/coin.png");
@@ -38,30 +38,17 @@ Scene::Scene(const char* sceneName, const char* mapPath, const int windowWidth, 
         itemCollider.rect.h = itemDest.h;
     }
 
-    // auto& item(world.createEntity());
-    // auto& itemTransform = item.addComponent<Transform>(Vector2D(100, 200), 0.0f, 1.0f);
-    //
-    // // SDL_Texture* itemTex = TextureManager::load("../asset/coin.png");
-    // SDL_FRect itemSrc{0, 0, 32, 32};
-    //
-    // SDL_FRect itemDest {itemTransform.position.x, itemTransform.position.y, 32, 32};
-    //
-    // item.addComponent<Sprite>(itemTex, itemSrc, itemDest);
-    //
-    // auto& itemCollider = item.addComponent<Collider>("item");
-    // itemCollider.rect.w = itemDest.w;
-    // itemCollider.rect.h = itemDest.h;
 
     // Assignment 5:
-    auto& item2(world.createEntity());
-    auto& item2Transform = item2.addComponent<Transform>(Vector2D(200, 200), 0.0f, 1.0f);
-    SDL_Texture* itemTex2 = TextureManager::load("../asset/ball.png");
-    SDL_FRect item2Src{0, 0, 32, 32};
-    SDL_FRect item2Dest {item2Transform.position.x, item2Transform.position.y, 32, 32};
-    item2.addComponent<Sprite>(itemTex2, item2Src, item2Dest);
-    auto& item2Collider = item2.addComponent<Collider>("item2");
-    item2Collider.rect.w = item2Dest.w;
-    item2Collider.rect.h = item2Dest.h;
+    // auto& item2(world.createEntity());
+    // auto& item2Transform = item2.addComponent<Transform>(Vector2D(200, 200), 0.0f, 1.0f);
+    // SDL_Texture* itemTex2 = TextureManager::load("../asset/ball.png");
+    // SDL_FRect item2Src{0, 0, 32, 32};
+    // SDL_FRect item2Dest {item2Transform.position.x, item2Transform.position.y, 32, 32};
+    // item2.addComponent<Sprite>(itemTex2, item2Src, item2Dest);
+    // auto& item2Collider = item2.addComponent<Collider>("item2");
+    // item2Collider.rect.w = item2Dest.w;
+    // item2Collider.rect.h = item2Dest.h;
 
     auto& cam = world.createEntity();
     SDL_FRect camView{};
@@ -70,7 +57,7 @@ Scene::Scene(const char* sceneName, const char* mapPath, const int windowWidth, 
     cam.addComponent<Camera>(camView, world.getMap().width * 32, world.getMap().height * 32);
 
     auto& player(world.createEntity());
-    auto& playerTransform = player.addComponent<Transform>(Vector2D(0, 0), 0.0f, 1.0f);
+    auto& playerTransform = player.addComponent<Transform>(Vector2D(100, 250), 0.0f, 1.0f);
     player.addComponent<Velocity>(Vector2D(0.f, 0.f), 200.0f);
 
 

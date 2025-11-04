@@ -6,7 +6,7 @@
 #include "Map.h"
 #include <iostream>
 #include <ostream>
-
+#include <SDL3/SDL.h>
 #include "manager/AssetManager.h"
 
 // #include "GameObject.h"
@@ -14,7 +14,9 @@
 
 // GameObject *player = nullptr;
 std::function<void(std::string)> Game::onSceneChangeRequest;
-Game::Game() {}
+Game::Game() {
+}
+
 
 Game::~Game() {
     destroy();
@@ -50,7 +52,7 @@ void Game::init(const char *title, int width, int height, bool fullscreen) {
     AssetManager::loadAnimation("player", "../animations/cat_animations.xml");
     AssetManager::loadAnimation("enemy", "../animations/bird_animations.xml");
 
-    sceneManager.loadScene("level1", "../asset/map.tmx", width, height);
+    sceneManager.loadScene("level1", "../asset/Level_1.tmx", width, height);
     sceneManager.loadScene("level2", "../asset/map2.tmx", width, height);
 
     sceneManager.changeSceneDeferred("level1");
@@ -89,23 +91,6 @@ void Game::handleEvents() {
 
 void Game::update(float dt) {
     sceneManager.update(dt, event);
-    // Uint32 currentTime = SDL_GetTicks();
-    // if (currentTime - lastColorChangeTime >= 1000) { // 1 second passed
-    //     colorIndex = (colorIndex + 1) % 3; // cycle 0,1,2
-    //     lastColorChangeTime = currentTime;
-    // }
-    //
-    // // Set RGB based on colorIndex
-    // switch(colorIndex) {
-    //     case 0: r = 255; g = 0;   b = 0;   break; // red
-    //     case 1: r = 0;   g = 255; b = 0;   break; // green
-    //     case 2: r = 0;   g = 0;   b = 255; break; // blue
-    // }frameCount++;
-    // std::cout << frameCount << std::endl;
-
-    // player->update(deltaTime);
-
-
 }
 
 

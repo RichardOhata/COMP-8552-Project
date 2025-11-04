@@ -34,7 +34,7 @@ void Map::load(const char *path, SDL_Texture *ts) {
         for (int j = 0; j < width; j++) {
             std::string val;
             if (!std::getline(ss, val, ',')) break;
-            tileData[i][j] = std::stoi(val);
+            tileData[i][j] = static_cast<int>(std::stoi(val));
         }
     }
  for (auto* objectGroup = mapNode->FirstChildElement("objectgroup");
@@ -79,46 +79,33 @@ void Map::load(const char *path, SDL_Texture *ts) {
 
 
 void Map::draw(const Camera &cam) {
-
     SDL_FRect src{}, dest{};
-
     dest.w = dest.h = 32;
+
+
+    int tilesetCols = 16;
 
     for (int row = 0; row < height; row++) {
         for (int col = 0; col < width; col++) {
-            int type = tileData[row][col];
+            int gid = tileData[row][col];
 
-            float worldX = static_cast<float>(col) * dest.w;
-            float worldY = static_cast<float>(row) * dest.h;
-            dest.x = std::round(worldX - cam.view.x);
-            dest.y = std::round(worldY - cam.view.y);
+            if (gid == 0) continue; // empty tile, skip
 
-            switch (type) {
-                case 1:
-                    // dirt
-                    src.x = 0;
-                    src.y = 0;
-                    src.w = 32;
-                    src.h = 32;
-                    break;
-                case 2:
-                    // /grass
-                    src.x = 32;
-                    src.y = 0;
-                    src.w = 32;
-                    src.h = 32;
-                    break;
-                case 4:
-                    // water
-                    src.x = 32;
-                    src.y = 32;
-                    src.w = 32;
-                    src.h = 32;
-                    break;
-                default:
-                    break;
-            }
+            // Tiled firstgid usually starts at 1
+            int tileIndex = gid - 1;
+
+            // calculate source X/Y on the tileset
+            src.x = (tileIndex % tilesetCols) * 32;
+            src.y = (tileIndex / tilesetCols) * 32;
+            src.w = 32;
+            src.h = 32;
+
+            // destination on screen
+            dest.x = std::round(col * dest.w - cam.view.x);
+            dest.y = std::round(row * dest.h - cam.view.y);
+
             TextureManager::draw(tileset, src, dest);
         }
     }
+
 }

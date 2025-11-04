@@ -15,11 +15,6 @@ public:
             if (e->hasComponent<Animation>() && e->hasComponent<Velocity>()) {
                 auto& anim = e->getComponent<Animation>();
                 auto& velocity = e->getComponent<Velocity>();
-                if (e->hasComponent<PlayerTag>()) {
-                    std::cout << "Player" << std::endl;
-                } else {
-                    std::cout << "Enemy" << std::endl;
-                }
                 std::string newClip;
 
                 if (velocity.direction.x > 0.0f) newClip = "walk_right";

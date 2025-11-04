@@ -20,6 +20,7 @@ public:
 
     void handleEvents();
     void update(float deltaTime);
+
     void render();
 
     void destroy();

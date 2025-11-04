@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "Game.h"
-// TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+#include <SDL3/SDL.h>
 
 Game *game = nullptr;
 int main() {
@@ -12,7 +12,8 @@ int main() {
     int actualFrameTime;
     float deltaTime = 0.0f;
     game = new Game();
-    game->init("8552 Tutorial Engine", 800, 600, false);
+    game->init("Reflex", 1280, 720, false);
+
 
     while (game->running()) {
         Uint32 frameStart = SDL_GetTicks();
@@ -30,5 +31,4 @@ int main() {
 
     delete game;
     return 0;
-    // TIP See CLion help at <a href="https://www.jetbrains.com/help/clion/">jetbrains.com/help/clion/</a>. Also, you can try interactive lessons for CLion by selecting 'Help | Learn IDE Features' from the main menu.
 }

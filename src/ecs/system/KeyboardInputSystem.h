@@ -16,44 +16,22 @@
 class KeyboardInputSystem {
     public:
     void update(const std::vector<std::unique_ptr<Entity>>& entities, const SDL_Event& event) {
+        const bool *state = SDL_GetKeyboardState(NULL);
         for (auto& e : entities) {
             if (e->hasComponent<PlayerTag>() && e->hasComponent<Velocity>()) {
                 auto& v= e->getComponent<Velocity>();
-                if (event.type == SDL_EVENT_KEY_DOWN) {
-                    switch (event.key.key) {
-                        case SDLK_W:
-                            v.direction.y = -1;
-                            break;
-                        case SDLK_S:
-                            v.direction.y = 1;
-                            break;
-                        case SDLK_A:
-                            v.direction.x = -1;
-                            break;
-                        case SDLK_D:
-                            v.direction.x = 1;
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                if (event.type == SDL_EVENT_KEY_UP) {
-                    switch (event.key.key) {
-                        case SDLK_W:
-                            v.direction.y = 0;
-                            break;
-                        case SDLK_S:
-                            v.direction.y = 0;
-                            break;
-                        case SDLK_A:
-                            v.direction.x = 0;
-                            break;
-                        case SDLK_D:
-                            v.direction.x = 0;
-                            break;
-                        default:
-                            break;
-                    }
+
+                v.direction.x = 0;
+                v.direction.y = 0;
+
+                if (state[SDL_SCANCODE_W]) v.direction.y = -1;
+                if (state[SDL_SCANCODE_S]) v.direction.y = 1;
+                if (state[SDL_SCANCODE_A]) v.direction.x = -1;
+                if (state[SDL_SCANCODE_D]) v.direction.x = 1;
+
+                if (v.direction.x != 0 && v.direction.y != 0) {
+                    v.direction.x *= 0.7071f;
+                    v.direction.y *= 0.7071f;
                 }
             }
         }
