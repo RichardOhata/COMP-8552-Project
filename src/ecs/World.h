@@ -18,6 +18,7 @@
 #include "CameraSystem.h"
 #include "DestructionSystem.h"
 #include "SpawnTimerSystem.h"
+#include "SawBladeMovementSystem.h"
 
 class World {
     Map map;
@@ -32,6 +33,7 @@ class World {
     EventManager eventManager;
     SpawnTimerSystem spawnTimerSystem;
     DestructionSystem destructionSystem;
+    SawbladeMovementSystem sawbladeMovementSystem;
 public:
     World();
     void update(float dt, const SDL_Event& event) {
@@ -42,12 +44,12 @@ public:
         cameraSystem.update(entities);
         spawnTimerSystem.update(entities, dt);
         destructionSystem.update(entities);
+        sawbladeMovementSystem.update(entities, dt);
         synchronizeEntities();
         cleanup();
     }
 
     void render() {
-
         for (auto& entity : entities) {
           if (entity->hasComponent<Camera>()) {
             map.draw(entity->getComponent<Camera>());

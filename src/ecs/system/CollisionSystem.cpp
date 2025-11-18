@@ -17,6 +17,12 @@ void CollisionSystem::update(World &world) {
         auto& c = entity->getComponent<Collider>();
         c.rect.x = t.position.x;
         c.rect.y = t.position.y;
+
+        if (c.baseW > 0.0f && c.baseH > 0.0f) {
+            c.rect.w = c.baseW * t.scale;
+            c.rect.h = c.baseH * t.scale;
+        }
+
     }
 
 

@@ -18,6 +18,7 @@ public:
     static void draw(SDL_Texture* texture, SDL_FRect src, SDL_FRect dst);
 
     static void clean();
+
 };
 
 #endif //TEST_TEXTUREMANAGER_H

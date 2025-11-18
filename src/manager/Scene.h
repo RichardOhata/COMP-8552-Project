@@ -26,6 +26,8 @@ class Scene {
 private:
     std::string name;
     void createProjectile(Vector2D pos, Vector2D dir, int speed);
+    Entity& createSawblade(Vector2D pointA, Vector2D pointB, float speed, float scale, bool stationary);
+
 };
 
 #endif //TEST_SCENE_H

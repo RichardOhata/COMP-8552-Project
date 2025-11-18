@@ -51,6 +51,7 @@ void Game::init(const char *title, int width, int height, bool fullscreen) {
     // AssetManager::loadAnimation("player", "../animations/bull_animations.xml");
     AssetManager::loadAnimation("player", "../animations/cat_animations.xml");
     AssetManager::loadAnimation("enemy", "../animations/bird_animations.xml");
+    AssetManager::loadAnimation("sawblade", "../animations/saw_blade_animations.xml");
 
     sceneManager.loadScene("level1", "../asset/Level_1.tmx", width, height);
     sceneManager.loadScene("level2", "../asset/map2.tmx", width, height);

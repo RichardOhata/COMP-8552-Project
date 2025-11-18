@@ -37,17 +37,20 @@
             "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 220,
-                "y": 413.5
+                "x": 657.5,
+                "y": 510
             }
         },
         "Reflex.tmx": {
-            "scale": 1.5,
-            "selectedLayer": 2,
+            "scale": 1,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 796.3333333333333,
-                "y": 371.66666666666663
+                "x": 490.5,
+                "y": 396
             }
+        },
+        "Sawblade.tsx": {
+            "dynamicWrapping": false
         },
         "map2.tmx": {
             "scale": 0.5029910714285714,
@@ -69,9 +72,10 @@
     ],
     "project": "Reflex.tiled-project",
     "recentFiles": [
+        "Reflex.tmx",
+        "Environment.tsx",
         "Environment_Updated.tsx",
         "Level_1.tmx",
-        "Environment.tsx",
         "C:/Users/richa/CLionProjects/Test/asset/map2.tmx",
         "map2.tmx",
         "C:/Users/richa/Downloads/map2/map2/map2.tmx"

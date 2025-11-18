@@ -40,9 +40,11 @@ SDL_Texture* TextureManager::load(const char* path) {
 }
 
 void TextureManager::draw(SDL_Texture* texture, SDL_FRect src, SDL_FRect dst) {
-
+    SDL_SetTextureScaleMode(texture, SDL_SCALEMODE_NEAREST);
     SDL_RenderTexture(game->renderer, texture, &src, &dst);
-
+    // SDL_SetRenderDrawColor(game->renderer, 255, 0, 0, 255);
+    // SDL_RenderRect(game->renderer, &dst);
+    // SDL_SetRenderDrawColor(game->renderer, 0, 0, 0, 255); // Reset to black
 }
 
 void TextureManager::clean() {

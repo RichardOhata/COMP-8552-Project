@@ -28,11 +28,15 @@ struct Sprite {
     SDL_Texture* texture = nullptr;
     SDL_FRect src{};
     SDL_FRect dst{};
+    float originalWidth = 0;
+    float originalHeight = 0;
 };
 
 struct Collider {
     std::string tag;
     SDL_FRect rect{};
+    float baseW;
+    float baseH;
 };
 
 struct Animation {
@@ -60,6 +64,14 @@ struct SceneState {
     int coinsCollected = 0;
 };
 
+// Component for sawblade movement
+struct SawbladePath {
+    Vector2D pointA;
+    Vector2D pointB;
+    float speed = 0.0;
+    bool forward = true;
+    bool stationary = false;
+};
 struct PlayerTag{};
 struct ProjectileTag{};
 #endif //TEST_COMPONENT_H

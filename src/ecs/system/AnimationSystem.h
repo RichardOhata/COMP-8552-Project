@@ -22,8 +22,10 @@ public:
                 else if (velocity.direction.y > 0.0f) newClip = "walk_down";
                 else if (velocity.direction.y < 0.0f && e->hasComponent<PlayerTag>()) newClip = "walk_up";
                 else if (velocity.direction.y < 0.0f) newClip = "idle_right";
-                else {
+                else if (e->hasComponent<PlayerTag>()){
                     newClip = "idle_down";
+                } else {
+                    newClip = "spin";
                 }
 
 
