@@ -1,6 +1,7 @@
 {
-    "activeFile": "Environment.tsx",
+    "activeFile": "Level_1.tmx",
     "expandedProjectPaths": [
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -25,7 +26,7 @@
         },
         "Environment.tsx": {
             "dynamicWrapping": false,
-            "scaleInDock": 0.75,
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "Environment_Updated.tsx": {
@@ -35,10 +36,10 @@
         },
         "Level_1.tmx": {
             "scale": 1,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 657.5,
-                "y": 510
+                "x": 621.5,
+                "y": 360.5
             }
         },
         "Reflex.tmx": {
@@ -50,7 +51,9 @@
             }
         },
         "Sawblade.tsx": {
-            "dynamicWrapping": false
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "map2.tmx": {
             "scale": 0.5029910714285714,
@@ -68,14 +71,16 @@
     "last.imagePath": "C:/Users/richa/Downloads/2D Pixel Dungeon Asset Pack v2.0/2D Pixel Dungeon Asset Pack/character and tileset",
     "map.lastUsedFormat": "tmx",
     "openFiles": [
-        "Environment.tsx"
+        "Level_1.tmx",
+        "Sawblade.tsx"
     ],
     "project": "Reflex.tiled-project",
     "recentFiles": [
+        "Sawblade.tsx",
+        "Level_1.tmx",
         "Reflex.tmx",
         "Environment.tsx",
         "Environment_Updated.tsx",
-        "Level_1.tmx",
         "C:/Users/richa/CLionProjects/Test/asset/map2.tmx",
         "map2.tmx",
         "C:/Users/richa/Downloads/map2/map2/map2.tmx"
