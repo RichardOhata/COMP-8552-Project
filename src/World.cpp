@@ -46,14 +46,15 @@ World::World() {
         }
 
         if (player && item) {
+            auto& coinComp = item->getComponent<Coin>();
+            coinComp.collected = true;
+
+
             item->destroy();
+
             auto& sceneState = sceneStateEntity->getComponent<SceneState>();
             sceneState.coinsCollected++;
-
-            if (sceneState.coinsCollected > 1) {
-                Game::onSceneChangeRequest("level2");
             }
-        }
 
         if (colliderA.tag == "player" && colliderB.tag == "wall") {
          player = collision.entityA;
@@ -77,10 +78,15 @@ World::World() {
        }
 
         if (player && projectile) {
-            // player->destroy();
-
             Game::onSceneChangeRequest("respawn");
         }
+
+        if (colliderA.tag == "player" && colliderB.tag == "next_level") {
+            std::cout << "Next Level Area" << std::endl;
+        } else if (colliderA.tag == "next_level" && colliderB.tag == "player") {
+            std::cout << "Next Level Area" << std::endl;
+        }
+
     });
 
 

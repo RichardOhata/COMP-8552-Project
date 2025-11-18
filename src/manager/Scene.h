@@ -9,12 +9,11 @@
 
 
 class Scene {
-
-    public:
+public:
     Scene(const char* sceneName, const char* mapPath, int windowWidth, int windowHeight);
 
     void update(float dt, const SDL_Event &e) {
-    world.update(dt, e);
+        world.update(dt, e);
     }
 
     void render() {
@@ -34,14 +33,29 @@ class Scene {
 
     void respawn() {
         for (auto& e : world.getEntities()) {
-           if (e->hasComponent<PlayerTag>()) {
+            if (e->hasComponent<PlayerTag>()) {
                 e->getComponent<Transform>().position=world.respawnPoint;
-               break;
-           }
+                break;
+            }
+        }
+
+        SDL_Texture* itemTex = TextureManager::load("../asset/coin.png");
+        for (auto &spawnPoint : world.getMap().itemSpawns) {
+            auto& item = world.createEntity();
+            auto& itemTransform = item.addComponent<Transform>(Vector2D(spawnPoint.x, spawnPoint.y), 0.0f, 1.0f);
+            SDL_FRect itemSrc{0, 0, 32, 32};
+            SDL_FRect itemDest {itemTransform.position.x, itemTransform.position.y, 32, 32};
+            item.addComponent<Sprite>(itemTex, itemSrc, itemDest);
+            item.addComponent<Collider>("item");
+            item.addComponent<Coin>();
+        }
+        for (auto& e : world.getEntities()) {
+            if (e->hasComponent<SceneState>()) {
+                e->getComponent<SceneState>().coinsCollected = 0;
+                break;
+            }
         }
     }
-
-
 private:
     std::string name;
     void createProjectile(Vector2D pos, Vector2D dir, int speed);

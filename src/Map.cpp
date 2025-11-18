@@ -65,8 +65,14 @@ void Map::load(const char *path, SDL_Texture *ts) {
             spawn.y = obj->FloatAttribute("y");
             itemSpawns.push_back(spawn);
         }
-        else if (groupName == "Enemy Layer") {
-
+        else if (groupName == "Player Start") {
+            SDL_FPoint spawn;
+            spawn.x = obj->FloatAttribute("x");
+            spawn.y = obj->FloatAttribute("y");
+            playerSpawn = {spawn.x,spawn.y};
+        }
+        else if (groupName == "Next Level") {
+           colliders.push_back(c);
         }
     }
 }

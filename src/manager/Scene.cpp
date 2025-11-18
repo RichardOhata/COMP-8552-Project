@@ -22,33 +22,32 @@ Scene::Scene(const char* sceneName, const char* mapPath, const int windowWidth, 
         // SDL_FRect colDst {c.rect.x, c.rect.y, c.rect.w, c.rect.h};
         // e.addComponent<Sprite>(tex, colSrc, colDst);
     }
-    // Assignment 6
-    // SDL_Texture* itemTex = TextureManager::load("../asset/coin.png");
-    // for (auto &spawnPoint : world.getMap().itemSpawns) {
-    //     auto& item = world.createEntity();
-    //     auto& itemTransform = item.addComponent<Transform>(
-    //         Vector2D(spawnPoint.x, spawnPoint.y), 0.0f, 1.0f);
-    //
-    //     SDL_FRect itemSrc{0, 0, 32, 32};
-    //     SDL_FRect itemDest {itemTransform.position.x, itemTransform.position.y, 32, 32};
-    //
-    //     item.addComponent<Sprite>(itemTex, itemSrc, itemDest);
-    //     auto& itemCollider = item.addComponent<Collider>("item");
-    //     itemCollider.rect.w = itemDest.w;
-    //     itemCollider.rect.h = itemDest.h;
-    // }
 
 
-    // Assignment 5:
-    // auto& item2(world.createEntity());
-    // auto& item2Transform = item2.addComponent<Transform>(Vector2D(200, 200), 0.0f, 1.0f);
-    // SDL_Texture* itemTex2 = TextureManager::load("../asset/ball.png");
-    // SDL_FRect item2Src{0, 0, 32, 32};
-    // SDL_FRect item2Dest {item2Transform.position.x, item2Transform.position.y, 32, 32};
-    // item2.addComponent<Sprite>(itemTex2, item2Src, item2Dest);
-    // auto& item2Collider = item2.addComponent<Collider>("item2");
-    // item2Collider.rect.w = item2Dest.w;
-    // item2Collider.rect.h = item2Dest.h;
+
+    auto& entity = world.createEntity();
+    auto& col = entity.addComponent<Collider>();
+    col = world.getMap().nextAreaZone;
+    col.tag = "next_level";
+
+
+    SDL_Texture* itemTex = TextureManager::load("../asset/coin.png");
+    for (auto &spawnPoint : world.getMap().itemSpawns) {
+        auto& item = world.createEntity();
+        auto& itemTransform = item.addComponent<Transform>(
+            Vector2D(spawnPoint.x, spawnPoint.y), 0.0f, 1.0f);
+
+        SDL_FRect itemSrc{0, 0, 32, 32};
+        SDL_FRect itemDest {itemTransform.position.x, itemTransform.position.y, 32, 32};
+        item.addComponent<CoinTag>();
+        item.addComponent<Coin>();
+        item.addComponent<Sprite>(itemTex, itemSrc, itemDest);
+        auto& itemCollider = item.addComponent<Collider>("item");
+        itemCollider.rect.w = itemDest.w;
+        itemCollider.rect.h = itemDest.h;
+
+    }
+
 
     auto& cam = world.createEntity();
     SDL_FRect camView{};
@@ -57,8 +56,8 @@ Scene::Scene(const char* sceneName, const char* mapPath, const int windowWidth, 
     cam.addComponent<Camera>(camView, world.getMap().width * 32, world.getMap().height * 32);
 
     auto& player(world.createEntity());
-    auto& playerTransform = player.addComponent<Transform>(Vector2D(100, 350), 0.0f, 1.0f);
-    world.setRespawn(Vector2D(100, 350));
+    auto& playerTransform = player.addComponent<Transform>(world.getMap().playerSpawn, 0.0f, 1.0f);
+    world.setRespawn(world.getMap().playerSpawn);
     player.addComponent<Velocity>(Vector2D(0.f, 0.f), 150.0f);
 
     // Animation anim = AssetManager::getAnimation("player");
@@ -74,24 +73,16 @@ Scene::Scene(const char* sceneName, const char* mapPath, const int windowWidth, 
     playerCollider.scaleOffset = 0.7f;
     playerCollider.baseH = 36.0f;
     playerCollider.baseW = 36.0f;
-    // playerCollider.rect.w = playerDst.w * 0.7;
-    // playerCollider.rect.h = playerDst.h * 0.7;
-
     playerCollider.positionOffset.x = 18.0f;
     playerCollider.positionOffset.y = 18.0f;
 
-    // c.rect.w = c.baseW * sawTrans.scale;
-    // c.rect.h = c.baseH * sawTrans.scale;
-    // c.rect.x = sawTrans.position.x;
-    // c.rect.y = sawTrans.position.y;
-
     player.addComponent<PlayerTag>();
 
-    createSawblade({420, 160}, {425, 500}, 275.0f, 3.5f, false);
-    createSawblade({520, 500}, {520, 160}, 150.0f, 3.5f, false);
-    createSawblade({625, 160}, {625, 500}, 275.0f, 3.5f, false);
-    createSawblade({725, 500}, {725, 160}, 150.0f, 3.5f, false);
-    createSawblade({825, 160}, {825, 500}, 275.0f, 3.5f, false);
+    createSawblade({420, 160}, {425, 500}, 300.0f, 4.0f, false);
+    createSawblade({520, 500}, {520, 160}, 300.0f, 4.0f, false);
+    createSawblade({625, 160}, {625, 500}, 300.0f, 4.0f, false);
+    createSawblade({725, 500}, {725, 160}, 300.0f, 4.0f, false);
+    createSawblade({825, 160}, {825, 500}, 300.0f, 4.0f, false);
 
     createSawblade({350.0f, 160}, {}, 200.0f, 5.0f, true);
     createSawblade({456.0f, 160}, {}, 200.0f, 5.0f, true);
@@ -100,12 +91,12 @@ Scene::Scene(const char* sceneName, const char* mapPath, const int windowWidth, 
     createSawblade({774.0f, 160}, {}, 200.0f, 5.0f, true);
     createSawblade({880.0f, 160}, {}, 200.0f, 5.0f, true);
 
-    createSawblade({350.0f, 530}, {}, 200.0f, 5.0f, true);
-    createSawblade({456.0f, 530}, {}, 200.0f, 5.0f, true);
-    createSawblade({562.0f, 530}, {}, 200.0f, 5.0f, true);
-    createSawblade({668.0f, 530}, {}, 200.0f, 5.0f, true);
-    createSawblade({774.0f, 530}, {}, 200.0f, 5.0f, true);
-    createSawblade({880.0f, 530}, {}, 200.0f, 5.0f, true);
+    createSawblade({350.0f, 510}, {}, 200.0f, 5.0f, true);
+    createSawblade({456.0f, 510}, {}, 200.0f, 5.0f, true);
+    createSawblade({562.0f, 510}, {}, 200.0f, 5.0f, true);
+    createSawblade({668.0f, 510}, {}, 200.0f, 5.0f, true);
+    createSawblade({774.0f, 510}, {}, 200.0f, 5.0f, true);
+    createSawblade({880.0f, 510}, {}, 200.0f, 5.0f, true);
 
      // Creates enemy spwaner entity
     // auto& spawner(world.createEntity());
@@ -132,7 +123,9 @@ Scene::Scene(const char* sceneName, const char* mapPath, const int windowWidth, 
     // });
 
     auto &state(world.createEntity());
-    state.addComponent<SceneState>();
+    auto &sceneState = state.addComponent<SceneState>();
+    sceneState.requiredCoins = world.getMap().itemSpawns.size();
+    std::cout << sceneState.requiredCoins << std::endl;
 }
 
 Entity &Scene::createSawblade(Vector2D pointA, Vector2D pointB, float speed, float scale, bool stationary) {

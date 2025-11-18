@@ -64,6 +64,7 @@ struct TimedSpawner {
 
 struct SceneState {
     int coinsCollected = 0;
+    int requiredCoins = 0;
 };
 
 // Component for sawblade movement
@@ -74,6 +75,12 @@ struct SawbladePath {
     bool forward = true;
     bool stationary = false;
 };
+
+struct Coin {
+    bool collected = false;
+};
+
 struct PlayerTag{};
 struct ProjectileTag{};
+struct CoinTag{};
 #endif //TEST_COMPONENT_H

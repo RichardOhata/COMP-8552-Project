@@ -22,7 +22,8 @@ public:
     std::vector<std::vector<int>> tileData;
     std::vector<Collider> colliders;
     std::vector<SDL_FPoint> itemSpawns;
-
+    Vector2D playerSpawn{};
+    Collider nextAreaZone;
 };
 
 #endif //TEST_MAP_H

@@ -110,7 +110,7 @@
         SDL_RenderClear(renderer);
 
         sceneManager.render();
-        ColliderDebugSystem::DrawAllColliders(renderer, sceneManager.currentScene->getEntities());
+        ColliderDebugSystem::DrawAllColliders(renderer, sceneManager.currentScene->getEntities()); // Debug
         SDL_RenderPresent(renderer);
 
     }
