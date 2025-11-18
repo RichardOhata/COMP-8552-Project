@@ -57,49 +57,55 @@ Scene::Scene(const char* sceneName, const char* mapPath, const int windowWidth, 
     cam.addComponent<Camera>(camView, world.getMap().width * 32, world.getMap().height * 32);
 
     auto& player(world.createEntity());
-    auto& playerTransform = player.addComponent<Transform>(Vector2D(100, 250), 0.0f, 1.0f);
+    auto& playerTransform = player.addComponent<Transform>(Vector2D(100, 350), 0.0f, 1.0f);
+    world.setRespawn(Vector2D(100, 350));
     player.addComponent<Velocity>(Vector2D(0.f, 0.f), 150.0f);
 
-
-    Animation anim = AssetManager::getAnimation("player");
-    player.addComponent<Animation>(anim);
+    // Animation anim = AssetManager::getAnimation("player");
+    // player.addComponent<Animation>(anim);
 
     // SDL_Texture* tex = TextureManager::load("../animations/bull_anim.png");
-    SDL_Texture* tex = TextureManager::load("../animations/CATSPRITESHEET_Gray.png");
-    SDL_FRect playerSrc {0,0,32,32};
-    // SDL_FRect playerSrc = anim.clips[anim.currentClip].frameIndicies[0];
-    SDL_FRect playerDst {playerTransform.position.x, playerTransform.position.y,64,88};
+    SDL_Texture* tex = TextureManager::load("../asset/Fine.svg");
+    SDL_FRect playerSrc {0,0,36,36};
+    SDL_FRect playerDst {playerTransform.position.x, playerTransform.position.y,36,36};
     player.addComponent<Sprite>(tex, playerSrc, playerDst);
 
     auto& playerCollider = player.addComponent<Collider>("player");
-    playerCollider.rect.w = playerDst.w;
-    playerCollider.rect.h = playerDst.h;
+    playerCollider.scaleOffset = 0.7f;
+    playerCollider.baseH = 36.0f;
+    playerCollider.baseW = 36.0f;
+    // playerCollider.rect.w = playerDst.w * 0.7;
+    // playerCollider.rect.h = playerDst.h * 0.7;
+
+    playerCollider.positionOffset.x = 18.0f;
+    playerCollider.positionOffset.y = 18.0f;
+
+    // c.rect.w = c.baseW * sawTrans.scale;
+    // c.rect.h = c.baseH * sawTrans.scale;
+    // c.rect.x = sawTrans.position.x;
+    // c.rect.y = sawTrans.position.y;
+
     player.addComponent<PlayerTag>();
 
-    createSawblade({500, 500}, {500, 160}, 200.0f, 5.5f, false);
-    createSawblade({365.0f, 530}, {}, 200.0f, 2.5f, true);
-    createSawblade({417.5f, 530}, {}, 200.0f, 2.5f, true);
-    createSawblade({470.0f, 530}, {}, 200.0f, 2.5f, true);
-    createSawblade({522.5f, 530}, {}, 200.0f, 2.5f, true);
-    createSawblade({575.0f, 530}, {}, 200.0f, 2.5f, true);
-    createSawblade({627.5f, 530}, {}, 200.0f, 2.5f, true);
-    createSawblade({680.0f, 530}, {}, 200.0f, 2.5f, true);
-    createSawblade({732.5f, 530}, {}, 200.0f, 2.5f, true);
-    createSawblade({785.0f, 530}, {}, 200.0f, 2.5f, true);
-    createSawblade({837.5f, 530}, {}, 200.0f, 2.5f, true);
-    createSawblade({890.0f, 530}, {}, 200.0f, 2.5f, true);
+    createSawblade({420, 160}, {425, 500}, 275.0f, 3.5f, false);
+    createSawblade({520, 500}, {520, 160}, 150.0f, 3.5f, false);
+    createSawblade({625, 160}, {625, 500}, 275.0f, 3.5f, false);
+    createSawblade({725, 500}, {725, 160}, 150.0f, 3.5f, false);
+    createSawblade({825, 160}, {825, 500}, 275.0f, 3.5f, false);
 
-    createSawblade({365.0f, 160}, {}, 200.0f, 5.0f, true);
-    createSawblade({417.5f, 160}, {}, 200.0f, 2.5f, true);
-    createSawblade({470.0f, 160}, {}, 200.0f, 2.5f, true);
-    createSawblade({522.5f, 160}, {}, 200.0f, 2.5f, true);
-    createSawblade({575.0f, 160}, {}, 200.0f, 2.5f, true);
-    createSawblade({627.5f, 160}, {}, 200.0f, 2.5f, true);
-    createSawblade({680.0f, 160}, {}, 200.0f, 2.5f, true);
-    createSawblade({732.5f, 160}, {}, 200.0f, 2.5f, true);
-    createSawblade({785.0f, 160}, {}, 200.0f, 2.5f, true);
-    createSawblade({837.5f, 160}, {}, 200.0f, 2.5f, true);
-    createSawblade({890.0f, 160}, {}, 200.0f, 2.5f, true);
+    createSawblade({350.0f, 160}, {}, 200.0f, 5.0f, true);
+    createSawblade({456.0f, 160}, {}, 200.0f, 5.0f, true);
+    createSawblade({562.0f, 160}, {}, 200.0f, 5.0f, true);
+    createSawblade({668.0f, 160}, {}, 200.0f, 5.0f, true);
+    createSawblade({774.0f, 160}, {}, 200.0f, 5.0f, true);
+    createSawblade({880.0f, 160}, {}, 200.0f, 5.0f, true);
+
+    createSawblade({350.0f, 530}, {}, 200.0f, 5.0f, true);
+    createSawblade({456.0f, 530}, {}, 200.0f, 5.0f, true);
+    createSawblade({562.0f, 530}, {}, 200.0f, 5.0f, true);
+    createSawblade({668.0f, 530}, {}, 200.0f, 5.0f, true);
+    createSawblade({774.0f, 530}, {}, 200.0f, 5.0f, true);
+    createSawblade({880.0f, 530}, {}, 200.0f, 5.0f, true);
 
      // Creates enemy spwaner entity
     // auto& spawner(world.createEntity());
@@ -131,20 +137,32 @@ Scene::Scene(const char* sceneName, const char* mapPath, const int windowWidth, 
 
 Entity &Scene::createSawblade(Vector2D pointA, Vector2D pointB, float speed, float scale, bool stationary) {
     auto& sawBlade(world.createEntity());
-    Transform sawTrans = sawBlade.addComponent<Transform>(pointA, 0.0f, scale);
+    Transform sawTrans = sawBlade.addComponent<Transform>(
+          Vector2D(pointA.x + 25.6f / 2.0f, pointA.y + 25.6f / 2.0f),
+          0.0f,
+          scale
+      );
+
+    // Sprite = draw from top-left
     SDL_Texture* sawTex = TextureManager::load("../animations/saw_blade.png");
-    SDL_FRect src {0, 0, 25.6, 25.6};
-    SDL_FRect dest {sawTrans.position.x, sawTrans.position.y, 25.6, 25.6};
+    SDL_FRect src {0, 0, 25.6f, 25.6f};
+    SDL_FRect dest {
+        sawTrans.position.x - 25.6f / 2.0f,
+        sawTrans.position.y - 25.6f / 2.0f,
+        25.6f,
+        25.6f
+    };
     sawBlade.addComponent<Sprite>(sawTex, src, dest);
     Animation sawAnim = AssetManager::getAnimation("sawblade");
     sawBlade.addComponent<Animation>(sawAnim);
     sawBlade.addComponent<Velocity>(Vector2D(0.f, 0.f), 0.0f);
     sawBlade.addComponent<SawbladePath>(pointA, pointB, speed, true, stationary);
-    Collider c = sawBlade.addComponent<Collider>("projectile");
-    c.baseW = dest.w;
-    c.baseH = dest.h;
-    c.rect.w = c.baseW;
-    c.rect.h = c.baseH;
+    Collider& c = sawBlade.addComponent<Collider>("projectile");
+    c.scaleOffset = 0.65f;
+    c.positionOffset.x = 12.5f;
+    c.positionOffset.y = 20.0f;
+    c.baseW = 25.6;
+    c.baseH = 25.6;
     sawBlade.addComponent<ProjectileTag>();
 
     return sawBlade;

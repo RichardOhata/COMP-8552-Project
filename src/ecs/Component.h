@@ -37,6 +37,8 @@ struct Collider {
     SDL_FRect rect{};
     float baseW;
     float baseH;
+    float scaleOffset = 1.0f;
+    Vector2D positionOffset{0.f, 0.f};
 };
 
 struct Animation {

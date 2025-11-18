@@ -57,6 +57,10 @@ public:
     void render() const {
        if (currentScene) currentScene->render();
     }
+
+    void respawn() const {
+        currentScene->respawn();
+    }
 };
 
 #endif //TEST_SCENEMANAGER_H

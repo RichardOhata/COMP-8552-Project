@@ -23,6 +23,25 @@ class Scene {
     World world;
 
     const std::string& getName() const { return name; }
+
+    std::vector<Entity*> getEntities() {
+        std::vector<Entity*> ptrs;
+        for (auto& e : world.getEntities()) {
+            ptrs.push_back(e.get());
+        }
+        return ptrs;
+    }
+
+    void respawn() {
+        for (auto& e : world.getEntities()) {
+           if (e->hasComponent<PlayerTag>()) {
+                e->getComponent<Transform>().position=world.respawnPoint;
+               break;
+           }
+        }
+    }
+
+
 private:
     std::string name;
     void createProjectile(Vector2D pos, Vector2D dir, int speed);

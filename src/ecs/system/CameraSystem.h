@@ -25,27 +25,27 @@ public:
 
         auto& playerTransform = playerEntity->getComponent<Transform>();
 
-        for (auto& e : entities) {
-            if (e->hasComponent<Camera>()) {
-
-                auto& cam = e->getComponent<Camera>();
-                cam.view.x = playerTransform.position.x - cam.view.w /2;
-                cam.view.y = playerTransform.position.y - cam.view.h / 2;
-
-                if (cam.view.x < 0) {
-                    cam.view.x = 0;
-                }
-
-                if (cam.view.y < 0) {
-                    cam.view.y = 0;
-                }
-                if (cam.view.x > cam.worldWidth - cam.view.w)
-                    cam.view.x = cam.worldWidth - cam.view.w;
-
-                if (cam.view.y > cam.worldHeight - cam.view.h)
-                    cam.view.y = cam.worldHeight - cam.view.h;
-            }
-        }
+        // for (auto& e : entities) {
+        //     if (e->hasComponent<Camera>()) {
+        //
+        //         auto& cam = e->getComponent<Camera>();
+        //         cam.view.x = playerTransform.position.x - cam.view.w /2;
+        //         cam.view.y = playerTransform.position.y - cam.view.h / 2;
+        //
+        //         if (cam.view.x < 0) {
+        //             cam.view.x = 0;
+        //         }
+        //
+        //         if (cam.view.y < 0) {
+        //             cam.view.y = 0;
+        //         }
+        //         if (cam.view.x > cam.worldWidth - cam.view.w)
+        //             cam.view.x = cam.worldWidth - cam.view.w;
+        //
+        //         if (cam.view.y > cam.worldHeight - cam.view.h)
+        //             cam.view.y = cam.worldHeight - cam.view.h;
+        //     }
+        // }
     }
 };
 #endif //TEST_CAMERASYSTEM_H

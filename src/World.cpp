@@ -77,9 +77,9 @@ World::World() {
        }
 
         if (player && projectile) {
-            player->destroy();
+            // player->destroy();
 
-            Game::onSceneChangeRequest("gameover");
+            Game::onSceneChangeRequest("respawn");
         }
     });
 

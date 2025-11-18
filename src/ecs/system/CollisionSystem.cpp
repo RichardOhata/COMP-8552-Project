@@ -19,8 +19,10 @@ void CollisionSystem::update(World &world) {
         c.rect.y = t.position.y;
 
         if (c.baseW > 0.0f && c.baseH > 0.0f) {
-            c.rect.w = c.baseW * t.scale;
-            c.rect.h = c.baseH * t.scale;
+            c.rect.w = c.baseW * t.scale * c.scaleOffset;
+            c.rect.h = c.baseH * t.scale * c.scaleOffset;
+            c.rect.x = t.position.x - c.rect.w / 2.0f + c.positionOffset.x;
+            c.rect.y = t.position.y - c.rect.h / 2.0f + c.positionOffset.y;
         }
 
     }

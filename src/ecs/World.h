@@ -100,5 +100,11 @@ public:
     Map& getMap() {
         return map;
     }
+
+    Vector2D respawnPoint{};
+
+    void setRespawn(Vector2D respawnPoint) {
+        this->respawnPoint = respawnPoint;
+    }
 };
 #endif //TEST_WORLD_H
