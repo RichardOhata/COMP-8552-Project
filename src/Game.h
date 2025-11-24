@@ -13,6 +13,8 @@
 #include "World.h"
 class Game {
 public:
+    static bool wantToClearRespawnFlag;
+
     Game();
     ~Game();
 
@@ -28,7 +30,7 @@ public:
     bool running() {
         return isRunning;
     }
-
+    static bool pendingRespawn;
     SDL_Renderer* renderer = nullptr;
 
     SceneManager sceneManager;

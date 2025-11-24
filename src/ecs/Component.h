@@ -83,6 +83,7 @@ struct SawbladePath {
     float radius = 0.0f;
     float angularSpeed = 0.0f;
     float angle = 0.0f;
+    bool clockwise = false;
 
 
 

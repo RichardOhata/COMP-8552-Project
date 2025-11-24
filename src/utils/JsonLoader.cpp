@@ -29,22 +29,22 @@ std::vector<SawbladeConfig> JsonLoader::loadSawblades(const std::string& sceneNa
     for (auto& s : data["sawblades"])
     {
         SawbladeConfig cfg;
-
-        cfg.pointA = { s["pointA"][0], s["pointA"][1] };
-        cfg.pointB = { s["pointB"][0], s["pointB"][1] };
-        cfg.speed = s["speed"];
-        cfg.scale = s["scale"];
-        cfg.stationary = s["stationary"];
-
         std::string motion = s["type"];
         cfg.motionType = (motion == "linear") ? SawbladeMotionType::Linear : SawbladeMotionType::Circular;
-
-        // if (cfg.motionType == SawbladeMotionType::Circular) {
-        //     cfg.center = { s["center"]["x"], s["center"]["y"] };
-        //     cfg.radius = s["radius"];
-        //     cfg.angularSpeed = s["angularSpeed"];
-        //     cfg.angle = s.value("angle", 0.0f); // optional default
-        // }
+        if (cfg.motionType == SawbladeMotionType::Circular) {
+            cfg.center = { s["center"][0], s["center"][1] };
+            cfg.radius = s["radius"];
+            cfg.angularSpeed = s["angularSpeed"];
+            cfg.angle = s.value("angle", 0.0f);
+            cfg.scale = s["scale"];
+            cfg.clockwise = s.value("clockwise", false);
+        } else {
+            cfg.pointA = { s["pointA"][0], s["pointA"][1] };
+            cfg.pointB = { s["pointB"][0], s["pointB"][1] };
+            cfg.speed = s["speed"];
+            cfg.scale = s["scale"];
+            cfg.stationary = s["stationary"];
+        }
 
         result.push_back(cfg);
     }

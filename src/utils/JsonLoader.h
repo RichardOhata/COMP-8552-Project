@@ -24,6 +24,7 @@ struct SawbladeConfig {
     float radius;
     float angularSpeed;
     float angle;
+    bool clockwise;
 };
 
 class JsonLoader {

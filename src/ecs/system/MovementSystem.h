@@ -21,7 +21,7 @@ public:
                 t.oldPosition = t.position;
                 Vector2D directionVec = v.direction;
 
-                directionVec.normalize();
+                // directionVec.normalize();
                 Vector2D velocityVector = directionVec * v.speed;
 
                 t.position += (velocityVector * dt);

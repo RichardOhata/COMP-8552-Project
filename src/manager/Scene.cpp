@@ -11,7 +11,22 @@ Scene::Scene(const char* sceneName, const char* mapPath, const int windowWidth, 
     world.getMap().load(mapPath, TextureManager::load("../asset/Dungeon_Tileset_at.png"));
     auto sawConfigs = JsonLoader::loadSawblades(sceneName);
     for (auto& s : sawConfigs) {
-        createSawblade(s.pointA, s.pointB, s.speed, s.scale, s.stationary);
+        switch (s.motionType) {
+            case (SawbladeMotionType::Linear):
+                createSawblade(s.pointA, s.pointB, s.speed, s.scale, s.stationary);
+                break;
+            case (SawbladeMotionType::Circular):
+                createCircularSawblade(
+                      s.center,
+                      s.radius,
+                      s.angularSpeed,
+                      s.angle,
+                      s.scale,
+                      s.clockwise);
+                break;
+        }
+
+
     }
     for (auto &collider : world.getMap().colliders) {
         auto& e = world.createEntity();
@@ -156,6 +171,53 @@ Entity &Scene::createSawblade(Vector2D pointA, Vector2D pointB, float speed, flo
     sawBlade.addComponent<ProjectileTag>();
 
     return sawBlade;
+}
+
+Entity &Scene::createCircularSawblade(Vector2D center, float radius, float angularSpeed, float angle, float scale, bool clockwise) {
+    auto& saw(world.createEntity());
+
+    // Compute initial position
+    float px = center.x + std::cos(angle) * radius;
+    float py = center.y + std::sin(angle) * radius;
+
+    auto& t = saw.addComponent<Transform>(
+        Vector2D(px, py),
+        0.0f,
+        scale
+    );
+
+    SDL_Texture* sawTex = TextureManager::load("../animations/saw_blade.png");
+    SDL_FRect src {0, 0, 25.6f, 25.6f};
+    SDL_FRect dest {
+        t.position.x - 25.6f / 2.0f,
+        t.position.y - 25.6f / 2.0f,
+        25.6f,
+        25.6f
+    };
+
+    saw.addComponent<Sprite>(sawTex, src, dest);
+
+    Animation anim = AssetManager::getAnimation("sawblade");
+    saw.addComponent<Animation>(anim);
+
+    saw.addComponent<Velocity>(Vector2D(0,0), 0.0f);
+
+    auto& path = saw.addComponent<SawbladePath>();
+    path.motionType = SawbladeMotionType::Circular;
+    path.center = center;
+    path.radius = radius;
+    path.angle = angle;
+    path.angularSpeed = angularSpeed;
+    path.clockwise = clockwise;
+    auto& c = saw.addComponent<Collider>("projectile");
+    c.scaleOffset = 0.65f;
+    c.positionOffset = {12.5f, 20.0f};
+    c.baseW = 25.6f;
+    c.baseH = 25.6f;
+
+    saw.addComponent<ProjectileTag>();
+
+    return saw;
 }
 
 

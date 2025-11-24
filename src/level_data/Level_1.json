@@ -41,7 +41,7 @@
       "stationary": false
     },
     {
-      "type": "stationary",
+      "type": "linear",
       "pointA": [350, 160],
       "pointB": [350, 160],
       "speed": 200.0,
@@ -49,7 +49,7 @@
       "stationary": true
     },
     {
-      "type": "stationary",
+      "type": "linear",
       "pointA": [456, 160],
       "pointB": [456, 160],
       "speed": 200.0,
@@ -57,7 +57,7 @@
       "stationary": true
     },
     {
-      "type": "stationary",
+      "type": "linear",
       "pointA": [562, 160],
       "pointB": [562, 160],
       "speed": 200.0,
@@ -65,7 +65,7 @@
       "stationary": true
     },
     {
-      "type": "stationary",
+      "type": "linear",
       "pointA": [668, 160],
       "pointB": [668, 160],
       "speed": 200.0,
@@ -73,7 +73,7 @@
       "stationary": true
     },
     {
-      "type": "stationary",
+      "type": "linear",
       "pointA": [774, 160],
       "pointB": [774, 160],
       "speed": 200.0,
@@ -81,7 +81,7 @@
       "stationary": true
     },
     {
-      "type": "stationary",
+      "type": "linear",
       "pointA": [880, 160],
       "pointB": [880, 160],
       "speed": 200.0,
@@ -89,7 +89,7 @@
       "stationary": true
     },
     {
-      "type": "stationary",
+      "type": "linear",
       "pointA": [350, 510],
       "pointB": [350, 510],
       "speed": 200.0,
@@ -97,7 +97,7 @@
       "stationary": true
     },
     {
-      "type": "stationary",
+      "type": "linear",
       "pointA": [456, 510],
       "pointB": [456, 510],
       "speed": 200.0,
@@ -105,7 +105,7 @@
       "stationary": true
     },
     {
-      "type": "stationary",
+      "type": "linear",
       "pointA": [562, 510],
       "pointB": [562, 510],
       "speed": 200.0,
@@ -113,7 +113,7 @@
       "stationary": true
     },
     {
-      "type": "stationary",
+      "type": "linear",
       "pointA": [668, 510],
       "pointB": [668, 510],
       "speed": 200.0,
@@ -121,7 +121,7 @@
       "stationary": true
     },
     {
-      "type": "stationary",
+      "type": "linear",
       "pointA": [774, 510],
       "pointB": [774, 510],
       "speed": 200.0,
@@ -129,7 +129,7 @@
       "stationary": true
     },
     {
-      "type": "stationary",
+      "type": "linear",
       "pointA": [880, 510],
       "pointB": [880, 510],
       "speed": 200.0,

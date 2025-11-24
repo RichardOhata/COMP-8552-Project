@@ -16,8 +16,9 @@
 
     // GameObject *player = nullptr;
     std::function<void(std::string)> Game::onSceneChangeRequest;
-std::vector<std::string> levels = {"Level_1", "Level_2", "Level_3"};
-
+    std::vector<std::string> levels = {"Level_1", "Level_2", "Level_3"};
+    bool Game::pendingRespawn = false;
+    bool Game::wantToClearRespawnFlag = false;
     Game::Game() {
     }
 
@@ -57,7 +58,7 @@ std::vector<std::string> levels = {"Level_1", "Level_2", "Level_3"};
         sceneManager.loadScene("Level_1", "../asset/Level_1.tmx", width, height);
         sceneManager.loadScene("Level_2", "../asset/Level_2.tmx", width, height);
 
-        sceneManager.changeSceneDeferred("Level_1");
+        sceneManager.changeSceneDeferred("Level_2");
 
         onSceneChangeRequest = [this](std::string sceneName) {
             if (sceneManager.currentScene->getName() == "level5" && sceneName == "level5") {
@@ -76,6 +77,7 @@ std::vector<std::string> levels = {"Level_1", "Level_2", "Level_3"};
             if (sceneName == "respawn") {
                 std::cout << "You Died!" << std::endl;
                 sceneManager.currentScene->respawn();
+                wantToClearRespawnFlag = true;
                 return;
             }
              if (sceneName == "nextlevel") {
@@ -106,6 +108,10 @@ std::vector<std::string> levels = {"Level_1", "Level_2", "Level_3"};
 
     void Game::update(float dt) {
         sceneManager.update(dt, event);
+        if (wantToClearRespawnFlag) {
+            pendingRespawn = false;
+            wantToClearRespawnFlag = false;
+        }
     }
 
 

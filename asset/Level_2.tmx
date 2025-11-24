@@ -32,16 +32,16 @@
   <object id="38" x="923" y="347" width="39" height="39"/>
  </objectgroup>
  <objectgroup id="6" name="Item Layer">
-  <object id="30" x="721" y="282">
+  <object id="30" x="668" y="302.5">
    <point/>
   </object>
-  <object id="31" x="721" y="470">
+  <object id="31" x="668" y="417.5">
    <point/>
   </object>
-  <object id="34" x="500" y="470">
+  <object id="34" x="552" y="417.5">
    <point/>
   </object>
-  <object id="41" x="500" y="282">
+  <object id="41" x="552" y="302.5">
    <point/>
   </object>
  </objectgroup>
@@ -54,20 +54,20 @@
   <object id="6" x="996.34" y="289.333" width="44.3333" height="146.667"/>
   <object id="7" x="769" y="149" width="73" height="60.6667"/>
   <object id="11" x="900.667" y="209.667" width="94.6667" height="107.333"/>
-  <object id="13" x="564.667" y="611.333" width="122" height="47"/>
+  <object id="13" x="563.167" y="613.333" width="122" height="47"/>
   <object id="14" x="572" y="54" width="104" height="33"/>
   <object id="15" x="471.333" y="83.333" width="101.333" height="62"/>
   <object id="17" x="341" y="450.333" width="69" height="97"/>
   <object id="18" x="301.333" y="260.667" width="46" height="199"/>
   <object id="22" x="462.667" y="579.333" width="110" height="26"/>
   <object id="23" x="372" y="146.333" width="103" height="70"/>
-  <object id="24" x="672" y="576" width="107" height="26"/>
+  <object id="24" x="672" y="577.5" width="107" height="26"/>
   <object id="27" x="676.333" y="86.333" width="125" height="59.6667"/>
   <object id="42" x="896.667" y="411.334" width="94.6667" height="107.333"/>
   <object id="43" x="343.5" y="186.5" width="69" height="97"/>
   <object id="44" x="406.5" y="512.5" width="69" height="97"/>
-  <object id="45" x="835.5" y="199.667" width="73" height="85.6667"/>
-  <object id="46" x="834.667" y="449.334" width="59.6667" height="80.333"/>
-  <object id="47" x="771.167" y="512.833" width="59.6667" height="59.333"/>
+  <object id="45" x="836" y="194.667" width="73" height="85.6667"/>
+  <object id="46" x="835.167" y="450.834" width="59.6667" height="80.333"/>
+  <object id="47" x="773.667" y="516.333" width="59.6667" height="59.333"/>
  </objectgroup>
 </map>

@@ -65,8 +65,10 @@ World::World() {
          }
 
         if (player && wall) {
-            auto& t = player->getComponent<Transform>();
-            t.position = t.oldPosition;
+            if (!Game::pendingRespawn) {
+                auto& t = player->getComponent<Transform>();
+                t.position = t.oldPosition;
+            }
         }
 
         if (colliderA.tag == "player" && colliderB.tag == "projectile") {
@@ -78,6 +80,7 @@ World::World() {
        }
 
         if (player && projectile) {
+            Game::pendingRespawn = true;
             Game::onSceneChangeRequest("respawn");
         }
 

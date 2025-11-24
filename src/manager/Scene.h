@@ -5,6 +5,8 @@
 #ifndef TEST_SCENE_H
 #define TEST_SCENE_H
 #include <SDL3/SDL_events.h>
+
+
 #include "World.h"
 
 
@@ -63,6 +65,7 @@ private:
     void createProjectile(Vector2D pos, Vector2D dir, int speed);
     Entity& createSawblade(Vector2D pointA, Vector2D pointB, float speed, float scale, bool stationary);
 
+    Entity &createCircularSawblade(Vector2D center, float radius, float angularSpeed, float angle, float scale, bool clockwise);
 };
 
 #endif //TEST_SCENE_H

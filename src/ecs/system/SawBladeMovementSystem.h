@@ -38,7 +38,9 @@ public:
                     break;
                 }
                 case SawbladeMotionType::Circular: {
-                    path.angle += path.angularSpeed * dt;
+                    float direction = path.clockwise ? -1.0f : 1.0f;
+                    path.angle += direction * path.angularSpeed * dt;
+
                     if (path.angle > 2 * 3.14159265f) path.angle -= 2 * 3.14159265f;
 
                     t.position.x = path.center.x + path.radius * std::cos(path.angle);
