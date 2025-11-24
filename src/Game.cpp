@@ -16,6 +16,8 @@
 
     // GameObject *player = nullptr;
     std::function<void(std::string)> Game::onSceneChangeRequest;
+std::vector<std::string> levels = {"Level_1", "Level_2", "Level_3"};
+
     Game::Game() {
     }
 
@@ -50,18 +52,15 @@
             isRunning = false;
         }
 
-        // AssetManager::loadAnimation("player", "../animations/bull_animations.xml");
-        // AssetManager::loadAnimation("player", "../animations/cat_animations.xml");
-        // AssetManager::loadAnimation("enemy", "../animations/bird_animations.xml");
         AssetManager::loadAnimation("sawblade", "../animations/saw_blade_animations.xml");
 
-        sceneManager.loadScene("level1", "../asset/Level_1.tmx", width, height);
-        sceneManager.loadScene("level2", "../asset/map2.tmx", width, height);
+        sceneManager.loadScene("Level_1", "../asset/Level_1.tmx", width, height);
+        sceneManager.loadScene("Level_2", "../asset/Level_2.tmx", width, height);
 
-        sceneManager.changeSceneDeferred("level1");
+        sceneManager.changeSceneDeferred("Level_1");
 
         onSceneChangeRequest = [this](std::string sceneName) {
-            if (sceneManager.currentScene->getName() == "level2" && sceneName == "level2") {
+            if (sceneManager.currentScene->getName() == "level5" && sceneName == "level5") {
                 std::cout << "You Win!" << std::endl;
                 isRunning = false;
                 return;
@@ -78,6 +77,12 @@
                 std::cout << "You Died!" << std::endl;
                 sceneManager.currentScene->respawn();
                 return;
+            }
+             if (sceneName == "nextlevel") {
+                 std::cout << sceneManager.currentScene->getName() << std::endl;
+                 int pos = std::find(levels.begin(), levels.end(), sceneManager.currentScene->getName()) - levels.begin();
+                 sceneManager.changeSceneDeferred(levels[pos+1]);
+                 return;
             }
 
             sceneManager.changeSceneDeferred(sceneName);

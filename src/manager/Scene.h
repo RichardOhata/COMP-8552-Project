@@ -46,7 +46,9 @@ public:
             SDL_FRect itemSrc{0, 0, 32, 32};
             SDL_FRect itemDest {itemTransform.position.x, itemTransform.position.y, 32, 32};
             item.addComponent<Sprite>(itemTex, itemSrc, itemDest);
-            item.addComponent<Collider>("item");
+            auto& itemCollider = item.addComponent<Collider>("item");
+            itemCollider.rect.w = itemDest.w;
+            itemCollider.rect.h = itemDest.h;
             item.addComponent<Coin>();
         }
         for (auto& e : world.getEntities()) {

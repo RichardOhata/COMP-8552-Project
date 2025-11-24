@@ -1,0 +1,140 @@
+{
+  "sawblades": [
+    {
+      "type": "linear",
+      "pointA": [420, 160],
+      "pointB": [425, 500],
+      "speed": 300.0,
+      "scale": 4.0,
+      "stationary": false
+    },
+    {
+      "type": "linear",
+      "pointA": [520, 500],
+      "pointB": [520, 160],
+      "speed": 300.0,
+      "scale": 4.0,
+      "stationary": false
+    },
+    {
+      "type": "linear",
+      "pointA": [625, 160],
+      "pointB": [625, 500],
+      "speed": 300.0,
+      "scale": 4.0,
+      "stationary": false
+    },
+    {
+      "type": "linear",
+      "pointA": [725, 500],
+      "pointB": [725, 160],
+      "speed": 300.0,
+      "scale": 4.0,
+      "stationary": false
+    },
+    {
+      "type": "linear",
+      "pointA": [825, 160],
+      "pointB": [825, 500],
+      "speed": 300.0,
+      "scale": 4.0,
+      "stationary": false
+    },
+    {
+      "type": "stationary",
+      "pointA": [350, 160],
+      "pointB": [350, 160],
+      "speed": 200.0,
+      "scale": 5.0,
+      "stationary": true
+    },
+    {
+      "type": "stationary",
+      "pointA": [456, 160],
+      "pointB": [456, 160],
+      "speed": 200.0,
+      "scale": 5.0,
+      "stationary": true
+    },
+    {
+      "type": "stationary",
+      "pointA": [562, 160],
+      "pointB": [562, 160],
+      "speed": 200.0,
+      "scale": 5.0,
+      "stationary": true
+    },
+    {
+      "type": "stationary",
+      "pointA": [668, 160],
+      "pointB": [668, 160],
+      "speed": 200.0,
+      "scale": 5.0,
+      "stationary": true
+    },
+    {
+      "type": "stationary",
+      "pointA": [774, 160],
+      "pointB": [774, 160],
+      "speed": 200.0,
+      "scale": 5.0,
+      "stationary": true
+    },
+    {
+      "type": "stationary",
+      "pointA": [880, 160],
+      "pointB": [880, 160],
+      "speed": 200.0,
+      "scale": 5.0,
+      "stationary": true
+    },
+    {
+      "type": "stationary",
+      "pointA": [350, 510],
+      "pointB": [350, 510],
+      "speed": 200.0,
+      "scale": 5.0,
+      "stationary": true
+    },
+    {
+      "type": "stationary",
+      "pointA": [456, 510],
+      "pointB": [456, 510],
+      "speed": 200.0,
+      "scale": 5.0,
+      "stationary": true
+    },
+    {
+      "type": "stationary",
+      "pointA": [562, 510],
+      "pointB": [562, 510],
+      "speed": 200.0,
+      "scale": 5.0,
+      "stationary": true
+    },
+    {
+      "type": "stationary",
+      "pointA": [668, 510],
+      "pointB": [668, 510],
+      "speed": 200.0,
+      "scale": 5.0,
+      "stationary": true
+    },
+    {
+      "type": "stationary",
+      "pointA": [774, 510],
+      "pointB": [774, 510],
+      "speed": 200.0,
+      "scale": 5.0,
+      "stationary": true
+    },
+    {
+      "type": "stationary",
+      "pointA": [880, 510],
+      "pointB": [880, 510],
+      "speed": 200.0,
+      "scale": 5.0,
+      "stationary": true
+    }
+  ]
+}

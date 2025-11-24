@@ -67,6 +67,11 @@ struct SceneState {
     int requiredCoins = 0;
 };
 
+enum class SawbladeMotionType {
+    Linear,
+    Circular
+};
+
 // Component for sawblade movement
 struct SawbladePath {
     Vector2D pointA;
@@ -74,6 +79,14 @@ struct SawbladePath {
     float speed = 0.0;
     bool forward = true;
     bool stationary = false;
+    Vector2D center;
+    float radius = 0.0f;
+    float angularSpeed = 0.0f;
+    float angle = 0.0f;
+
+
+
+    SawbladeMotionType motionType = SawbladeMotionType::Linear;
 };
 
 struct Coin {

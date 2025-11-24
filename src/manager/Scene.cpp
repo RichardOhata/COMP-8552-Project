@@ -5,30 +5,31 @@
 #include "Scene.h"
 
 #include "AssetManager.h"
+#include "JsonLoader.h"
 
 Scene::Scene(const char* sceneName, const char* mapPath, const int windowWidth, const int windowHeight) : name(sceneName) {
     world.getMap().load(mapPath, TextureManager::load("../asset/Dungeon_Tileset_at.png"));
+    auto sawConfigs = JsonLoader::loadSawblades(sceneName);
+    for (auto& s : sawConfigs) {
+        createSawblade(s.pointA, s.pointB, s.speed, s.scale, s.stationary);
+    }
     for (auto &collider : world.getMap().colliders) {
         auto& e = world.createEntity();
         e.addComponent<Transform>(Vector2D(collider.rect.x, collider.rect.y), 0.0f, 1.0f);
-        auto& c = e.addComponent<Collider>("wall");
+        auto& c = e.addComponent<Collider>();
+
+        if (collider.tag == "next_level") {
+            c.tag = "next_level";
+        } else {
+            c.tag = "wall";
+        }
+
         c.rect.x = collider.rect.x;
         c.rect.y = collider.rect.y;
         c.rect.w = collider.rect.w;
         c.rect.h = collider.rect.h;
 
-        // SDL_Texture* tex = TextureManager::load("../asset/spritesheet.png");
-        // SDL_FRect colSrc {0, 32, 32, 32};
-        // SDL_FRect colDst {c.rect.x, c.rect.y, c.rect.w, c.rect.h};
-        // e.addComponent<Sprite>(tex, colSrc, colDst);
     }
-
-
-
-    auto& entity = world.createEntity();
-    auto& col = entity.addComponent<Collider>();
-    col = world.getMap().nextAreaZone;
-    col.tag = "next_level";
 
 
     SDL_Texture* itemTex = TextureManager::load("../asset/coin.png");
@@ -60,8 +61,6 @@ Scene::Scene(const char* sceneName, const char* mapPath, const int windowWidth, 
     world.setRespawn(world.getMap().playerSpawn);
     player.addComponent<Velocity>(Vector2D(0.f, 0.f), 150.0f);
 
-    // Animation anim = AssetManager::getAnimation("player");
-    // player.addComponent<Animation>(anim);
 
     // SDL_Texture* tex = TextureManager::load("../animations/bull_anim.png");
     SDL_Texture* tex = TextureManager::load("../asset/Fine.svg");
@@ -78,25 +77,25 @@ Scene::Scene(const char* sceneName, const char* mapPath, const int windowWidth, 
 
     player.addComponent<PlayerTag>();
 
-    createSawblade({420, 160}, {425, 500}, 300.0f, 4.0f, false);
-    createSawblade({520, 500}, {520, 160}, 300.0f, 4.0f, false);
-    createSawblade({625, 160}, {625, 500}, 300.0f, 4.0f, false);
-    createSawblade({725, 500}, {725, 160}, 300.0f, 4.0f, false);
-    createSawblade({825, 160}, {825, 500}, 300.0f, 4.0f, false);
-
-    createSawblade({350.0f, 160}, {}, 200.0f, 5.0f, true);
-    createSawblade({456.0f, 160}, {}, 200.0f, 5.0f, true);
-    createSawblade({562.0f, 160}, {}, 200.0f, 5.0f, true);
-    createSawblade({668.0f, 160}, {}, 200.0f, 5.0f, true);
-    createSawblade({774.0f, 160}, {}, 200.0f, 5.0f, true);
-    createSawblade({880.0f, 160}, {}, 200.0f, 5.0f, true);
-
-    createSawblade({350.0f, 510}, {}, 200.0f, 5.0f, true);
-    createSawblade({456.0f, 510}, {}, 200.0f, 5.0f, true);
-    createSawblade({562.0f, 510}, {}, 200.0f, 5.0f, true);
-    createSawblade({668.0f, 510}, {}, 200.0f, 5.0f, true);
-    createSawblade({774.0f, 510}, {}, 200.0f, 5.0f, true);
-    createSawblade({880.0f, 510}, {}, 200.0f, 5.0f, true);
+    // createSawblade({420, 160}, {425, 500}, 300.0f, 4.0f, false);
+    // createSawblade({520, 500}, {520, 160}, 300.0f, 4.0f, false);
+    // createSawblade({625, 160}, {625, 500}, 300.0f, 4.0f, false);
+    // createSawblade({725, 500}, {725, 160}, 300.0f, 4.0f, false);
+    // createSawblade({825, 160}, {825, 500}, 300.0f, 4.0f, false);
+    //
+    // createSawblade({350.0f, 160}, {}, 200.0f, 5.0f, true);
+    // createSawblade({456.0f, 160}, {}, 200.0f, 5.0f, true);
+    // createSawblade({562.0f, 160}, {}, 200.0f, 5.0f, true);
+    // createSawblade({668.0f, 160}, {}, 200.0f, 5.0f, true);
+    // createSawblade({774.0f, 160}, {}, 200.0f, 5.0f, true);
+    // createSawblade({880.0f, 160}, {}, 200.0f, 5.0f, true);
+    //
+    // createSawblade({350.0f, 510}, {}, 200.0f, 5.0f, true);
+    // createSawblade({456.0f, 510}, {}, 200.0f, 5.0f, true);
+    // createSawblade({562.0f, 510}, {}, 200.0f, 5.0f, true);
+    // createSawblade({668.0f, 510}, {}, 200.0f, 5.0f, true);
+    // createSawblade({774.0f, 510}, {}, 200.0f, 5.0f, true);
+    // createSawblade({880.0f, 510}, {}, 200.0f, 5.0f, true);
 
      // Creates enemy spwaner entity
     // auto& spawner(world.createEntity());
@@ -125,7 +124,6 @@ Scene::Scene(const char* sceneName, const char* mapPath, const int windowWidth, 
     auto &state(world.createEntity());
     auto &sceneState = state.addComponent<SceneState>();
     sceneState.requiredCoins = world.getMap().itemSpawns.size();
-    std::cout << sceneState.requiredCoins << std::endl;
 }
 
 Entity &Scene::createSawblade(Vector2D pointA, Vector2D pointB, float speed, float scale, bool stationary) {
@@ -136,7 +134,6 @@ Entity &Scene::createSawblade(Vector2D pointA, Vector2D pointB, float speed, flo
           scale
       );
 
-    // Sprite = draw from top-left
     SDL_Texture* sawTex = TextureManager::load("../animations/saw_blade.png");
     SDL_FRect src {0, 0, 25.6f, 25.6f};
     SDL_FRect dest {

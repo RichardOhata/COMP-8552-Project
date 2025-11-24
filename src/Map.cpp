@@ -53,9 +53,6 @@ void Map::load(const char *path, SDL_Texture *ts) {
         c.rect.w = obj->FloatAttribute("width");
         c.rect.h = obj->FloatAttribute("height");
 
-        // switch (groupName) {
-        //     case "Collision Layer":
-        // }
         if (groupName == "Collision Layer") {
             colliders.push_back(c);
         }
@@ -72,7 +69,8 @@ void Map::load(const char *path, SDL_Texture *ts) {
             playerSpawn = {spawn.x,spawn.y};
         }
         else if (groupName == "Next Level") {
-           colliders.push_back(c);
+            c.tag = "next_level";
+            colliders.push_back(c);
         }
     }
 }

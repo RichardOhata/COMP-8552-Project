@@ -35,18 +35,35 @@
             "scaleInEditor": 4
         },
         "Level_1.tmx": {
+            "expandedObjectLayers": [
+                8
+            ],
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 621.5,
-                "y": 360.5
+                "x": 552,
+                "y": 361
+            }
+        },
+        "Level_2.tmx": {
+            "expandedObjectLayers": [
+                6,
+                8,
+                5,
+                7
+            ],
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 712,
+                "y": 367
             }
         },
         "Reflex.tmx": {
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 490.5,
+                "x": 490,
                 "y": 396
             }
         },

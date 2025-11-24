@@ -36,6 +36,7 @@ World::World() {
         Entity* item = nullptr;
         Entity* wall = nullptr;
         Entity* projectile = nullptr;
+        Entity* nextLevel = nullptr;
 
         if (colliderA.tag == "player" && colliderB.tag == "item") {
             player = collision.entityA;
@@ -48,7 +49,6 @@ World::World() {
         if (player && item) {
             auto& coinComp = item->getComponent<Coin>();
             coinComp.collected = true;
-
 
             item->destroy();
 
@@ -82,9 +82,20 @@ World::World() {
         }
 
         if (colliderA.tag == "player" && colliderB.tag == "next_level") {
-            std::cout << "Next Level Area" << std::endl;
+            player = collision.entityA;
+            nextLevel = collision.entityB;
+
         } else if (colliderA.tag == "next_level" && colliderB.tag == "player") {
-            std::cout << "Next Level Area" << std::endl;
+            player = collision.entityB;
+            nextLevel = collision.entityA;
+
+        }
+        if (player && nextLevel) {
+            auto& sceneState = sceneStateEntity->getComponent<SceneState>();
+            if (sceneState.coinsCollected >= sceneState.requiredCoins) {
+                sceneState.coinsCollected = 0;
+                Game::onSceneChangeRequest("nextlevel");
+            }
         }
 
     });

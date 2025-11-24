@@ -45,6 +45,8 @@ add_executable(Test
         src/vendor/tinyxml2.cpp
         src/manager/AssetManager.cpp
         src/manager/Scene.cpp
+        src/utils/JsonLoader.cpp
+        src/vendor/json.hpp
 )
 
 #if (MSVC)

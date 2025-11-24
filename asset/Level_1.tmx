@@ -29,7 +29,7 @@
 </data>
  </layer>
  <objectgroup id="8" name="Next Level">
-  <object id="38" x="994" y="248" width="168" height="238"/>
+  <object id="38" x="1046" y="339" width="48" height="47"/>
  </objectgroup>
  <objectgroup id="6" name="Item Layer" visible="0">
   <object id="29" x="445" y="469">
@@ -50,18 +50,18 @@
    <point/>
   </object>
  </objectgroup>
- <objectgroup id="5" name="Collision Layer" visible="0">
-  <object id="6" x="1196.34" y="207.333" width="44.3333" height="310.667"/>
-  <object id="7" x="984" y="157" width="212" height="40.6667"/>
-  <object id="11" x="906.667" y="461.667" width="72.6667" height="107.333"/>
+ <objectgroup id="5" name="Collision Layer">
+  <object id="6" x="1188.34" y="207.333" width="52.3333" height="310.667"/>
+  <object id="7" x="984" y="157" width="212" height="59.6667"/>
+  <object id="11" x="898.667" y="449.667" width="91.6667" height="119.333"/>
   <object id="13" x="374.667" y="557.333" width="527" height="47"/>
   <object id="14" x="379" y="136" width="523" height="33"/>
-  <object id="15" x="301.333" y="154.333" width="70.3333" height="105"/>
-  <object id="17" x="301" y="462.333" width="69" height="97"/>
-  <object id="18" x="40.3333" y="186.667" width="46" height="360"/>
-  <object id="22" x="81.6667" y="524.333" width="213" height="26"/>
-  <object id="23" x="96" y="177.333" width="193" height="16"/>
-  <object id="24" x="993" y="527" width="183" height="26"/>
-  <object id="27" x="906.333" y="173.333" width="71" height="91.6667"/>
+  <object id="15" x="293.333" y="167.333" width="78.3333" height="113"/>
+  <object id="17" x="291" y="450.333" width="89" height="109"/>
+  <object id="18" x="40.3333" y="186.667" width="53" height="360"/>
+  <object id="22" x="81.6667" y="514.333" width="213" height="36"/>
+  <object id="23" x="96" y="177.333" width="193" height="39"/>
+  <object id="24" x="993" y="516" width="183" height="37"/>
+  <object id="27" x="901.333" y="173.333" width="90" height="110.667"/>
  </objectgroup>
 </map>
