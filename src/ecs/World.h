@@ -17,6 +17,7 @@
 #include "Map.h"
 #include "CameraSystem.h"
 #include "DestructionSystem.h"
+#include "MouseInputSystem.h"
 #include "SpawnTimerSystem.h"
 #include "SawBladeMovementSystem.h"
 
@@ -34,6 +35,7 @@ class World {
     SpawnTimerSystem spawnTimerSystem;
     DestructionSystem destructionSystem;
     SawbladeMovementSystem sawbladeMovementSystem;
+    MouseInputSystem mouseInputSystem;
 public:
     World();
     void update(float dt, const SDL_Event& event) {
@@ -45,6 +47,7 @@ public:
         spawnTimerSystem.update(entities, dt);
         destructionSystem.update(entities);
         sawbladeMovementSystem.update(entities, dt);
+        mouseInputSystem.update(*this, event);
         synchronizeEntities();
         cleanup();
     }

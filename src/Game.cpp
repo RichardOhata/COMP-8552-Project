@@ -11,10 +11,7 @@
 #include "ColliderDebugSystem.h"
 #include "manager/AssetManager.h"
 
-    // #include "GameObject.h"
 
-
-    // GameObject *player = nullptr;
     std::function<void(std::string)> Game::onSceneChangeRequest;
     std::vector<std::string> levels = {"Level_1", "Level_2", "Level_3"};
     bool Game::pendingRespawn = false;
@@ -55,10 +52,11 @@
 
         AssetManager::loadAnimation("sawblade", "../animations/saw_blade_animations.xml");
 
+        sceneManager.loadScene("Main_Menu","../asset/Main_Menu.tmx", width, height);
         sceneManager.loadScene("Level_1", "../asset/Level_1.tmx", width, height);
         sceneManager.loadScene("Level_2", "../asset/Level_2.tmx", width, height);
 
-        sceneManager.changeSceneDeferred("Level_2");
+        sceneManager.changeSceneDeferred("Main_Menu");
 
         onSceneChangeRequest = [this](std::string sceneName) {
             if (sceneManager.currentScene->getName() == "level5" && sceneName == "level5") {

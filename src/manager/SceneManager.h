@@ -7,6 +7,7 @@
 #include <memory>
 #include <unordered_map>
 
+#include "MainMenuScene.h"
 #include "Scene.h"
 
 struct SceneParams {
@@ -14,6 +15,7 @@ struct SceneParams {
     const char* mapPath;
     int windowWidth;
     int windowHeight;
+    bool isLevel;
 };
 
 class SceneManager {
@@ -25,21 +27,26 @@ class SceneManager {
         auto it = sceneParam.find(name);
         if (it != sceneParam.end()) {
             const auto& params = it->second;
-            currentScene = std::make_unique<Scene>(
-                params.name,
-                params.mapPath,
-                params.windowWidth,
-                params.windowHeight
-            );
-        } else {
+            if (name == "Main_Menu") {
+                // Create MainMenuScene instead of Scene
+                currentScene = std::make_unique<MainMenuScene>(
+                    params.name, params.mapPath, params.windowWidth, params.windowHeight
+                );
+            } else {
+                currentScene = std::make_unique<Scene>(
+                    params.name, params.mapPath, params.windowWidth, params.windowHeight, params.isLevel
+                );
+            }
+        }
+        else {
             std::cerr << "Scene " << name << " not found!" << std::endl;
         }
     }
 
 public:
     std::unique_ptr<Scene> currentScene;
-    void loadScene(const char* sceneName, const char* mapPath, int windowWidth, int windowHeight) {
-        sceneParam[sceneName] = {sceneName, mapPath, windowWidth, windowHeight};
+    void loadScene(const char* sceneName, const char* mapPath, int windowWidth, int windowHeight, bool isLevel = true) {
+        sceneParam[sceneName] = {sceneName, mapPath, windowWidth, windowHeight, isLevel};
     }
 
     void changeSceneDeferred(const std::string& name) {

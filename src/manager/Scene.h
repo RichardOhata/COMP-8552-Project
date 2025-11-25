@@ -12,7 +12,7 @@
 
 class Scene {
 public:
-    Scene(const char* sceneName, const char* mapPath, int windowWidth, int windowHeight);
+    Scene(const char* sceneName, const char* mapPath, int windowWidth, int windowHeight, bool isLevel = true);
 
     void update(float dt, const SDL_Event &e) {
         world.update(dt, e);

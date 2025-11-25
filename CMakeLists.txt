@@ -47,6 +47,8 @@ add_executable(Test
         src/manager/Scene.cpp
         src/utils/JsonLoader.cpp
         src/vendor/json.hpp
+        src/ecs/system/MouseInputSystem.cpp
+        src/manager/MainMenuScene.cpp
 )
 
 #if (MSVC)

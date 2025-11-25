@@ -12,6 +12,8 @@
 #include "AnimationClip.h"
 #include <string>
 
+#include "Entity.h"
+
 struct Transform {
     Vector2D position{};
     float rotation{};
@@ -24,12 +26,19 @@ struct Velocity {
     float speed{};
 };
 
+enum class RenderLayer {
+    World,
+    UI
+};
+
 struct Sprite {
     SDL_Texture* texture = nullptr;
     SDL_FRect src{};
     SDL_FRect dst{};
     float originalWidth = 0;
     float originalHeight = 0;
+    RenderLayer renderLayer = RenderLayer::World;
+    bool visible = true;
 };
 
 struct Collider {
@@ -39,6 +48,7 @@ struct Collider {
     float baseH;
     float scaleOffset = 1.0f;
     Vector2D positionOffset{0.f, 0.f};
+    bool enabled = true;
 };
 
 struct Animation {
@@ -92,6 +102,25 @@ struct SawbladePath {
 
 struct Coin {
     bool collected = false;
+};
+
+struct Clickable {
+    std::function<void()> onPressed{};
+    std::function<void()> onReleased{};
+    std::function<void()> onCancel{};
+    bool pressed = false;
+    bool hovered = false;
+    bool clicked = false;
+
+    std::function<void()> onClick = nullptr;
+};
+
+struct Parent {
+    Entity* parent = nullptr;
+};
+
+struct Children {
+    std::vector<Entity*> children{};
 };
 
 struct PlayerTag{};

@@ -34,6 +34,10 @@
             "scaleInDock": 2,
             "scaleInEditor": 4
         },
+        "Font.tsx": {
+            "scaleInDock": 1.5,
+            "scaleInEditor": 4
+        },
         "Level_1.tmx": {
             "expandedObjectLayers": [
                 8
@@ -47,16 +51,24 @@
         },
         "Level_2.tmx": {
             "expandedObjectLayers": [
-                6,
                 8,
-                5,
-                7
+                7,
+                6,
+                5
             ],
             "scale": 1,
-            "selectedLayer": 2,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 712,
-                "y": 367
+                "x": 444,
+                "y": 386
+            }
+        },
+        "Main_Menu.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 764.5,
+                "y": 362.5
             }
         },
         "Reflex.tmx": {
@@ -85,7 +97,7 @@
         }
     },
     "last.externalTilesetPath": "C:/Users/richa/Downloads/map2/map2",
-    "last.imagePath": "C:/Users/richa/Downloads/2D Pixel Dungeon Asset Pack v2.0/2D Pixel Dungeon Asset Pack/character and tileset",
+    "last.imagePath": "C:/Users/richa/Desktop/COMP-8552-Project/asset",
     "map.lastUsedFormat": "tmx",
     "openFiles": [
         "Level_1.tmx",
@@ -93,6 +105,7 @@
     ],
     "project": "Reflex.tiled-project",
     "recentFiles": [
+        "Font.tsx",
         "Sawblade.tsx",
         "Level_1.tmx",
         "Reflex.tmx",
@@ -104,7 +117,9 @@
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
-        "height": 16,
-        "width": 16
-    }
+        "height": 10,
+        "width": 8
+    },
+    "tileset.transparentColor": "#ff0004",
+    "tileset.useTransparentColor": true
 }

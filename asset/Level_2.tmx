@@ -46,7 +46,7 @@
   </object>
  </objectgroup>
  <objectgroup id="7" name="Player Start">
-  <object id="35" x="618.124" y="108.734">
+  <object id="35" x="609.124" y="128.734">
    <point/>
   </object>
  </objectgroup>
@@ -59,15 +59,15 @@
   <object id="15" x="471.333" y="83.333" width="101.333" height="62"/>
   <object id="17" x="341" y="450.333" width="69" height="97"/>
   <object id="18" x="301.333" y="260.667" width="46" height="199"/>
-  <object id="22" x="462.667" y="579.333" width="110" height="26"/>
+  <object id="22" x="462.667" y="580.333" width="110" height="26"/>
   <object id="23" x="372" y="146.333" width="103" height="70"/>
-  <object id="24" x="672" y="577.5" width="107" height="26"/>
+  <object id="24" x="671" y="583.5" width="107" height="26"/>
   <object id="27" x="676.333" y="86.333" width="125" height="59.6667"/>
   <object id="42" x="896.667" y="411.334" width="94.6667" height="107.333"/>
   <object id="43" x="343.5" y="186.5" width="69" height="97"/>
-  <object id="44" x="406.5" y="512.5" width="69" height="97"/>
+  <object id="44" x="403.5" y="518.5" width="69" height="97"/>
   <object id="45" x="836" y="194.667" width="73" height="85.6667"/>
   <object id="46" x="835.167" y="450.834" width="59.6667" height="80.333"/>
-  <object id="47" x="773.667" y="516.333" width="59.6667" height="59.333"/>
+  <object id="47" x="775.667" y="519.333" width="59.6667" height="59.333"/>
  </objectgroup>
 </map>

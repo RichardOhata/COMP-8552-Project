@@ -30,6 +30,7 @@ class RenderSystem {
                 auto& t = entity->getComponent<Transform>();
                 auto& sprite = entity->getComponent<Sprite>();
 
+                if (sprite.renderLayer != RenderLayer::World) continue;
                 // Implemented scaling for sprite
                 if (sprite.originalWidth == 0) {
                     sprite.originalWidth = sprite.dst.w;
