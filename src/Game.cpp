@@ -16,6 +16,7 @@
     std::vector<std::string> levels = {"Level_1", "Level_2", "Level_3"};
     bool Game::pendingRespawn = false;
     bool Game::wantToClearRespawnFlag = false;
+    bool Game::debugColliders = false;
     Game::Game() {
     }
 
@@ -59,7 +60,7 @@
         // sceneManager.loadScene("Level_4", "../asset/Level_4.tmx", width, height);
         // sceneManager.loadScene("Level_5", "../asset/Level_5.tmx", width, height);
 
-        sceneManager.changeSceneDeferred("Level_2");
+        sceneManager.changeSceneDeferred("Main_Menu");
 
         onSceneChangeRequest = [this](std::string sceneName) {
             if (sceneManager.currentScene->getName() == "level5" && sceneName == "level5") {
@@ -102,6 +103,12 @@
             case SDL_EVENT_QUIT:
                 isRunning = false;
                 break;
+            case SDL_EVENT_KEY_DOWN:
+                if (event.key.key == SDLK_C) {
+                    debugColliders = !debugColliders;
+                    std::cout << "Collider Debug: "
+                              << (debugColliders ? "ON" : "OFF") << std::endl;
+                }
                 default:
                 break;
         }
@@ -122,7 +129,9 @@
         SDL_RenderClear(renderer);
 
         sceneManager.render();
-        ColliderDebugSystem::DrawAllColliders(renderer, sceneManager.currentScene->getEntities()); // Debug
+        if (debugColliders) {
+            ColliderDebugSystem::DrawAllColliders(renderer, sceneManager.currentScene->getEntities());
+        }
         SDL_RenderPresent(renderer);
 
     }

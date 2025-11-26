@@ -2,15 +2,33 @@
   "sawblades": [
     {
       "type": "Linear",
-      "speed": 200.0,
+      "speed": 300.0,
       "scale": 4.0,
       "stationary": false,
-      "waypoints": [[550, 300], [350, 150], [350, 400], [550, 300], [550, 300]],
+      "waypoints": [[550, 300], [350, 150], [350, 600], [875, 150], [875, 600]],
       "actions": [
-        { "switchToLinear": true },
-        { "switchToCircular": true, "radius": 30, "angularSpeed": 4.0, "clockwise": true },
-        { "switchToLinear": true },
-        {"switchToCircular": true, "radius": 30, "angularSpeed": 4.0, "clockwise": true }
+        { "switchToLinear": true }
+
+      ]
+    },
+    {
+      "type": "Linear",
+      "speed": 325.0,
+      "scale": 4.0,
+      "stationary": false,
+      "waypoints": [[350, 150], [350, 600], [875, 600], [875, 150]],
+      "actions": [
+        { "switchToLinear": true }
+      ]
+    },
+    {
+      "type": "Linear",
+      "speed": 375.0,
+      "scale": 4.0,
+      "stationary": false,
+      "waypoints": [[875, 150], [600, 300], [600, 600], [350, 600]],
+      "actions": [
+        { "switchToLinear": true }
 
       ]
     }

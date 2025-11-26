@@ -146,21 +146,27 @@ void Scene::createSawBlades(const char* sceneName) {
         path.speed = s.speed;
         path.stationary = s.stationary;
         path.motionType = s.motionType;
+        for (auto& a : s.actions) {
+            WaypointAction wa;
+            wa.switchToLinear = a.switchToLinear;
+            wa.switchToCircular = a.switchToCircular;
+            wa.radius = a.radius;
+            wa.angularSpeed = a.angularSpeed;
+            wa.clockwise = a.clockwise;
+            path.actions.push_back(wa);
+        }
         if (s.motionType == SawbladeMotionType::Linear) {
             path.waypoints = s.waypoints;
-            for (auto& a : s.actions) {
-                WaypointAction wa;
-                wa.switchToLinear = a.switchToLinear;
-                path.actions.push_back(wa);
-            }
         } else if (s.motionType == SawbladeMotionType::Circular) {
-            if (!s.actions.empty()) {
-                auto& a = s.actions[0];
-                path.center = s.waypoints[0]; // center
-                path.radius = a.radius;
-                path.angularSpeed = a.angularSpeed;
-                path.clockwise = a.clockwise;
+            if (!s.waypoints.empty() && !s.actions.empty()) {
+                path.center = s.waypoints[0];
+                path.radius = s.actions[0].radius;
+                path.angularSpeed = s.actions[0].angularSpeed;
+                path.clockwise = s.actions[0].clockwise;
+                path.angle = 0.0f;
+                path.rotationAcc = 0.0f;
             }
+
         }
 
         // Collider

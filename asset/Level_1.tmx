@@ -31,17 +31,17 @@
  <objectgroup id="8" name="Next Level">
   <object id="38" x="1046" y="339" width="48" height="47"/>
  </objectgroup>
- <objectgroup id="6" name="Item Layer" visible="0">
-  <object id="29" x="445" y="469">
+ <objectgroup id="6" name="Item Layer">
+  <object id="29" x="445" y="450">
    <point/>
   </object>
-  <object id="30" x="514" y="260">
+  <object id="30" x="514" y="250">
    <point/>
   </object>
-  <object id="31" x="725" y="466">
+  <object id="31" x="725" y="450">
    <point/>
   </object>
-  <object id="34" x="815" y="272">
+  <object id="34" x="815" y="250">
    <point/>
   </object>
  </objectgroup>

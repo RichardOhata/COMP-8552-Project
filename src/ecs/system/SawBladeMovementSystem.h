@@ -44,26 +44,22 @@ public:
 
                    if (reachedX && reachedY) {
                        t.position = Vector2D{t.position.x, t.position.y};
-
                        // Apply action for this waypoint
                        if (path.currentIndex < path.actions.size() && path.actions.size() > 1) {
-
-                           const auto& act = path.actions[path.currentIndex];
-                           if (act.switchToCircular) {
+                           std::cout << (int) path.motionType << std::endl;
+                           const auto& nextAction = path.actions[path.currentIndex];
+                           if (nextAction.switchToCircular) {
                                path.motionType = SawbladeMotionType::Circular;
                                path.center = t.position;
-                               path.radius = act.radius;
-                               path.angularSpeed = act.angularSpeed;
-                               path.clockwise = act.clockwise;
+                               path.radius = nextAction.radius;
+                               path.angularSpeed = nextAction.angularSpeed;
+                               path.clockwise = nextAction.clockwise;
                                path.angle = 0.0f;
                                path.rotationAcc = 0.0f;
                                break;
                            }
                        }
-
-                       if (path.motionType == SawbladeMotionType::Linear) {
-                           path.currentIndex = (path.currentIndex + 1) % path.waypoints.size();
-                       }
+                       path.currentIndex = (path.currentIndex + 1) % path.waypoints.size();
                    }
                    break;
                }
@@ -84,18 +80,18 @@ public:
                    // Completed circle rotation
                    if (path.rotationAcc >= TWO_PI && path.actions.size() > 1) {
                        path.rotationAcc = 0.0f;
-                       Vector2D target = path.waypoints[path.currentIndex];
-                       Vector2D start = path.center;
-                       Vector2D diff = target - start;
-                       float dist = diff.length();
-                       if (dist < 0.1f) {
-                           t.position = target;
-                           path.currentIndex = (path.currentIndex + 1) % path.waypoints.size();
-                       } else {
-                           Vector2D dir = diff.normalize();
-                           t.position += dir * path.speed * dt;
-
-                       }
+                       // Vector2D target = path.waypoints[path.currentIndex];
+                       // Vector2D start = path.center;
+                       // Vector2D diff = target - start;
+                       // float dist = diff.length();
+                       // if (dist < 0.1f) {
+                       //     t.position = target;
+                       path.currentIndex = (path.currentIndex + 1) % path.waypoints.size();
+                       // } else {
+                       //     Vector2D dir = diff.normalize();
+                       //     t.position += dir * path.speed * dt;
+                       //
+                       // }
 
                        // t.position = path.waypoints[path.currentIndex];
 

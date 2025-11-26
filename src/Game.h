@@ -14,7 +14,7 @@
 class Game {
 public:
     static bool wantToClearRespawnFlag;
-
+    static bool debugColliders;
     Game();
     ~Game();
 
