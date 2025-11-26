@@ -1,0 +1,113 @@
+{
+  "sawblades": [
+    {
+      "type": "Circular",
+      "scale": 2.0,
+      "stationary": false,
+      "waypoints": [[325, 320]],
+      "actions": [
+        { "switchToCircular": true, "radius": 50, "angularSpeed": 3.0, "clockwise": true }
+      ]
+    },
+    {
+      "type": "Linear",
+      "speed": 300.0,
+      "scale": 2.45,
+      "stationary": true,
+      "waypoints": [[325, 320]],
+      "actions": [{ "switchToLinear": true }]
+    },
+    {
+      "type": "Linear",
+      "speed": 300.0,
+      "scale": 2.5,
+      "stationary": true,
+      "waypoints": [[325, 422]],
+      "actions": [{ "switchToLinear": true }]
+    },
+    {
+      "type": "Linear",
+      "speed": 300.0,
+      "scale": 2.5,
+      "stationary": true,
+      "waypoints": [[223, 320]],
+      "actions": [{ "switchToLinear": true }]
+    },
+    {
+      "type": "Linear",
+      "speed": 300.0,
+      "scale": 2.5,
+      "stationary": true,
+      "waypoints": [[325, 218]],
+      "actions": [{ "switchToLinear": true }]
+    },
+    {
+      "type": "Linear",
+      "speed": 300.0,
+      "scale": 2.5,
+      "stationary": true,
+      "waypoints": [[397, 397]],
+      "actions": [{ "switchToLinear": true }]
+    },
+    {
+      "type": "Linear",
+      "speed": 300.0,
+      "scale": 2.5,
+      "stationary": true,
+      "waypoints": [[253, 397]],
+      "actions": [{ "switchToLinear": true }]
+    },
+    {
+      "type": "Linear",
+      "speed": 300.0,
+      "scale": 2.5,
+      "stationary": true,
+      "waypoints": [[397, 243]],
+      "actions": [{ "switchToLinear": true }]
+    },
+    {
+      "type": "Linear",
+      "speed": 300.0,
+      "scale": 2.5,
+      "stationary": true,
+      "waypoints": [[440, 270]],
+      "actions": [{ "switchToLinear": true }]
+    },
+    {
+      "type": "Linear",
+      "speed": 300.0,
+      "scale": 2.5,
+      "stationary": true,
+      "waypoints": [[440, 370]],
+      "actions": [{ "switchToLinear": true }]
+    },
+    {
+      "type": "Linear",
+      "speed": 300.0,
+      "scale": 2.5,
+      "stationary": true,
+      "waypoints": [[253, 243]],
+      "actions": [{ "switchToLinear": true }]
+    },
+    {
+      "type": "Circular",
+      "scale": 2.0,
+      "stationary": false,
+      "waypoints": [[900, 320]],
+      "actions": [
+        { "switchToCircular": true, "radius": 67, "angularSpeed": 10.5, "clockwise": false }
+      ]
+    },
+    {
+      "type": "Linear",
+      "speed": 300.0,
+      "scale": 2.5,
+      "stationary": true,
+      "waypoints": [[900, 320]],
+      "actions": [
+        { "switchToLinear": true }
+
+      ]
+    }
+  ]
+}

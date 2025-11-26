@@ -31,7 +31,6 @@ Scene::Scene(const char* sceneName, const char* mapPath, const int windowWidth, 
             c.rect.y = collider.rect.y;
             c.rect.w = collider.rect.w;
             c.rect.h = collider.rect.h;
-
         }
 
 
@@ -73,7 +72,44 @@ Scene::Scene(const char* sceneName, const char* mapPath, const int windowWidth, 
         player.addComponent<PlayerTag>();
 
 
-        // Creates enemy spwaner entity
+        // // Creates enemy spwaner entity
+    auto& saw = world.createEntity();
+
+    // 1. Transform (world position)
+    auto& t = saw.addComponent<Transform>(Vector2D(50.0f, 50.0f), 0.0f, 2.0f);
+
+    // 2. Load texture ONCE per scene (you keep loading this every entity which is bad)
+    // SDL_Texture* sawTex = TextureManager::load("../animations/saw_blade.png");
+
+    // 3. Sprite (src rect only — dest will be calculated from transform in render system)
+    SDL_Texture* sawTex = TextureManager::load("../animations/saw_blade.png");
+    SDL_FRect src {3, 33, 25.6f, 25.6f};
+    SDL_FRect dest {
+        t.position.x - 25.6f / 2.0f,
+        t.position.y - 25.6f / 2.0f,
+        25.6f,
+        25.6f
+    };
+    saw.addComponent<Sprite>(sawTex, src, dest);
+
+    // 4. Animation optional
+    // Animation anim = AssetManager::getAnimation("sawblade");
+    // saw.addComponent<Animation>(anim);
+
+    // 5. Movement (simple test: move right)
+    saw.addComponent<Velocity>(Vector2D(0.f, 0.f), 100.0f);
+    Animation sawAnim = AssetManager::getAnimation("sawblade");
+    auto& animComp = saw.addComponent<Animation>(sawAnim);
+    animComp.speed = 0.2f;
+    // 6. Collider
+    auto& c = saw.addComponent<Collider>("projectile");
+    saw.addComponent<ProjectileType>(ProjectileType::Bullet);
+    c.scaleOffset = 0.65f;
+    c.positionOffset = {12.5f, 20.0f};
+    c.baseW = 25.6;
+    c.baseH = 25.6;
+
+    saw.addComponent<ProjectileTag>();
         // auto& spawner(world.createEntity());
         // Transform t = spawner.addComponent<Transform>(Vector2D(windowWidth/2, windowHeight - 5), 0.0f, 1.0f);
         // spawner.addComponent<TimedSpawner>(2.0f, [this, t] {
@@ -100,6 +136,9 @@ Scene::Scene(const char* sceneName, const char* mapPath, const int windowWidth, 
         auto &state(world.createEntity());
         auto &sceneState = state.addComponent<SceneState>();
         sceneState.requiredCoins = world.getMap().itemSpawns.size();
+
+
+
 }
 
 void Scene::createSawBlades(const char* sceneName) {
@@ -176,6 +215,7 @@ void Scene::createSawBlades(const char* sceneName) {
         c.baseW = 25.6;
         c.baseH = 25.6;
         saw.addComponent<ProjectileTag>();
+        saw.addComponent<ProjectileType>(ProjectileType::Sawblade);
     }
 }
 

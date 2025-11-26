@@ -57,10 +57,10 @@
         sceneManager.loadScene("Level_1", "../asset/Level_1.tmx", width, height);
         sceneManager.loadScene("Level_2", "../asset/Level_2.tmx", width, height);
         sceneManager.loadScene("Level_3", "../asset/Level_3.tmx", width, height);
-        // sceneManager.loadScene("Level_4", "../asset/Level_4.tmx", width, height);
+        sceneManager.loadScene("Level_4", "../asset/Level_4.tmx", width, height);
         // sceneManager.loadScene("Level_5", "../asset/Level_5.tmx", width, height);
 
-        sceneManager.changeSceneDeferred("Main_Menu");
+        sceneManager.changeSceneDeferred("Level_4");
 
         onSceneChangeRequest = [this](std::string sceneName) {
             if (sceneManager.currentScene->getName() == "level5" && sceneName == "level5") {

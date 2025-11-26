@@ -92,8 +92,6 @@ struct WaypointAction {
 // Component for sawblade movement
 struct SawbladePath {
     // Linear
-    // Vector2D pointA;
-    // Vector2D pointB;
     float speed = 0.0;
     bool forward = true;
     bool stationary = false;
@@ -139,7 +137,9 @@ struct Parent {
 struct Children {
     std::vector<Entity*> children{};
 };
-
+struct ProjectileType {
+    enum Type { Sawblade, Bullet } type;
+};
 struct PlayerTag{};
 struct ProjectileTag{};
 struct CoinTag{};

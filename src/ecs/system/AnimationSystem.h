@@ -24,8 +24,13 @@ public:
                 else if (velocity.direction.y < 0.0f) newClip = "idle_right";
                 else if (e->hasComponent<PlayerTag>()){
                     newClip = "idle_down";
-                } else {
-                    newClip = "spin";
+                } else if (e->hasComponent<ProjectileTag>()) {
+                    auto& projType = e->getComponent<ProjectileType>();
+                    if (projType.type == ProjectileType::Type::Bullet) {
+                        newClip = "bullet_spin";
+                    } else if (projType.type == ProjectileType::Type::Sawblade) {
+                        newClip = "spin";
+                    }
                 }
 
 
