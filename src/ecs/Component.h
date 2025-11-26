@@ -81,24 +81,41 @@ enum class SawbladeMotionType {
     Linear,
     Circular
 };
+struct WaypointAction {
+    bool switchToCircular = false;
+    bool switchToLinear = false;
 
+    float radius = 0.0f;
+    float angularSpeed = 0.0f;
+    bool clockwise = true;
+};
 // Component for sawblade movement
 struct SawbladePath {
-    Vector2D pointA;
-    Vector2D pointB;
+    // Linear
+    // Vector2D pointA;
+    // Vector2D pointB;
     float speed = 0.0;
     bool forward = true;
     bool stationary = false;
+
+    // Circular
     Vector2D center;
     float radius = 0.0f;
     float angularSpeed = 0.0f;
     float angle = 0.0f;
     bool clockwise = false;
-
-
+    float rotationAcc = 0.0f;
 
     SawbladeMotionType motionType = SawbladeMotionType::Linear;
+
+    std::vector<Vector2D> waypoints;
+    std::vector<WaypointAction> actions;
+    int currentIndex = 0;
+    Vector2D targetPosition;
+    bool currentlyAdjusting = false;
 };
+
+
 
 struct Coin {
     bool collected = false;

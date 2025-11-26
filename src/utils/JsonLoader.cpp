@@ -29,23 +29,31 @@ std::vector<SawbladeConfig> JsonLoader::loadSawblades(const std::string& sceneNa
     for (auto& s : data["sawblades"])
     {
         SawbladeConfig cfg;
-        std::string motion = s["type"];
-        cfg.motionType = (motion == "linear") ? SawbladeMotionType::Linear : SawbladeMotionType::Circular;
-        if (cfg.motionType == SawbladeMotionType::Circular) {
-            cfg.center = { s["center"][0], s["center"][1] };
-            cfg.radius = s["radius"];
-            cfg.angularSpeed = s["angularSpeed"];
-            cfg.angle = s.value("angle", 0.0f);
-            cfg.scale = s["scale"];
-            cfg.clockwise = s.value("clockwise", false);
-        } else {
-            cfg.pointA = { s["pointA"][0], s["pointA"][1] };
-            cfg.pointB = { s["pointB"][0], s["pointB"][1] };
-            cfg.speed = s["speed"];
-            cfg.scale = s["scale"];
-            cfg.stationary = s["stationary"];
+        cfg.speed = s.value("speed", 0.0f);
+        cfg.scale = s.value("scale", 1.0f);
+        cfg.stationary = s.value("stationary", false);
+
+        // Load waypoints
+        for (auto& wp : s["waypoints"]) {
+            cfg.waypoints.emplace_back(Vector2D{wp[0], wp[1]});
         }
 
+        // Load actions
+        for (auto& act : s["actions"]) {
+            WaypointActionConfig a;
+            a.switchToLinear = act.value("switchToLinear", false);
+            a.switchToCircular = act.value("switchToCircular", false);
+            a.radius = act.value("radius", 0.0f);
+            a.angularSpeed = act.value("angularSpeed", 0.0f);
+            a.clockwise = act.value("clockwise", true);
+            cfg.actions.push_back(a);
+        }
+        std::string type = s["type"];
+        if (type == "Linear") {
+            cfg.motionType = SawbladeMotionType::Linear;
+        } else if (type == "Circular") {
+            cfg.motionType = SawbladeMotionType::Circular;
+        }
         result.push_back(cfg);
     }
 

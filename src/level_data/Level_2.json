@@ -1,40 +1,40 @@
 {
   "sawblades": [
     {
-      "type": "circular",
-      "center": [610, 360],
-      "radius": 180,
-      "angularSpeed": 2.5,
-      "angle": 0.0,
+      "type": "Circular",
       "scale": 3.0,
-      "clockwise": true
+      "stationary": false,
+      "waypoints": [[610, 360]],
+      "actions": [
+        { "switchToCircular": true, "radius": 180, "angularSpeed": 2.5, "clockwise": true }
+      ]
     },
     {
-      "type": "circular",
-      "center": [610, 360],
-      "radius": 120,
-      "angularSpeed": 2.5,
-      "angle": 0.0,
+      "type": "Circular",
       "scale": 3.0,
-      "clockwise": true
+      "stationary": false,
+      "waypoints": [[610, 360]],
+      "actions": [
+        { "switchToCircular": true, "radius": 120, "angularSpeed": 2.5, "clockwise": true }
+      ]
     },
     {
-      "type": "circular",
-      "center": [610, 360],
-      "radius": 60,
-      "angularSpeed": 2.5,
-      "angle": 0.0,
+      "type": "Circular",
       "scale": 3.0,
-      "clockwise": true
+      "stationary": false,
+      "waypoints": [[610, 360]],
+      "actions": [
+        { "switchToCircular": true, "radius": 60, "angularSpeed": 2.5, "clockwise": true }
+      ]
     },
     {
-      "type": "circular",
-      "center": [610, 360],
-      "radius": 0,
-      "angularSpeed": 2.5,
-      "angle": 0.0,
+      "type": "Circular",
       "scale": 3.0,
-      "clockwise": true
+      "stationary": false,
+      "waypoints": [[610, 360]],
+      "actions": [
+        { "switchToCircular": true, "radius": 0, "angularSpeed": 2.5, "clockwise": true }
+      ]
     }
   ]
 }

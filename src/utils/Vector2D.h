@@ -40,6 +40,9 @@ class Vector2D {
     Vector2D operator-() const;
 
         Vector2D& normalize();
+
+    float length() const;
+
 };
 
 #endif //TEST_VECTOR2D_H

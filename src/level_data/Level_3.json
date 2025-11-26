@@ -1,0 +1,20 @@
+{
+  "sawblades": [
+    {
+      "type": "Linear",
+      "speed": 200.0,
+      "scale": 4.0,
+      "stationary": false,
+      "waypoints": [[550, 300], [350, 150], [350, 400], [550, 300], [550, 300]],
+      "actions": [
+        { "switchToLinear": true },
+        { "switchToCircular": true, "radius": 30, "angularSpeed": 4.0, "clockwise": true },
+        { "switchToLinear": true },
+        {"switchToCircular": true, "radius": 30, "angularSpeed": 4.0, "clockwise": true }
+
+      ]
+    }
+  ]
+}
+
+

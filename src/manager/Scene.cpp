@@ -15,25 +15,7 @@ Scene::Scene(const char* sceneName, const char* mapPath, const int windowWidth, 
     camView.h = windowHeight;
     cam.addComponent<Camera>(camView, world.getMap().width * 32, world.getMap().height * 32);
     if (!isLevel) return;
-        auto sawConfigs = JsonLoader::loadSawblades(sceneName);
-        for (auto& s : sawConfigs) {
-            switch (s.motionType) {
-                case (SawbladeMotionType::Linear):
-                    createSawblade(s.pointA, s.pointB, s.speed, s.scale, s.stationary);
-                    break;
-                case (SawbladeMotionType::Circular):
-                    createCircularSawblade(
-                          s.center,
-                          s.radius,
-                          s.angularSpeed,
-                          s.angle,
-                          s.scale,
-                          s.clockwise);
-                    break;
-            }
-
-
-        }
+    createSawBlades(sceneName);
         for (auto &collider : world.getMap().colliders) {
             auto& e = world.createEntity();
             e.addComponent<Transform>(Vector2D(collider.rect.x, collider.rect.y), 0.0f, 1.0f);
@@ -120,84 +102,159 @@ Scene::Scene(const char* sceneName, const char* mapPath, const int windowWidth, 
         sceneState.requiredCoins = world.getMap().itemSpawns.size();
 }
 
-Entity &Scene::createSawblade(Vector2D pointA, Vector2D pointB, float speed, float scale, bool stationary) {
-    auto& sawBlade(world.createEntity());
-    Transform sawTrans = sawBlade.addComponent<Transform>(
-          Vector2D(pointA.x + 25.6f / 2.0f, pointA.y + 25.6f / 2.0f),
-          0.0f,
-          scale
-      );
+void Scene::createSawBlades(const char* sceneName) {
+    auto sawConfigs = JsonLoader::loadSawblades(sceneName);
+    for (auto& s : sawConfigs) {
+        auto& saw = world.createEntity();
+        Vector2D startPos;
+        if (s.motionType == SawbladeMotionType::Linear) {
+            startPos = s.waypoints.empty() ? Vector2D(0,0) : s.waypoints[0];
+        } else if (s.motionType == SawbladeMotionType::Circular) {
+            // For circular, the starting position is computed from the first circular action
+            if (!s.actions.empty()) {
+                auto& a = s.actions[0]; // assume first action defines the circular motion
+                startPos.x = s.waypoints[0].x + a.radius; // or compute using cos(angle)
+                startPos.y = s.waypoints[0].y;           // for now, start at center + radius
+            } else {
+                startPos = s.waypoints.empty() ? Vector2D(0,0) : s.waypoints[0];
+            }
+        }
 
-    SDL_Texture* sawTex = TextureManager::load("../animations/saw_blade.png");
-    SDL_FRect src {0, 0, 25.6f, 25.6f};
-    SDL_FRect dest {
-        sawTrans.position.x - 25.6f / 2.0f,
-        sawTrans.position.y - 25.6f / 2.0f,
-        25.6f,
-        25.6f
-    };
-    sawBlade.addComponent<Sprite>(sawTex, src, dest);
-    Animation sawAnim = AssetManager::getAnimation("sawblade");
-    sawBlade.addComponent<Animation>(sawAnim);
-    sawBlade.addComponent<Velocity>(Vector2D(0.f, 0.f), 0.0f);
-    sawBlade.addComponent<SawbladePath>(pointA, pointB, speed, true, stationary);
-    Collider& c = sawBlade.addComponent<Collider>("projectile");
-    c.scaleOffset = 0.65f;
-    c.positionOffset.x = 12.5f;
-    c.positionOffset.y = 20.0f;
-    c.baseW = 25.6;
-    c.baseH = 25.6;
-    sawBlade.addComponent<ProjectileTag>();
+        auto& t = saw.addComponent<Transform>(startPos, 0.0f, s.scale);
 
-    return sawBlade;
+        // Sprite
+        SDL_Texture* sawTex = TextureManager::load("../animations/saw_blade.png");
+        SDL_FRect src {0, 0, 25.6f, 25.6f};
+        SDL_FRect dest {
+            t.position.x - 25.6f / 2.0f,
+            t.position.y - 25.6f / 2.0f,
+            25.6f,
+            25.6f
+        };
+        saw.addComponent<Sprite>(sawTex, src, dest);
+
+        // Animation
+        Animation sawAnim = AssetManager::getAnimation("sawblade");
+        saw.addComponent<Animation>(sawAnim);
+
+        // Velocity (optional)
+        saw.addComponent<Velocity>(Vector2D(0.f, 0.f), 0.0f);
+
+        // Sawblade path
+        auto& path = saw.addComponent<SawbladePath>();
+        path.actions.clear();
+        path.speed = s.speed;
+        path.stationary = s.stationary;
+        path.motionType = s.motionType;
+        if (s.motionType == SawbladeMotionType::Linear) {
+            path.waypoints = s.waypoints;
+            for (auto& a : s.actions) {
+                WaypointAction wa;
+                wa.switchToLinear = a.switchToLinear;
+                path.actions.push_back(wa);
+            }
+        } else if (s.motionType == SawbladeMotionType::Circular) {
+            if (!s.actions.empty()) {
+                auto& a = s.actions[0];
+                path.center = s.waypoints[0]; // center
+                path.radius = a.radius;
+                path.angularSpeed = a.angularSpeed;
+                path.clockwise = a.clockwise;
+            }
+        }
+
+        // Collider
+        Collider& c = saw.addComponent<Collider>("projectile");
+        c.scaleOffset = 0.65f;
+        c.positionOffset = {12.5f, 20.0f};
+        c.baseW = 25.6;
+        c.baseH = 25.6;
+        saw.addComponent<ProjectileTag>();
+    }
 }
 
-Entity &Scene::createCircularSawblade(Vector2D center, float radius, float angularSpeed, float angle, float scale, bool clockwise) {
-    auto& saw(world.createEntity());
 
-    // Compute initial position
-    float px = center.x + std::cos(angle) * radius;
-    float py = center.y + std::sin(angle) * radius;
 
-    auto& t = saw.addComponent<Transform>(
-        Vector2D(px, py),
-        0.0f,
-        scale
-    );
 
-    SDL_Texture* sawTex = TextureManager::load("../animations/saw_blade.png");
-    SDL_FRect src {0, 0, 25.6f, 25.6f};
-    SDL_FRect dest {
-        t.position.x - 25.6f / 2.0f,
-        t.position.y - 25.6f / 2.0f,
-        25.6f,
-        25.6f
-    };
 
-    saw.addComponent<Sprite>(sawTex, src, dest);
-
-    Animation anim = AssetManager::getAnimation("sawblade");
-    saw.addComponent<Animation>(anim);
-
-    saw.addComponent<Velocity>(Vector2D(0,0), 0.0f);
-
-    auto& path = saw.addComponent<SawbladePath>();
-    path.motionType = SawbladeMotionType::Circular;
-    path.center = center;
-    path.radius = radius;
-    path.angle = angle;
-    path.angularSpeed = angularSpeed;
-    path.clockwise = clockwise;
-    auto& c = saw.addComponent<Collider>("projectile");
-    c.scaleOffset = 0.65f;
-    c.positionOffset = {12.5f, 20.0f};
-    c.baseW = 25.6f;
-    c.baseH = 25.6f;
-
-    saw.addComponent<ProjectileTag>();
-
-    return saw;
-}
+// Entity &Scene::createSawblade(Vector2D pointA, Vector2D pointB, float speed, float scale, bool stationary) {
+//     auto& sawBlade(world.createEntity());
+//     Transform sawTrans = sawBlade.addComponent<Transform>(
+//           Vector2D(pointA.x + 25.6f / 2.0f, pointA.y + 25.6f / 2.0f),
+//           0.0f,
+//           scale
+//       );
+//
+//     SDL_Texture* sawTex = TextureManager::load("../animations/saw_blade.png");
+//     SDL_FRect src {0, 0, 25.6f, 25.6f};
+//     SDL_FRect dest {
+//         sawTrans.position.x - 25.6f / 2.0f,
+//         sawTrans.position.y - 25.6f / 2.0f,
+//         25.6f,
+//         25.6f
+//     };
+//     sawBlade.addComponent<Sprite>(sawTex, src, dest);
+//     Animation sawAnim = AssetManager::getAnimation("sawblade");
+//     sawBlade.addComponent<Animation>(sawAnim);
+//     sawBlade.addComponent<Velocity>(Vector2D(0.f, 0.f), 0.0f);
+//     sawBlade.addComponent<SawbladePath>(pointA, pointB, speed, true, stationary);
+//     Collider& c = sawBlade.addComponent<Collider>("projectile");
+//     c.scaleOffset = 0.65f;
+//     c.positionOffset.x = 12.5f;
+//     c.positionOffset.y = 20.0f;
+//     c.baseW = 25.6;
+//     c.baseH = 25.6;
+//     sawBlade.addComponent<ProjectileTag>();
+//
+//     return sawBlade;
+// }
+//
+// Entity &Scene::createCircularSawblade(Vector2D center, float radius, float angularSpeed, float angle, float scale, bool clockwise) {
+//     auto& saw(world.createEntity());
+//
+//     // Compute initial position
+//     float px = center.x + std::cos(angle) * radius;
+//     float py = center.y + std::sin(angle) * radius;
+//
+//     auto& t = saw.addComponent<Transform>(
+//         Vector2D(px, py),
+//         0.0f,
+//         scale
+//     );
+//
+//     SDL_Texture* sawTex = TextureManager::load("../animations/saw_blade.png");
+//     SDL_FRect src {0, 0, 25.6f, 25.6f};
+//     SDL_FRect dest {
+//         t.position.x - 25.6f / 2.0f,
+//         t.position.y - 25.6f / 2.0f,
+//         25.6f,
+//         25.6f
+//     };
+//
+//     saw.addComponent<Sprite>(sawTex, src, dest);
+//
+//     Animation anim = AssetManager::getAnimation("sawblade");
+//     saw.addComponent<Animation>(anim);
+//
+//     saw.addComponent<Velocity>(Vector2D(0,0), 0.0f);
+//
+//     auto& path = saw.addComponent<SawbladePath>();
+//     path.motionType = SawbladeMotionType::Circular;
+//     path.center = center;
+//     path.radius = radius;
+//     path.angle = angle;
+//     path.angularSpeed = angularSpeed;
+//     path.clockwise = clockwise;
+//     auto& c = saw.addComponent<Collider>("projectile");
+//     c.scaleOffset = 0.65f;
+//     c.positionOffset = {12.5f, 20.0f};
+//     c.baseW = 25.6f;
+//     c.baseH = 25.6f;
+//
+//     saw.addComponent<ProjectileTag>();
+//
+//     return saw;
+// }
 
 
 

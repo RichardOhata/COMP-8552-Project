@@ -72,3 +72,7 @@ Vector2D &Vector2D::normalize() {
 
     return *this;
 }
+
+float Vector2D::length() const {
+    return std::sqrt(x * x + y * y);
+}

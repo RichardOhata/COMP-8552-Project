@@ -1,140 +1,140 @@
 {
   "sawblades": [
     {
-      "type": "linear",
-      "pointA": [420, 160],
-      "pointB": [425, 500],
+      "type": "Linear",
       "speed": 300.0,
       "scale": 4.0,
-      "stationary": false
+      "stationary": false,
+      "waypoints": [[420, 160], [425, 500]],
+      "actions": [{"switchToLinear": true}]
     },
     {
-      "type": "linear",
-      "pointA": [520, 500],
-      "pointB": [520, 160],
+      "type": "Linear",
       "speed": 300.0,
       "scale": 4.0,
-      "stationary": false
+      "stationary": false,
+      "waypoints": [[520, 500], [520, 160]],
+      "actions": [{"switchToLinear": true}]
     },
     {
-      "type": "linear",
-      "pointA": [625, 160],
-      "pointB": [625, 500],
+      "type": "Linear",
       "speed": 300.0,
       "scale": 4.0,
-      "stationary": false
+      "stationary": false,
+      "waypoints": [[625, 160], [625, 500]],
+      "actions": [{"switchToLinear": true}]
     },
     {
-      "type": "linear",
-      "pointA": [725, 500],
-      "pointB": [725, 160],
+      "type": "Linear",
       "speed": 300.0,
       "scale": 4.0,
-      "stationary": false
+      "stationary": false,
+      "waypoints": [[725, 500], [725, 160]],
+      "actions": [{"switchToLinear": true}]
     },
     {
-      "type": "linear",
-      "pointA": [825, 160],
-      "pointB": [825, 500],
+      "type": "Linear",
       "speed": 300.0,
       "scale": 4.0,
-      "stationary": false
+      "stationary": false,
+      "waypoints": [[825, 160], [825, 500]],
+      "actions": [{"switchToLinear": true}]
     },
     {
-      "type": "linear",
-      "pointA": [350, 160],
-      "pointB": [350, 160],
+      "type": "Linear",
       "speed": 200.0,
       "scale": 5.0,
-      "stationary": true
+      "stationary": true,
+      "waypoints": [[350, 160], [350, 160]],
+      "actions": [{"switchToLinear": true}]
     },
     {
-      "type": "linear",
-      "pointA": [456, 160],
-      "pointB": [456, 160],
+      "type": "Linear",
       "speed": 200.0,
       "scale": 5.0,
-      "stationary": true
+      "stationary": true,
+      "waypoints": [[456, 160], [456, 160]],
+      "actions": [{"switchToLinear": true}]
     },
     {
-      "type": "linear",
-      "pointA": [562, 160],
-      "pointB": [562, 160],
+      "type": "Linear",
       "speed": 200.0,
       "scale": 5.0,
-      "stationary": true
+      "stationary": true,
+      "waypoints": [[562, 160], [562, 160]],
+      "actions": [{"switchToLinear": true}]
     },
     {
-      "type": "linear",
-      "pointA": [668, 160],
-      "pointB": [668, 160],
+      "type": "Linear",
       "speed": 200.0,
       "scale": 5.0,
-      "stationary": true
+      "stationary": true,
+      "waypoints": [[668, 160], [668, 160]],
+      "actions": [{"switchToLinear": true}]
     },
     {
-      "type": "linear",
-      "pointA": [774, 160],
-      "pointB": [774, 160],
+      "type": "Linear",
       "speed": 200.0,
       "scale": 5.0,
-      "stationary": true
+      "stationary": true,
+      "waypoints": [[774, 160], [774, 160]],
+      "actions": [{"switchToLinear": true}]
     },
     {
-      "type": "linear",
-      "pointA": [880, 160],
-      "pointB": [880, 160],
+      "type": "Linear",
       "speed": 200.0,
       "scale": 5.0,
-      "stationary": true
+      "stationary": true,
+      "waypoints": [[880, 160], [880, 160]],
+      "actions": [{"switchToLinear": true}]
     },
     {
-      "type": "linear",
-      "pointA": [350, 510],
-      "pointB": [350, 510],
+      "type": "Linear",
       "speed": 200.0,
       "scale": 5.0,
-      "stationary": true
+      "stationary": true,
+      "waypoints": [[350, 510], [350, 510]],
+      "actions": [{"switchToLinear": true}]
     },
     {
-      "type": "linear",
-      "pointA": [456, 510],
-      "pointB": [456, 510],
+      "type": "Linear",
       "speed": 200.0,
       "scale": 5.0,
-      "stationary": true
+      "stationary": true,
+      "waypoints": [[456, 510], [456, 510]],
+      "actions": [{"switchToLinear": true}]
     },
     {
-      "type": "linear",
-      "pointA": [562, 510],
-      "pointB": [562, 510],
+      "type": "Linear",
       "speed": 200.0,
       "scale": 5.0,
-      "stationary": true
+      "stationary": true,
+      "waypoints": [[562, 510], [562, 510]],
+      "actions": [{"switchToLinear": true}]
     },
     {
-      "type": "linear",
-      "pointA": [668, 510],
-      "pointB": [668, 510],
+      "type": "Linear",
       "speed": 200.0,
       "scale": 5.0,
-      "stationary": true
+      "stationary": true,
+      "waypoints": [[668, 510], [668, 510]],
+      "actions": [{"switchToLinear": true}]
     },
     {
-      "type": "linear",
-      "pointA": [774, 510],
-      "pointB": [774, 510],
+      "type": "Linear",
       "speed": 200.0,
       "scale": 5.0,
-      "stationary": true
+      "stationary": true,
+      "waypoints": [[774, 510], [774, 510]],
+      "actions": [{"switchToLinear": true}]
     },
     {
-      "type": "linear",
-      "pointA": [880, 510],
-      "pointB": [880, 510],
+      "type": "Linear",
       "speed": 200.0,
       "scale": 5.0,
-      "stationary": true
+      "stationary": true,
+      "waypoints": [[880, 510], [880, 510]],
+      "actions": [{"switchToLinear": true}]
     }
-  ]
+   ]
 }
