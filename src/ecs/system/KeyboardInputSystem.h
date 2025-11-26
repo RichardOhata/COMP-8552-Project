@@ -33,6 +33,11 @@ class KeyboardInputSystem {
                     v.direction.x *= 0.7071f;
                     v.direction.y *= 0.7071f;
                 }
+
+                if (e->hasComponent<ParryInput>()) {
+                    auto& parry = e->getComponent<ParryInput>();
+                    parry.parryPressed = state[SDL_SCANCODE_F];
+                }
             }
         }
     }

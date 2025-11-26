@@ -113,7 +113,25 @@ struct SawbladePath {
     bool currentlyAdjusting = false;
 };
 
+struct Lifetime {
+    float timeRemaining;
+};
 
+struct Parryable {
+    enum class Type { Destroy, Reflect };
+    Type parryType;
+
+    Parryable(Type t = Type::Destroy) : parryType(t) {}
+};
+
+struct ParryInput {
+    float cooldown = 0.5f;
+    float timer = 0.0f;
+    bool active = false;
+    bool parryPressed = false;
+    float parryRange = 75.0f;
+    bool onCooldown = false;
+};
 
 struct Coin {
     bool collected = false;
@@ -139,7 +157,9 @@ struct Children {
 };
 struct ProjectileType {
     enum Type { Sawblade, Bullet } type;
+    bool preventHoming = false;
 };
+
 struct PlayerTag{};
 struct ProjectileTag{};
 struct CoinTag{};

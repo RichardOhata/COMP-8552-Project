@@ -43,6 +43,7 @@ class Vector2D {
 
     float length() const;
 
+        Vector2D lerp(const Vector2D &target, float t) const;
 };
 
 #endif //TEST_VECTOR2D_H

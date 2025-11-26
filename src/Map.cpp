@@ -71,6 +71,11 @@ void Map::load(const char *path, SDL_Texture *ts) {
         else if (groupName == "Next Level") {
             c.tag = "next_level";
             colliders.push_back(c);
+        } else if (groupName == "Bullet Spawn") {
+            SDL_FPoint spawn;
+            spawn.x = obj->FloatAttribute("x");
+            spawn.y = obj->FloatAttribute("y");
+            bulletSpawnAreas.push_back({spawn.x,spawn.y});
         }
     }
 }

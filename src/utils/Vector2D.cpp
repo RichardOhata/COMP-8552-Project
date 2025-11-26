@@ -76,3 +76,7 @@ Vector2D &Vector2D::normalize() {
 float Vector2D::length() const {
     return std::sqrt(x * x + y * y);
 }
+
+Vector2D Vector2D::lerp(const Vector2D& target, float t) const {
+    return Vector2D(x + (target.x - x) * t, y + (target.y - y) * t);
+}

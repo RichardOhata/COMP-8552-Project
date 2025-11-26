@@ -24,6 +24,7 @@ public:
     std::vector<SDL_FPoint> itemSpawns;
     Vector2D playerSpawn{};
     Collider nextAreaZone;
+    std::vector<Vector2D> bulletSpawnAreas{};
 };
 
 #endif //TEST_MAP_H

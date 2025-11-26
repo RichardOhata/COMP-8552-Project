@@ -6,7 +6,7 @@
       "stationary": false,
       "waypoints": [[325, 320]],
       "actions": [
-        { "switchToCircular": true, "radius": 50, "angularSpeed": 3.0, "clockwise": true }
+        { "switchToCircular": true, "radius": 50, "angularSpeed": 3.1, "clockwise": true }
       ]
     },
     {
@@ -44,7 +44,7 @@
     {
       "type": "Linear",
       "speed": 300.0,
-      "scale": 2.5,
+      "scale": 2.4,
       "stationary": true,
       "waypoints": [[397, 397]],
       "actions": [{ "switchToLinear": true }]
@@ -52,7 +52,7 @@
     {
       "type": "Linear",
       "speed": 300.0,
-      "scale": 2.5,
+      "scale": 2.4,
       "stationary": true,
       "waypoints": [[253, 397]],
       "actions": [{ "switchToLinear": true }]
@@ -60,7 +60,7 @@
     {
       "type": "Linear",
       "speed": 300.0,
-      "scale": 2.5,
+      "scale": 2.4,
       "stationary": true,
       "waypoints": [[397, 243]],
       "actions": [{ "switchToLinear": true }]
@@ -68,7 +68,7 @@
     {
       "type": "Linear",
       "speed": 300.0,
-      "scale": 2.5,
+      "scale": 2.7,
       "stationary": true,
       "waypoints": [[440, 270]],
       "actions": [{ "switchToLinear": true }]
@@ -76,7 +76,7 @@
     {
       "type": "Linear",
       "speed": 300.0,
-      "scale": 2.5,
+      "scale": 2.7,
       "stationary": true,
       "waypoints": [[440, 370]],
       "actions": [{ "switchToLinear": true }]
@@ -84,7 +84,7 @@
     {
       "type": "Linear",
       "speed": 300.0,
-      "scale": 2.5,
+      "scale": 2.4,
       "stationary": true,
       "waypoints": [[253, 243]],
       "actions": [{ "switchToLinear": true }]

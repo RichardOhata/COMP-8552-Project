@@ -80,6 +80,9 @@ World::World() {
        }
 
         if (player && projectile) {
+            if (projectile->getComponent<ProjectileType>().type == ProjectileType::Bullet) {
+                projectile->destroy();
+            }
             Game::pendingRespawn = true;
             Game::onSceneChangeRequest("respawn");
         }

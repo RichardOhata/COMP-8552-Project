@@ -16,21 +16,21 @@ public:
                 auto& anim = e->getComponent<Animation>();
                 auto& velocity = e->getComponent<Velocity>();
                 std::string newClip;
-
-                if (velocity.direction.x > 0.0f) newClip = "walk_right";
+                if (e->hasComponent<ProjectileTag>()) {
+                    auto& projType = e->getComponent<ProjectileType>();
+                    if (projType.type == ProjectileType::Bullet) {
+                        newClip = "bullet_spin";
+                    } else if (projType.type == ProjectileType::Sawblade) {
+                        newClip = "spin";
+                    }
+                }
+                else if (velocity.direction.x > 0.0f) newClip = "walk_right";
                 else if (velocity.direction.x < 0.0f) newClip = "walk_left";
                 else if (velocity.direction.y > 0.0f) newClip = "walk_down";
                 else if (velocity.direction.y < 0.0f && e->hasComponent<PlayerTag>()) newClip = "walk_up";
                 else if (velocity.direction.y < 0.0f) newClip = "idle_right";
                 else if (e->hasComponent<PlayerTag>()){
                     newClip = "idle_down";
-                } else if (e->hasComponent<ProjectileTag>()) {
-                    auto& projType = e->getComponent<ProjectileType>();
-                    if (projType.type == ProjectileType::Type::Bullet) {
-                        newClip = "bullet_spin";
-                    } else if (projType.type == ProjectileType::Type::Sawblade) {
-                        newClip = "spin";
-                    }
                 }
 
 

@@ -8,6 +8,5 @@
     <bullet_spin>
         <frame x="3" y="33" w="25.6" h="25.6" />
         <frame x="27" y="33" w="25.6" h="25.6" />
-
     </bullet_spin>
 </animations>

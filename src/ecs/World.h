@@ -17,9 +17,12 @@
 #include "Map.h"
 #include "CameraSystem.h"
 #include "DestructionSystem.h"
+#include "HomingSystem.h"
+#include "LifetimeSystem.h"
 #include "MouseInputSystem.h"
 #include "SpawnTimerSystem.h"
 #include "SawBladeMovementSystem.h"
+#include "player_mechanics/ParrySystem.h"
 
 class World {
     Map map;
@@ -36,6 +39,9 @@ class World {
     DestructionSystem destructionSystem;
     SawbladeMovementSystem sawbladeMovementSystem;
     MouseInputSystem mouseInputSystem;
+    LifetimeSystem lifetimeSystem;
+    HomingSystem homingSystem;
+    ParrySystem parrySystem;
 public:
     World();
     void update(float dt, const SDL_Event& event) {
@@ -48,6 +54,9 @@ public:
         destructionSystem.update(entities);
         sawbladeMovementSystem.update(entities, dt);
         mouseInputSystem.update(*this, event);
+        lifetimeSystem.update(entities, dt);
+        homingSystem.update(entities, dt, getPlayer()->getComponent<Transform>().position);
+        parrySystem.update(entities, dt);
         synchronizeEntities();
         cleanup();
     }
@@ -108,6 +117,16 @@ public:
 
     void setRespawn(Vector2D respawnPoint) {
         this->respawnPoint = respawnPoint;
+    }
+
+private:
+    Entity* getPlayer() const {
+        for (auto& e : entities) {
+            if (e->hasComponent<PlayerTag>()) {
+                return e.get();
+            }
+        }
+        return nullptr;
     }
 };
 #endif //TEST_WORLD_H
