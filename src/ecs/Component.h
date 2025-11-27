@@ -4,16 +4,21 @@
 
 #ifndef TEST_COMPONENT_H
 #define TEST_COMPONENT_H
-#include <functional>
-#include <SDL3/SDL_rect.h>
 
+#include <functional>
+#include <string>
+#include <vector>
+#include <unordered_map>
+#include <SDL3/SDL_rect.h>
+#include "SDL3_ttf/SDL_ttf.h"
 #include "Vector2D.h"
 #include "TextureManager.h"
 #include "AnimationClip.h"
-#include <string>
-
 #include "Entity.h"
 
+// ----------------------------
+// Core Transform Components
+// ----------------------------
 struct Transform {
     Vector2D position{};
     float rotation{};
@@ -26,6 +31,9 @@ struct Velocity {
     float speed{};
 };
 
+// ----------------------------
+// Rendering Components
+// ----------------------------
 enum class RenderLayer {
     World,
     UI
@@ -41,6 +49,9 @@ struct Sprite {
     bool visible = true;
 };
 
+// ----------------------------
+// Physics / Collision
+// ----------------------------
 struct Collider {
     std::string tag;
     SDL_FRect rect{};
@@ -51,6 +62,9 @@ struct Collider {
     bool enabled = true;
 };
 
+// ----------------------------
+// Animation
+// ----------------------------
 struct Animation {
     std::unordered_map<std::string, AnimationClip> clips{};
     std::string currentClip{};
@@ -59,28 +73,44 @@ struct Animation {
     float speed = 0.1f;
 };
 
+// ----------------------------
+// Camera
+// ----------------------------
 struct Camera {
     SDL_FRect view;
     float worldWidth;
     float worldHeight;
 };
 
+// ----------------------------
+// Spawning / Lifetime
+// ----------------------------
 struct TimedSpawner {
     float spawnInterval{};
     std::function<void()> spawnCallback{};
     float timer{};
 };
 
+struct Lifetime {
+    float timeRemaining;
+};
 
+// ----------------------------
+// Scene State
+// ----------------------------
 struct SceneState {
     int coinsCollected = 0;
     int requiredCoins = 0;
 };
 
+// ----------------------------
+// Sawblade / Pathing
+// ----------------------------
 enum class SawbladeMotionType {
     Linear,
     Circular
 };
+
 struct WaypointAction {
     bool switchToCircular = false;
     bool switchToLinear = false;
@@ -89,7 +119,7 @@ struct WaypointAction {
     float angularSpeed = 0.0f;
     bool clockwise = true;
 };
-// Component for sawblade movement
+
 struct SawbladePath {
     // Linear
     float speed = 0.0;
@@ -113,10 +143,9 @@ struct SawbladePath {
     bool currentlyAdjusting = false;
 };
 
-struct Lifetime {
-    float timeRemaining;
-};
-
+// ----------------------------
+// Combat / Player
+// ----------------------------
 struct Parryable {
     enum class Type { Destroy, Reflect };
     Type parryType;
@@ -129,25 +158,50 @@ struct ParryInput {
     float timer = 0.0f;
     bool active = false;
     bool parryPressed = false;
-    float parryRange = 75.0f;
+    float parryRange = 60.0f;
     bool onCooldown = false;
 };
 
+// ----------------------------
+// Collectibles
+// ----------------------------
 struct Coin {
     bool collected = false;
 };
 
+// ----------------------------
+// UI / Interaction
+// ----------------------------
 struct Clickable {
     std::function<void()> onPressed{};
     std::function<void()> onReleased{};
     std::function<void()> onCancel{};
+    std::function<void()> onClick = nullptr;
+
     bool pressed = false;
     bool hovered = false;
     bool clicked = false;
-
-    std::function<void()> onClick = nullptr;
 };
 
+enum class LabelType {
+ PlayerPosition
+};
+
+struct Label {
+    std::string text{};
+    TTF_Font* font = nullptr;
+    SDL_Color color {};
+    LabelType type = LabelType::PlayerPosition;
+    std::string textureCacheKey{};
+    SDL_Texture* texture = nullptr;
+    SDL_FRect dst{};
+    bool visible = true;
+    bool dirty = false;
+};
+
+// ----------------------------
+// Entity Hierarchy
+// ----------------------------
 struct Parent {
     Entity* parent = nullptr;
 };
@@ -155,12 +209,20 @@ struct Parent {
 struct Children {
     std::vector<Entity*> children{};
 };
+
+// ----------------------------
+// Projectiles
+// ----------------------------
 struct ProjectileType {
     enum Type { Sawblade, Bullet } type;
     bool preventHoming = false;
 };
 
+// ----------------------------
+// Tags / Markers
+// ----------------------------
 struct PlayerTag{};
 struct ProjectileTag{};
 struct CoinTag{};
-#endif //TEST_COMPONENT_H
+
+#endif // TEST_COMPONENT_H

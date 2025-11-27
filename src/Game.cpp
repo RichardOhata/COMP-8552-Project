@@ -17,7 +17,7 @@
 
 
     std::function<void(std::string)> Game::onSceneChangeRequest;
-    std::vector<std::string> levels = {"Level_1", "Level_2", "Level_3"};
+    std::vector<std::string> levels = {"Level_1", "Level_2", "Level_3", "Level_4", "Level_5"};
     bool Game::pendingRespawn = false;
     bool Game::wantToClearRespawnFlag = false;
     bool Game::debugColliders = false;
@@ -55,20 +55,24 @@
             isRunning = false;
         }
 
+        if (TTF_Init() != 1) {
+            std::cout << "TTF_Init() failed." << std::endl;
+        }
+        AssetManager::loadFont("Bold Pixel", "../asset/font/BoldPixels.ttf", 130);
         AssetManager::loadAnimation("sawblade", "../animations/saw_blade_animations.xml");
 
-        sceneManager.loadScene("Main_Menu","../asset/Main_Menu.tmx", width, height);
-        sceneManager.loadScene("Level_1", "../asset/Level_1.tmx", width, height);
-        sceneManager.loadScene("Level_2", "../asset/Level_2.tmx", width, height);
-        sceneManager.loadScene("Level_3", "../asset/Level_3.tmx", width, height);
-        sceneManager.loadScene("Level_4", "../asset/Level_4.tmx", width, height);
+        sceneManager.loadScene("Main_Menu","../asset/levels/Main_Menu.tmx", width, height);
+        sceneManager.loadScene("Level_1", "../asset/levels/Level_1.tmx", width, height);
+        sceneManager.loadScene("Level_2", "../asset/levels/Level_2.tmx", width, height);
+        sceneManager.loadScene("Level_3", "../asset/levels/Level_3.tmx", width, height);
+        sceneManager.loadScene("Level_4", "../asset/levels/Level_4.tmx", width, height);
         // sceneManager.loadScene("Level_5", "../asset/Level_5.tmx", width, height);
         audioManager = new AudioManager();
         audioManager->loadAudio("bgm", "../asset/audio/kk_battle31_loop.ogg");
         audioManager->playMusic("bgm");
 
 
-        sceneManager.changeSceneDeferred("Level_3");
+        sceneManager.changeSceneDeferred("Main_Menu");
 
         onSceneChangeRequest = [this](std::string sceneName) {
             if (sceneManager.currentScene->getName() == "level5" && sceneName == "level5") {
@@ -91,7 +95,6 @@
                 return;
             }
              if (sceneName == "nextlevel") {
-                 std::cout << sceneManager.currentScene->getName() << std::endl;
                  int pos = std::find(levels.begin(), levels.end(), sceneManager.currentScene->getName()) - levels.begin();
                  sceneManager.changeSceneDeferred(levels[pos+1]);
                  return;

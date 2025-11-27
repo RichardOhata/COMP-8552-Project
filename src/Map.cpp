@@ -113,7 +113,7 @@ void Map::draw(const Camera &cam) {
             dest.x = std::round(col * dest.w - cam.view.x);
             dest.y = std::round(row * dest.h - cam.view.y);
 
-            TextureManager::draw(tileset, src, dest);
+            TextureManager::draw(tileset, &src, &dest);
         }
     }
 

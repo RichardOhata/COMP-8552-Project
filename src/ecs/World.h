@@ -18,10 +18,13 @@
 #include "CameraSystem.h"
 #include "DestructionSystem.h"
 #include "HomingSystem.h"
+#include "HUDSystem.h"
 #include "LifetimeSystem.h"
 #include "MouseInputSystem.h"
+#include "PreRenderSystem.h"
 #include "SpawnTimerSystem.h"
 #include "SawBladeMovementSystem.h"
+#include "UIRenderSystem.h"
 #include "player_mechanics/ParrySystem.h"
 
 class World {
@@ -30,6 +33,7 @@ class World {
     std::vector<std::unique_ptr<Entity>> deferredEntities;
     MovementSystem movementSystem;
     RenderSystem renderSystem;
+    UIRenderSystem uiRenderSystem;
     KeyboardInputSystem keyboardInputSystem;
     CollisionSystem collisionSystem;
     AnimationSystem animationSystem;
@@ -42,6 +46,8 @@ class World {
     LifetimeSystem lifetimeSystem;
     HomingSystem homingSystem;
     ParrySystem parrySystem;
+    HUDSystem hudSystem;
+    PreRenderSystem preRenderSystem;
 public:
     World();
     void update(float dt, const SDL_Event& event) {
@@ -59,6 +65,8 @@ public:
             homingSystem.update(entities, dt, getPlayer()->getComponent<Transform>().position);
         }
         parrySystem.update(entities, dt);
+        hudSystem.update(entities);
+        preRenderSystem.update(entities);
         synchronizeEntities();
         cleanup();
     }
@@ -71,6 +79,7 @@ public:
             }
             }
         renderSystem.render(entities);
+        uiRenderSystem.render(entities);
     }
 
     Entity& createEntity() {

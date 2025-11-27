@@ -28,7 +28,7 @@
 206,206,206,206,206,206,206,206,206,206,206,206,206,206,206,206,206,206,206,206,206,206,206,206,206,206,236,236,236,236,205,236,236,236,236,236,236,236,236,236
 </data>
  </layer>
- <objectgroup id="8" name="Next Level">
+ <objectgroup id="8" name="Next Level" visible="0">
   <object id="38" x="603.407" y="380.061" width="39" height="39"/>
  </objectgroup>
  <objectgroup id="6" name="Item Layer" visible="0">

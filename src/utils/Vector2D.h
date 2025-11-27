@@ -4,6 +4,7 @@
 
 #ifndef TEST_VECTOR2D_H
 #define TEST_VECTOR2D_H
+#include <iostream>
 
 class Vector2D {
     public:
@@ -45,5 +46,12 @@ class Vector2D {
 
         Vector2D lerp(const Vector2D &target, float t) const;
 };
+
+
+inline std::ostream& operator<<(std::ostream& os, const Vector2D& vec) {
+
+    os << "(" << static_cast<int>(vec.x) << ", " << static_cast<int>(vec.y) << ")";
+    return os;
+}
 
 #endif //TEST_VECTOR2D_H

@@ -35,6 +35,7 @@
             "scaleInEditor": 4
         },
         "Font.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 1.5,
             "scaleInEditor": 4
         },
@@ -75,7 +76,7 @@
             "selectedLayer": 3,
             "viewCenter": {
                 "x": 677,
-                "y": 374
+                "y": 415.5
             }
         },
         "Level_4.tmx": {
@@ -114,6 +115,49 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "levels/Environment.tsx": {
+            "dynamicWrapping": true
+        },
+        "levels/Level_1.tmx": {
+            "scale": 0.6247282608695652,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 640.278381905176,
+                "y": 609.0648107872988
+            }
+        },
+        "levels/Level_2.tmx": {
+            "scale": 0.6247282608695652,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 640.278381905176,
+                "y": 609.0648107872988
+            }
+        },
+        "levels/Level_3.tmx": {
+            "scale": 0.6247282608695652,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 640.278381905176,
+                "y": 609.0648107872988
+            }
+        },
+        "levels/Level_4.tmx": {
+            "scale": 0.6247282608695652,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 640.278381905176,
+                "y": 609.0648107872988
+            }
+        },
+        "levels/Main_Menu.tmx": {
+            "scale": 0.6247282608695652,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 640.278381905176,
+                "y": 295.3284036537625
+            }
+        },
         "map2.tmx": {
             "scale": 0.5029910714285714,
             "selectedLayer": 0,
@@ -126,8 +170,8 @@
             "scaleInDock": 1
         }
     },
-    "last.externalTilesetPath": "C:/Users/richa/Downloads/map2/map2",
-    "last.imagePath": "C:/Users/richa/Desktop/COMP-8552-Project/asset",
+    "last.externalTilesetPath": "C:/Users/richa/Desktop/COMP-8552-Project/asset/levels",
+    "last.imagePath": "C:/Users/richa/Desktop/COMP-8552-Project/asset/levels",
     "map.lastUsedFormat": "tmx",
     "openFiles": [
         "Level_1.tmx",

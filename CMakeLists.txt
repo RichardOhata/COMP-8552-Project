@@ -8,10 +8,12 @@ set(CMAKE_CXX_STANDARD 20)
 if (WIN32)
     set(SDL3_PATH "C:/Users/richa/Desktop/dev/sdl3 3.3.2")
     set(SDL3_IMAGE_PATH "C:/Users/richa/Desktop/dev/sdl3_image")
+    set(SDL3_TTF_PATH "C:/Users/richa/Desktop/dev/sdl3_ttf")
     set(SDL3_MIXER_PATH "C:/Users/richa/Desktop/dev/sdl3_mixer 3.1.0")
     include_directories(
             ${SDL3_PATH}/include
             ${SDL3_IMAGE_PATH}/include
+            ${SDL3_TTF_PATH}/include
             ${SDL3_MIXER_PATH}/include
             ${PROJECT_SOURCE_DIR}/src
             ${PROJECT_SOURCE_DIR}/src/utils
@@ -22,6 +24,7 @@ if (WIN32)
     link_directories(
             ${SDL3_PATH}/lib
             ${SDL3_IMAGE_PATH}/lib
+            ${SDL3_TTF_PATH}/lib
             ${SDL3_MIXER_PATH}/lib
     )
 endif()
@@ -29,18 +32,9 @@ add_executable(Test
         src/main.cpp
 #        src/Game.h
         src/Game.cpp
-#        src/TextureManager.h
         src/TextureManager.cpp
         src/Map.cpp
         src/GameObject.cpp
-#        src/ecs/ComponentType.h
-#        src/ecs/Entity.h
-#        src/ecs/Component.h
-#        src/ecs/system/MovementSystem.h
-#        src/ecs/system/RenderSystem.h
-#        src/ecs/World.h
-#        src/Vector2D.h
-#        src/ecs/system/KeyboardInputSystem.h
         src/utils/Vector2D.cpp
         src/utils/Collision.cpp
         src/ecs/system/CollisionSystem.cpp
@@ -61,6 +55,7 @@ add_executable(Test
     target_link_libraries(Test
             SDL3
             SDL3_image
+            SDL3_ttf
             SDL3_mixer
     )
 #endif()

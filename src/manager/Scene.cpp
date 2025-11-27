@@ -8,9 +8,8 @@
 #include "JsonLoader.h"
 
 Scene::Scene(const std::string& sceneName, const char* mapPath, const int windowWidth, const int windowHeight, bool isLevel) : name(sceneName) {
-    world.getMap().load(mapPath, TextureManager::load("../asset/Dungeon_Tileset_at.png"));
+    world.getMap().load(mapPath, TextureManager::load("../asset/levels/Dungeon_Tileset_at.png"));
     initCamera(windowWidth, windowHeight);
-
     if (!isLevel) return;
 
     initCoins();
@@ -22,7 +21,6 @@ Scene::Scene(const std::string& sceneName, const char* mapPath, const int window
     auto &state(world.createEntity());
     auto &sceneState = state.addComponent<SceneState>();
     sceneState.requiredCoins = world.getMap().itemSpawns.size();
-
 
 
 }

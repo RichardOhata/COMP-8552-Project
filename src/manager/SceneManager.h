@@ -9,7 +9,7 @@
 
 #include "MainMenuScene.h"
 #include "Scene.h"
-
+#include "TextureManager.h"
 struct SceneParams {
     const char* name;
     const char* mapPath;
@@ -25,6 +25,10 @@ class SceneManager {
 
     void changeScene(const std::string& name) {
         auto it = sceneParam.find(name);
+        // if (currentScene) {
+        //     currentScene.reset();
+        //     TextureManager::clean();
+        // }
         if (it != sceneParam.end()) {
             const auto& params = it->second;
             if (name == "Main_Menu") {
