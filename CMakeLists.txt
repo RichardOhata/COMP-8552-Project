@@ -6,11 +6,13 @@ set(CMAKE_CXX_STANDARD 20)
 #Set SDL3 include and lib paths
 
 if (WIN32)
-    set(SDL3_PATH "C:/Users/richa/Downloads/sdl3")
-    set(SDL3_IMAGE_PATH "C:/Users/richa/Downloads/sdl3_image")
+    set(SDL3_PATH "C:/Users/richa/Desktop/dev/sdl3 3.3.2")
+    set(SDL3_IMAGE_PATH "C:/Users/richa/Desktop/dev/sdl3_image")
+    set(SDL3_MIXER_PATH "C:/Users/richa/Desktop/dev/sdl3_mixer 3.1.0")
     include_directories(
             ${SDL3_PATH}/include
             ${SDL3_IMAGE_PATH}/include
+            ${SDL3_MIXER_PATH}/include
             ${PROJECT_SOURCE_DIR}/src
             ${PROJECT_SOURCE_DIR}/src/utils
             ${PROJECT_SOURCE_DIR}/src/ecs
@@ -20,6 +22,7 @@ if (WIN32)
     link_directories(
             ${SDL3_PATH}/lib
             ${SDL3_IMAGE_PATH}/lib
+            ${SDL3_MIXER_PATH}/lib
     )
 endif()
 add_executable(Test
@@ -49,6 +52,7 @@ add_executable(Test
         src/vendor/json.hpp
         src/ecs/system/MouseInputSystem.cpp
         src/manager/MainMenuScene.cpp
+        src/manager/AudioManager.cpp
 )
 
 #if (MSVC)
@@ -57,5 +61,6 @@ add_executable(Test
     target_link_libraries(Test
             SDL3
             SDL3_image
+            SDL3_mixer
     )
 #endif()

@@ -55,7 +55,9 @@ public:
         sawbladeMovementSystem.update(entities, dt);
         mouseInputSystem.update(*this, event);
         lifetimeSystem.update(entities, dt);
-        homingSystem.update(entities, dt, getPlayer()->getComponent<Transform>().position);
+        if (getPlayer()) {
+            homingSystem.update(entities, dt, getPlayer()->getComponent<Transform>().position);
+        }
         parrySystem.update(entities, dt);
         synchronizeEntities();
         cleanup();

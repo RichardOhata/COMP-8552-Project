@@ -3,13 +3,17 @@
     //
 
     #include "Game.h"
-    #include "Map.h"
+
+#include <filesystem>
+
+#include "Map.h"
     #include <iostream>
     #include <ostream>
     #include <SDL3/SDL.h>
 
 #include "ColliderDebugSystem.h"
 #include "manager/AssetManager.h"
+#include "manager/AudioManager.h"
 
 
     std::function<void(std::string)> Game::onSceneChangeRequest;
@@ -59,8 +63,12 @@
         sceneManager.loadScene("Level_3", "../asset/Level_3.tmx", width, height);
         sceneManager.loadScene("Level_4", "../asset/Level_4.tmx", width, height);
         // sceneManager.loadScene("Level_5", "../asset/Level_5.tmx", width, height);
+        audioManager = new AudioManager();
+        audioManager->loadAudio("bgm", "../asset/audio/kk_battle31_loop.ogg");
+        audioManager->playMusic("bgm");
 
-        sceneManager.changeSceneDeferred("Level_4");
+
+        sceneManager.changeSceneDeferred("Level_3");
 
         onSceneChangeRequest = [this](std::string sceneName) {
             if (sceneManager.currentScene->getName() == "level5" && sceneName == "level5") {

@@ -6,7 +6,7 @@
       "stationary": false,
       "waypoints": [[610, 360]],
       "actions": [
-        { "switchToCircular": true, "radius": 180, "angularSpeed": 2.5, "clockwise": true }
+        { "switchToCircular": true, "radius": 180, "angularSpeed": 2.7, "clockwise": true }
       ]
     },
     {
@@ -15,7 +15,7 @@
       "stationary": false,
       "waypoints": [[610, 360]],
       "actions": [
-        { "switchToCircular": true, "radius": 120, "angularSpeed": 2.5, "clockwise": true }
+        { "switchToCircular": true, "radius": 120, "angularSpeed": 2.7, "clockwise": true }
       ]
     },
     {
@@ -24,7 +24,7 @@
       "stationary": false,
       "waypoints": [[610, 360]],
       "actions": [
-        { "switchToCircular": true, "radius": 60, "angularSpeed": 2.5, "clockwise": true }
+        { "switchToCircular": true, "radius": 60, "angularSpeed": 2.7, "clockwise": true }
       ]
     },
     {
@@ -33,7 +33,7 @@
       "stationary": false,
       "waypoints": [[610, 360]],
       "actions": [
-        { "switchToCircular": true, "radius": 0, "angularSpeed": 2.5, "clockwise": true }
+        { "switchToCircular": true, "radius": 0, "angularSpeed": 2.7, "clockwise": true }
       ]
     }
   ]

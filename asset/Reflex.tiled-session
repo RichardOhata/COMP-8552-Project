@@ -79,11 +79,18 @@
             }
         },
         "Level_4.tmx": {
-            "scale": 1.5,
-            "selectedLayer": 0,
+            "expandedObjectLayers": [
+                7,
+                5,
+                9,
+                8,
+                6
+            ],
+            "scale": 1,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 484,
-                "y": 336.66666666666663
+                "x": 739,
+                "y": 358
             }
         },
         "Main_Menu.tmx": {

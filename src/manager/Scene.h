@@ -12,7 +12,7 @@
 
 class Scene {
 public:
-    Scene(const char* sceneName, const char* mapPath, int windowWidth, int windowHeight, bool isLevel = true);
+    Scene(const std::string& sceneName, const char* mapPath, int windowWidth, int windowHeight, bool isLevel = true);
 
     void update(float dt, const SDL_Event &e) {
         world.update(dt, e);
@@ -64,7 +64,7 @@ private:
     std::string name;
     Entity* playerEntity = nullptr;
     // void createProjectile(Vector2D pos, Vector2D dir, int speed);
-    void createSawBlades(const char* sceneName);
+    void createSawBlades(const std::string& sceneName);
     void initCamera(int windowWidth, int windowHeight);
     void initPlayer();
     void initColliders();

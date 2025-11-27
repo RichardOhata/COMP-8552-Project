@@ -7,7 +7,7 @@
 #include "AssetManager.h"
 #include "JsonLoader.h"
 
-Scene::Scene(const char* sceneName, const char* mapPath, const int windowWidth, const int windowHeight, bool isLevel) : name(sceneName) {
+Scene::Scene(const std::string& sceneName, const char* mapPath, const int windowWidth, const int windowHeight, bool isLevel) : name(sceneName) {
     world.getMap().load(mapPath, TextureManager::load("../asset/Dungeon_Tileset_at.png"));
     initCamera(windowWidth, windowHeight);
 
@@ -27,7 +27,7 @@ Scene::Scene(const char* sceneName, const char* mapPath, const int windowWidth, 
 
 }
 
-void Scene::createSawBlades(const char* sceneName) {
+void Scene::createSawBlades(const std::string& sceneName) {
     auto sawConfigs = JsonLoader::loadSawblades(sceneName);
     for (auto& s : sawConfigs) {
         auto& saw = world.createEntity();

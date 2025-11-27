@@ -4,6 +4,7 @@
 
 #ifndef TEST_GAME_H
 #define TEST_GAME_H
+#include "manager/AudioManager.h"
 #include "manager/SceneManager.h"
 
 #endif //TEST_GAME_H
@@ -32,7 +33,7 @@ public:
     }
     static bool pendingRespawn;
     SDL_Renderer* renderer = nullptr;
-
+    AudioManager* audioManager;
     SceneManager sceneManager;
     static std::function<void(std::string)> onSceneChangeRequest;
 private:
