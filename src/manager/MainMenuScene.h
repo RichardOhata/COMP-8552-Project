@@ -14,6 +14,8 @@ public:
 
     MainMenuScene(const char* name, const char* tmxPath, int w, int h);
 
+    bool isGameCompleted();
+
     void render() {
         Scene::render(); // call base render first
         // additional UI rendering here

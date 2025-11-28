@@ -7,6 +7,8 @@
 #include <iostream>
 #include "vendor/json.hpp"
 // #include <nlohmann/json.hpp>
+#include <filesystem>
+namespace fs = std::filesystem;
 
 using json = nlohmann::json;
 
@@ -58,4 +60,34 @@ std::vector<SawbladeConfig> JsonLoader::loadSawblades(const std::string& sceneNa
     }
 
     return result;
+}
+
+bool JsonLoader::isGameCompleted() {
+    fs::path filePath = "C:/Users/richa/Desktop/COMP-8552-Project/user_data/user_data.json";
+
+    if (!fs::exists(filePath)) return false;
+
+    std::ifstream file(filePath);
+    if (!file.is_open() || file.peek() == std::ifstream::traits_type::eof()) return false;
+
+    json data;
+    try {
+        file >> data;
+    } catch (...) {
+        return false;
+    }
+
+    return data.value("gameCompleted", false);
+}
+
+void JsonLoader::setGameCompleted(bool completed) {
+    fs::path filePath = "C:/Users/richa/Desktop/COMP-8552-Project/user_data/user_data.json";
+
+    json data;
+    data["gameCompleted"] = completed;
+
+    std::ofstream file(filePath, std::ios::trunc);
+    if (file.is_open()) {
+        file << data.dump(4);
+    }
 }

@@ -22,7 +22,6 @@ Scene::Scene(const std::string& sceneName, const char* mapPath, const int window
     auto &sceneState = state.addComponent<SceneState>();
     sceneState.requiredCoins = world.getMap().itemSpawns.size();
 
-
 }
 
 void Scene::createSawBlades(const std::string& sceneName) {
@@ -33,11 +32,11 @@ void Scene::createSawBlades(const std::string& sceneName) {
         if (s.motionType == SawbladeMotionType::Linear) {
             startPos = s.waypoints.empty() ? Vector2D(0,0) : s.waypoints[0];
         } else if (s.motionType == SawbladeMotionType::Circular) {
-            // For circular, the starting position is computed from the first circular action
+
             if (!s.actions.empty()) {
-                auto& a = s.actions[0]; // assume first action defines the circular motion
-                startPos.x = s.waypoints[0].x + a.radius; // or compute using cos(angle)
-                startPos.y = s.waypoints[0].y;           // for now, start at center + radius
+                auto& a = s.actions[0]; //
+                startPos.x = s.waypoints[0].x + a.radius; //
+                startPos.y = s.waypoints[0].y;           //
             } else {
                 startPos = s.waypoints.empty() ? Vector2D(0,0) : s.waypoints[0];
             }

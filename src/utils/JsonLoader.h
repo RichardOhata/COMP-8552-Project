@@ -38,5 +38,9 @@ struct SawbladeConfig {
 class JsonLoader {
 public:
     static std::vector<SawbladeConfig> loadSawblades(const std::string& sceneName);
+
+    static bool isGameCompleted();
+
+    static void setGameCompleted(bool completed);
 };
 #endif //TEST_JSONLOADER_H

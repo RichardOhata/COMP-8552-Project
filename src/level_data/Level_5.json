@@ -1,0 +1,14 @@
+{
+  "sawblades": [
+    {
+      "type": "Circular",
+      "scale": 5.0,
+      "stationary": false,
+      "waypoints": [[970, 525]],
+      "actions": [
+        { "switchToCircular": true, "radius": 75, "angularSpeed": 2.5, "clockwise": true }
+      ]
+    }
+
+  ]
+}

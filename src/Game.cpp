@@ -5,6 +5,7 @@
     #include "Game.h"
 
 #include <filesystem>
+#include <fstream>
 
 #include "Map.h"
     #include <iostream>
@@ -12,6 +13,8 @@
     #include <SDL3/SDL.h>
 
 #include "ColliderDebugSystem.h"
+#include "json.hpp"
+#include "JsonLoader.h"
 #include "manager/AssetManager.h"
 #include "manager/AudioManager.h"
 
@@ -66,13 +69,13 @@
         sceneManager.loadScene("Level_2", "../asset/levels/Level_2.tmx", width, height);
         sceneManager.loadScene("Level_3", "../asset/levels/Level_3.tmx", width, height);
         sceneManager.loadScene("Level_4", "../asset/levels/Level_4.tmx", width, height);
-        // sceneManager.loadScene("Level_5", "../asset/Level_5.tmx", width, height);
+        sceneManager.loadScene("Level_5", "../asset/levels/Level_5.tmx", width, height);
         audioManager = new AudioManager();
         audioManager->loadAudio("bgm", "../asset/audio/kk_battle31_loop.ogg");
         audioManager->playMusic("bgm");
 
 
-        sceneManager.changeSceneDeferred("Main_Menu");
+        sceneManager.changeSceneDeferred("Level_5");
 
         onSceneChangeRequest = [this](std::string sceneName) {
             if (sceneManager.currentScene->getName() == "level5" && sceneName == "level5") {
@@ -81,8 +84,7 @@
                 return;
             }
 
-            if (sceneName == "gameover") {
-                std::cout << "You Lose!" << std::endl;
+            if (sceneName == "quit") {
                 isRunning = false;
                 return;
             }
@@ -95,11 +97,20 @@
                 return;
             }
              if (sceneName == "nextlevel") {
-                 int pos = std::find(levels.begin(), levels.end(), sceneManager.currentScene->getName()) - levels.begin();
-                 sceneManager.changeSceneDeferred(levels[pos+1]);
+                 auto it = std::find(levels.begin(), levels.end(), sceneManager.currentScene->getName());
+                 if (it != levels.end()) {
+                     int pos = it - levels.begin();
+                     if (pos + 1 < levels.size()) {
+                         sceneManager.changeSceneDeferred(levels[pos + 1]);
+                     } else {
+                         JsonLoader::setGameCompleted(true);
+                         sceneManager.changeSceneDeferred("Main_Menu");
+                     }
+                 } else {
+                     std::cerr << "Current scene is not in levels list!" << std::endl;
+                 }
                  return;
             }
-
             sceneManager.changeSceneDeferred(sceneName);
         };
     }
@@ -120,6 +131,11 @@
                     std::cout << "Collider Debug: "
                               << (debugColliders ? "ON" : "OFF") << std::endl;
                 }
+                if (event.key.key == SDLK_ESCAPE) {
+                    if (sceneManager.currentScene->getName() != "Main_Menu")
+                    onSceneChangeRequest("Main_Menu");
+                }
+                break;
                 default:
                 break;
         }
@@ -154,3 +170,17 @@
         SDL_Quit();
         std::cout << "GameDestroyed" << std::endl;
     }
+
+    // Put in its own system later
+    void Game::saveGameCompleted() {
+            nlohmann::json j;
+            j["gameCompleted"] = true;
+
+            std::ofstream file("save.json");
+            if (!file.is_open()) {
+                std::cerr << "Failed to open save.json for writing!" << std::endl;
+                return;
+            }
+            file << j.dump(4);  // pretty print with 4 spaces
+            file.close();
+        }
