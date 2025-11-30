@@ -1,7 +1,9 @@
 {
-    "activeFile": "Level_1.tmx",
+    "activeFile": "levels/Level_5.tmx",
     "expandedProjectPaths": [
-        "."
+        "levels",
+        ".",
+        "lecture_assets"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -15,6 +17,7 @@
         },
         "C:/Users/richa/Desktop/Environment.tsx": {
             "dynamicWrapping": false,
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "C:/Users/richa/Downloads/map2/map2/map2.tmx": {
@@ -148,7 +151,7 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 419.38234014789043,
-                "y": 609.0648107872988
+                "y": 609.8651587646804
             }
         },
         "levels/Level_3.tmx": {
@@ -156,7 +159,7 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 419.38234014789043,
-                "y": 609.0648107872988
+                "y": 609.8651587646804
             }
         },
         "levels/Level_4.tmx": {
@@ -164,23 +167,23 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 419.38234014789043,
-                "y": 609.0648107872988
+                "y": 609.8651587646804
             }
         },
         "levels/Level_5.tmx": {
-            "scale": 1,
-            "selectedLayer": 0,
+            "scale": 1.5,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 505,
-                "y": 424
+                "x": 528,
+                "y": 547.3333333333333
             }
         },
         "levels/Main_Menu.tmx": {
             "scale": 0.6247282608695652,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 478.6080904741192,
-                "y": 537.0334928229665
+                "x": 639.4780339277947,
+                "y": 124.05393649412787
             }
         },
         "map2.tmx": {
@@ -195,27 +198,32 @@
             "scaleInDock": 1
         }
     },
-    "last.externalTilesetPath": "C:/Users/richa/Desktop",
+    "last.externalTilesetPath": "C:/Users/richa/Desktop/COMP-8552-Project/asset/levels",
     "last.imagePath": "C:/Users/richa/Desktop/COMP-8552-Project/asset/levels",
     "map.lastUsedFormat": "tmx",
     "openFiles": [
-        "Level_1.tmx",
-        "Sawblade.tsx"
+        "levels/Level_5.tmx",
+        "levels/Environment.tsx",
+        "levels/Main_Menu.tmx",
+        "levels/Level_4.tmx",
+        "levels/Level_3.tmx",
+        "levels/Level_2.tmx",
+        "levels/Level_1.tmx"
     ],
     "project": "Reflex.tiled-project",
     "recentFiles": [
-        "C:/Users/richa/Desktop/Environment.tsx",
-        "levels/Environment.tsx",
+        "levels/Level_1.tmx",
         "levels/Level_2.tmx",
+        "levels/Level_3.tmx",
+        "levels/Level_4.tmx",
+        "levels/Main_Menu.tmx",
+        "levels/Environment.tsx",
+        "levels/Level_5.tmx",
+        "C:/Users/richa/Desktop/Environment.tsx",
         "Level_1.tmx",
         "Level_3.tmx",
         "Main_Menu.tmx",
-        "Level_2.tmx",
-        "Level_4.tmx",
-        "levels/Level_1.tmx",
-        "levels/Level_5.tmx",
-        "lecture_assets/map2.tmx",
-        "Font.tsx"
+        "Level_2.tmx"
     ],
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",

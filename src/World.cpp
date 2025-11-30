@@ -83,6 +83,9 @@ World::World() {
             if (projectile->getComponent<ProjectileType>().type == ProjectileType::Bullet) {
                 projectile->destroy();
             }
+            if (Game::godMode) {
+                return;
+            }
             auto& sceneState = sceneStateEntity->getComponent<SceneState>();
             sceneState.coinsCollected = 0;
             Game::pendingRespawn = true;

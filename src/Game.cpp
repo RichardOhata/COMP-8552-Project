@@ -24,6 +24,7 @@
     bool Game::pendingRespawn = false;
     bool Game::wantToClearRespawnFlag = false;
     bool Game::debugColliders = false;
+bool Game::godMode = false;
     Game::Game() {
     }
 
@@ -134,6 +135,11 @@
                 if (event.key.key == SDLK_ESCAPE) {
                     if (sceneManager.currentScene->getName() != "Main_Menu")
                     onSceneChangeRequest("Main_Menu");
+                }
+                if (event.key.key == SDLK_L) {
+                    godMode = !godMode;
+                    std::cout << "Debug Mode: "
+                              << (godMode ? "DISABLED" : "ENABLED") << "\n";
                 }
                 break;
                 default:

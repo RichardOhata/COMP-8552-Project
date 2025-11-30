@@ -6,9 +6,224 @@
       "stationary": false,
       "waypoints": [[970, 525]],
       "actions": [
-        { "switchToCircular": true, "radius": 75, "angularSpeed": 2.5, "clockwise": true }
+        { "switchToCircular": true, "radius": 75, "angularSpeed": 3.3, "clockwise": true }
       ]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.3,
+      "stationary": false,
+      "waypoints": [[355, 433], [355, 591]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.3,
+      "stationary": false,
+      "waypoints": [[544, 591], [544, 433]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.3,
+      "stationary": false,
+      "waypoints": [[736, 433], [736, 591]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.3,
+      "stationary": false,
+      "waypoints": [[355, 366], [355, 208]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.3,
+      "stationary": false,
+      "waypoints": [[544, 208], [544, 366]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.3,
+      "stationary": false,
+      "waypoints": [[736, 366], [736, 208]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.4,
+      "stationary": true,
+      "waypoints": [[160, 256]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.4,
+      "stationary": true,
+      "waypoints": [[160, 215]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.4,
+      "stationary": true,
+      "waypoints": [[160, 297]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.0,
+      "stationary": true,
+      "waypoints": [[245, 330]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.0,
+      "stationary": true,
+      "waypoints": [[245, 370]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.0,
+      "stationary": true,
+      "waypoints": [[205, 370]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.0,
+      "stationary": true,
+      "waypoints": [[165, 370]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.0,
+      "stationary": true,
+      "waypoints": [[125, 370]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.0,
+      "stationary": true,
+      "waypoints": [[85, 370]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.0,
+      "stationary": true,
+      "waypoints": [[245, 240]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.2,
+      "stationary": true,
+      "waypoints": [[202, 240]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.0,
+      "stationary": true,
+      "waypoints": [[85, 290]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.0,
+      "stationary": true,
+      "waypoints": [[85, 250]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.0,
+      "stationary": true,
+      "waypoints": [[85, 330]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.0,
+      "stationary": true,
+      "waypoints": [[85, 210]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.0,
+      "stationary": true,
+      "waypoints": [[85, 170]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.2,
+      "stationary": true,
+      "waypoints": [[120, 135]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.0,
+      "stationary": true,
+      "waypoints": [[165, 125]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.0,
+      "stationary": true,
+      "waypoints": [[205, 125]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 2.0,
+      "stationary": true,
+      "waypoints": [[245, 125]],
+      "actions": [{"switchToLinear": true}]
+    },
+    {
+      "type": "Linear",
+      "speed": 175.0,
+      "scale": 1.9,
+      "stationary": true,
+      "waypoints": [[1090, 163]],
+      "actions": [{"switchToLinear": true}]
     }
-
   ]
 }

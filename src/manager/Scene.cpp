@@ -15,7 +15,7 @@ Scene::Scene(const std::string& sceneName, const char* mapPath, const int window
     initCoins();
     initPlayer();
     initColliders();
-    initBulletSpawner();
+    // initBulletSpawner();
     createSawBlades(sceneName);
 
     auto &state(world.createEntity());

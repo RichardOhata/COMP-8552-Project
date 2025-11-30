@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="88">
  <tileset firstgid="1" source="Environment.tsx"/>
- <tileset firstgid="257" source="../Environment.tsx"/>
- <tileset firstgid="513" source="../../../Environment.tsx"/>
+ <tileset firstgid="257" source="../../../Environment.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="23">
   <data encoding="csv">
 65,206,206,206,206,220,206,206,206,206,206,206,206,206,206,206,206,198,215,218,203,35,35,35,35,35,35,35,236,236,205,89,89,89,89,206,89,89,89,89,
@@ -34,31 +33,31 @@
   <object id="38" x="535.74" y="91.394" width="146" height="39"/>
  </objectgroup>
  <objectgroup id="6" name="Item Layer">
-  <object id="30" x="561" y="285">
+  <object id="30" x="544" y="287">
    <point/>
   </object>
   <object id="31" x="960.5" y="452">
    <point/>
   </object>
-  <object id="34" x="749" y="510">
+  <object id="34" x="736" y="512">
    <point/>
   </object>
   <object id="41" x="1005" y="557">
    <point/>
   </object>
-  <object id="55" x="560" y="510">
+  <object id="55" x="544" y="512">
    <point/>
   </object>
-  <object id="56" x="366" y="510">
+  <object id="56" x="352" y="512">
    <point/>
   </object>
-  <object id="57" x="368" y="285">
+  <object id="57" x="352" y="287">
    <point/>
   </object>
   <object id="58" x="921.5" y="557">
    <point/>
   </object>
-  <object id="86" x="755" y="285">
+  <object id="86" x="736" y="287">
    <point/>
   </object>
   <object id="87" x="1115" y="163">
