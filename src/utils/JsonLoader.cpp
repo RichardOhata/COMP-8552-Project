@@ -16,8 +16,7 @@ std::vector<SawbladeConfig> JsonLoader::loadSawblades(const std::string& sceneNa
 {
     std::vector<SawbladeConfig> result;
 
-
-    std::string filePath = "C:/Users/richa/Desktop/COMP-8552-Project/src/level_data/" + sceneName + ".json";;
+    std::string filePath = "../src/level_data/" + sceneName + ".json";;
     std::ifstream file(filePath);
 
     if (!file.is_open()) {
@@ -63,7 +62,7 @@ std::vector<SawbladeConfig> JsonLoader::loadSawblades(const std::string& sceneNa
 }
 
 bool JsonLoader::isGameCompleted() {
-    fs::path filePath = "C:/Users/richa/Desktop/COMP-8552-Project/user_data/user_data.json";
+    fs::path filePath = "../user_data/user_data.json";
 
     if (!fs::exists(filePath)) return false;
 
@@ -81,7 +80,7 @@ bool JsonLoader::isGameCompleted() {
 }
 
 void JsonLoader::setGameCompleted(bool completed) {
-    fs::path filePath = "C:/Users/richa/Desktop/COMP-8552-Project/user_data/user_data.json";
+    fs::path filePath = "../user_data/user_data.json";
 
     json data;
     data["gameCompleted"] = completed;

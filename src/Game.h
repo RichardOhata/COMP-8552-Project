@@ -29,8 +29,6 @@ public:
 
     void destroy();
 
-    void saveGameCompleted();
-
     bool running() {
         return isRunning;
     }

@@ -178,16 +178,3 @@
         std::cout << "GameDestroyed" << std::endl;
     }
 
-    // Put in its own system later
-    void Game::saveGameCompleted() {
-            nlohmann::json j;
-            j["gameCompleted"] = true;
-
-            std::ofstream file("save.json");
-            if (!file.is_open()) {
-                std::cerr << "Failed to open save.json for writing!" << std::endl;
-                return;
-            }
-            file << j.dump(4);  // pretty print with 4 spaces
-            file.close();
-        }

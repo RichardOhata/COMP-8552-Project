@@ -6,10 +6,10 @@ set(CMAKE_CXX_STANDARD 20)
 #Set SDL3 include and lib paths
 
 if (WIN32)
-    set(SDL3_PATH "C:/Users/richa/Desktop/dev/sdl3 3.3.2")
-    set(SDL3_IMAGE_PATH "C:/Users/richa/Desktop/dev/sdl3_image")
-    set(SDL3_TTF_PATH "C:/Users/richa/Desktop/dev/sdl3_ttf")
-    set(SDL3_MIXER_PATH "C:/Users/richa/Desktop/dev/sdl3_mixer 3.1.0")
+    set(SDL3_PATH "./dev/sdl3 3.3.2")
+    set(SDL3_IMAGE_PATH "./dev/sdl3_image")
+    set(SDL3_TTF_PATH "./dev/sdl3_ttf")
+    set(SDL3_MIXER_PATH "./dev/sdl3_mixer 3.1.0")
     include_directories(
             ${SDL3_PATH}/include
             ${SDL3_IMAGE_PATH}/include
@@ -30,7 +30,6 @@ if (WIN32)
 endif()
 add_executable(Test
         src/main.cpp
-#        src/Game.h
         src/Game.cpp
         src/TextureManager.cpp
         src/Map.cpp
@@ -49,13 +48,10 @@ add_executable(Test
         src/manager/AudioManager.cpp
 )
 
-#if (MSVC)
-#    target_link_libraries(Test SDL3.lib)
-#else()
+
     target_link_libraries(Test
             SDL3
             SDL3_image
             SDL3_ttf
             SDL3_mixer
     )
-#endif()
