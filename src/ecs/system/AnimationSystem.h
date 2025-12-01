@@ -18,6 +18,8 @@ public:
                 std::string newClip;
                 if (e->hasComponent<ProjectileTag>()) {
                     auto& projType = e->getComponent<ProjectileType>();
+
+
                     if (projType.type == ProjectileType::Bullet) {
                         newClip = "bullet_spin";
                     } else if (projType.type == ProjectileType::Sawblade) {

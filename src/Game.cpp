@@ -24,7 +24,7 @@
     bool Game::pendingRespawn = false;
     bool Game::wantToClearRespawnFlag = false;
     bool Game::debugColliders = false;
-bool Game::godMode = false;
+    bool Game::godMode = false;
     Game::Game() {
     }
 
@@ -63,6 +63,7 @@ bool Game::godMode = false;
             std::cout << "TTF_Init() failed." << std::endl;
         }
         AssetManager::loadFont("Bold Pixel", "../asset/font/BoldPixels.ttf", 130);
+        AssetManager::loadFont("Arial", "../asset/font/arial.ttf", 25);
         AssetManager::loadAnimation("sawblade", "../animations/saw_blade_animations.xml");
 
         sceneManager.loadScene("Main_Menu","../asset/levels/Main_Menu.tmx", width, height);
@@ -76,7 +77,7 @@ bool Game::godMode = false;
         audioManager->playMusic("bgm");
 
 
-        sceneManager.changeSceneDeferred("Level_5");
+        sceneManager.changeSceneDeferred("Main_Menu");
 
         onSceneChangeRequest = [this](std::string sceneName) {
             if (sceneManager.currentScene->getName() == "level5" && sceneName == "level5") {
@@ -139,7 +140,7 @@ bool Game::godMode = false;
                 if (event.key.key == SDLK_L) {
                     godMode = !godMode;
                     std::cout << "Debug Mode: "
-                              << (godMode ? "DISABLED" : "ENABLED") << "\n";
+                              << (godMode ? "ENABLED" : "DISABLED") << "\n";
                 }
                 break;
                 default:
