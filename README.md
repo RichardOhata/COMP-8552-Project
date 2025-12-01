@@ -44,10 +44,11 @@ The engine follows an Entity-Component-System (ECS) architecture, where gameplay
 - Movement System
 - Parry System
 - UI Renderer System
+- Collider Debug System
 
 ### Level & Asset Pipeline
 
-Level design entities were loaded in dynamically using custom Tiled Maps which included:
+Level design entities were loaded in dynamically using custom Tiled Maps which include:
 - Player Start Postion
 - Colliders
 - Coin Spawns
