@@ -33,6 +33,7 @@ public:
         return isRunning;
     }
     static bool pendingRespawn;
+    static bool requestSpawnNow;
     SDL_Renderer* renderer = nullptr;
     AudioManager* audioManager;
     SceneManager sceneManager;

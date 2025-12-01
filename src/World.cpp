@@ -15,6 +15,7 @@ void onCollisionPrint(const CollisionEvent& collision) {
 
 World::World() {
     eventManager.subscribe([this](const CollisionEvent& collision) {
+        if (Game::pendingRespawn) return;
         Entity* sceneStateEntity = nullptr;
 
         for (auto& e : entities) {
@@ -49,11 +50,9 @@ World::World() {
         if (player && item) {
             auto& coinComp = item->getComponent<Coin>();
             coinComp.collected = true;
-
-            item->destroy();
-
             auto& sceneState = sceneStateEntity->getComponent<SceneState>();
             sceneState.coinsCollected++;
+            item->destroy();
             }
 
         if (colliderA.tag == "player" && colliderB.tag == "wall") {
@@ -86,10 +85,16 @@ World::World() {
             if (Game::godMode) {
                 return;
             }
-            auto& sceneState = sceneStateEntity->getComponent<SceneState>();
-            sceneState.coinsCollected = 0;
+            // auto& sceneState = sceneStateEntity->getComponent<SceneState>();
+            // sceneState.coinsCollected = 0;
             Game::pendingRespawn = true;
-            Game::onSceneChangeRequest("respawn");
+
+            if (player->hasComponent<Collider>()) {
+                player->getComponent<Collider>().enabled = false;
+
+                Game::onSceneChangeRequest("respawn");
+                return;
+            }
         }
 
         if (colliderA.tag == "player" && colliderB.tag == "next_level") {

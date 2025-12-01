@@ -13,6 +13,12 @@ Scene::Scene(const std::string& sceneName, const char* mapPath, const int window
         mapPath,
         TextureManager::load(Config::LOCAL_BUILD ? "../asset/levels/Dungeon_Tileset_at.png" : "asset/levels/Dungeon_Tileset_at.png")
     );
+    for (auto &e : world.getEntities()) {
+        if (e->hasComponent<SceneState>()) {
+            e->destroy();
+        }
+    }
+    world.cleanup();
     initCamera(windowWidth, windowHeight);
     if (!isLevel) return;
 
@@ -21,11 +27,9 @@ Scene::Scene(const std::string& sceneName, const char* mapPath, const int window
     initColliders();
     initBulletSpawner(sceneName);
     createSawBlades(sceneName);
-
-    auto &state(world.createEntity());
+    auto &state = world.createEntity();
     auto &sceneState = state.addComponent<SceneState>();
     sceneState.requiredCoins = world.getMap().itemSpawns.size();
-
 }
 
 void Scene::createSawBlades(const std::string& sceneName) {

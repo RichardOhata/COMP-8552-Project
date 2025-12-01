@@ -22,7 +22,8 @@
     std::function<void(std::string)> Game::onSceneChangeRequest;
     std::vector<std::string> levels = {"Level_1", "Level_1.5", "Level_2", "Level_3", "Level_4", "Level_5"};
     bool Game::pendingRespawn = false;
-    bool Game::wantToClearRespawnFlag = false;
+    // bool Game::wantToClearRespawnFlag = false;
+    bool Game::requestSpawnNow = false;
     bool Game::debugColliders = false;
     bool Game::godMode = false;
     Game::Game() {
@@ -71,7 +72,7 @@
         AssetManager::loadAnimation("sawblade", Config::LOCAL_BUILD ? "../animations/saw_blade_animations.xml" : "animations/saw_blade_animations.xml");
 
         // Load levels
-        sceneManager.loadScene("Main_Menu", Config::LOCAL_BUILD ? "../asset/levels/Main_Menu.tmx" : "asset/levels/Main_Menu.tmx", width, height);
+        sceneManager.loadScene("Main_Menu", Config::LOCAL_BUILD ? "../asset/levels/Main_Menu.tmx" : "asset/levels/Main_Menu.tmx", width, height, false);
         sceneManager.loadScene("Level_1", Config::LOCAL_BUILD ? "../asset/levels/Level_1.tmx" : "asset/levels/Level_1.tmx", width, height);
         sceneManager.loadScene("Level_1.5", Config::LOCAL_BUILD ? "../asset/levels/Level_1.5.tmx" : "asset/levels/Level_1.5.tmx", width, height);
         sceneManager.loadScene("Level_2", Config::LOCAL_BUILD ? "../asset/levels/Level_2.tmx" : "asset/levels/Level_2.tmx", width, height);
@@ -100,8 +101,9 @@
             // Respawns in the same current scene
             if (sceneName == "respawn") {
                 std::cout << "You Died!" << std::endl;
-                sceneManager.currentScene->respawn();
-                wantToClearRespawnFlag = true;
+                Game::requestSpawnNow = true;
+                // sceneManager.currentScene->respawn();
+                // wantToClearRespawnFlag = true;
                 return;
             }
              if (sceneName == "nextlevel") {
@@ -139,6 +141,7 @@
                 if (event.key.key == SDLK_ESCAPE) {
                     if (sceneManager.currentScene->getName() != "Main_Menu")
                     onSceneChangeRequest("Main_Menu");
+
                 }
                 if (event.key.key == SDLK_L) {
                     godMode = !godMode;
@@ -152,11 +155,20 @@
     }
 
     void Game::update(float dt) {
-        sceneManager.update(dt, event);
-        if (wantToClearRespawnFlag) {
+        if (requestSpawnNow) {
+            requestSpawnNow = false;
+            sceneManager.currentScene->respawn();
+            for (auto& e : sceneManager.currentScene->world.getEntities()) {
+                if (e->hasComponent<PlayerTag>()) {
+                    if (e->hasComponent<Collider>()) {
+                        e->getComponent<Collider>().enabled = true;
+                    }
+                    break;
+                }
+            }
             pendingRespawn = false;
-            wantToClearRespawnFlag = false;
         }
+        sceneManager.update(dt, event);
     }
 
 

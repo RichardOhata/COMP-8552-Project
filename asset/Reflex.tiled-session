@@ -1,8 +1,8 @@
 {
-    "activeFile": "levels/Level_5.tmx",
+    "activeFile": "levels/Level_1.5.tmx",
     "expandedProjectPaths": [
-        "levels",
         ".",
+        "levels",
         "lecture_assets"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -140,13 +140,17 @@
         },
         "levels/Level_1.5.tmx": {
             "expandedObjectLayers": [
-                7
+                7,
+                5,
+                6,
+                8,
+                9
             ],
-            "scale": 0.5,
-            "selectedLayer": 4,
+            "scale": 0.75,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 304,
-                "y": 520
+                "x": 454.6666666666666,
+                "y": 518.6666666666667
             }
         },
         "levels/Level_1.tmx": {
@@ -219,22 +223,23 @@
         "levels/Level_4.tmx",
         "levels/Level_3.tmx",
         "levels/Level_2.tmx",
-        "levels/Level_1.tmx"
+        "levels/Level_1.tmx",
+        "levels/Level_1.5.tmx"
     ],
     "project": "Reflex.tiled-project",
     "recentFiles": [
-        "levels/Level_1.tmx",
-        "levels/Level_2.tmx",
-        "levels/Level_3.tmx",
-        "levels/Level_4.tmx",
-        "levels/Main_Menu.tmx",
-        "levels/Environment.tsx",
         "levels/Level_5.tmx",
+        "levels/Environment.tsx",
+        "levels/Main_Menu.tmx",
+        "levels/Level_4.tmx",
+        "levels/Level_3.tmx",
+        "levels/Level_2.tmx",
+        "levels/Level_1.tmx",
+        "levels/Level_1.5.tmx",
         "C:/Users/richa/Desktop/Environment.tsx",
         "Level_1.tmx",
         "Level_3.tmx",
-        "Main_Menu.tmx",
-        "Level_2.tmx"
+        "Main_Menu.tmx"
     ],
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",

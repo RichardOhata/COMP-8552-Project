@@ -40,6 +40,19 @@ public:
                 break;
             }
         }
+        for (auto& e : world.getEntities()) {
+            if (e->hasComponent<Coin>()) {
+                e->destroy();
+            }
+        }
+        world.cleanup();
+
+        for (auto& e : world.getEntities()) {
+            if (e->hasComponent<SceneState>()) {
+                e->getComponent<SceneState>().coinsCollected = 0;
+                break;
+            }
+        }
 
         SDL_Texture* itemTex;
         if (Config::LOCAL_BUILD) {
@@ -58,12 +71,7 @@ public:
             itemCollider.rect.h = itemDest.h;
             item.addComponent<Coin>();
         }
-        for (auto& e : world.getEntities()) {
-            if (e->hasComponent<SceneState>()) {
-                e->getComponent<SceneState>().coinsCollected = 0;
-                break;
-            }
-        }
+
     }
 private:
     std::string name;
