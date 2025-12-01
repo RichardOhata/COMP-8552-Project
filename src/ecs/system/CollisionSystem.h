@@ -9,7 +9,7 @@
 #include <vector>
 
 #include "Entity.h"
-#include "TextureManager.h"
+#include "../../manager/TextureManager.h"
 class World;
 
 class CollisionSystem {

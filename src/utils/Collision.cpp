@@ -3,7 +3,7 @@
 //
 
 #include "Collision.h"
-#include "TextureManager.h"
+#include "../manager/TextureManager.h"
 bool Collision::AABB(const SDL_FRect& rectA, const SDL_FRect& rectB) {
 
     // Check if right edge of rectA >= to left edge of rectB

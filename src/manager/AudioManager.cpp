@@ -6,6 +6,8 @@
 
 #include <iostream>
 
+MIX_Mixer* AudioManager::mixer = nullptr;
+MIX_Track* AudioManager::musicTrack = nullptr;
 MIX_Track* AudioManager::sfxTrack;
 std::unordered_map<std::string, MIX_Audio*> AudioManager::audio;
 
@@ -64,3 +66,26 @@ void AudioManager::playSFX(const std::string& name) {
     std::cout << "Playing SFX : " << name << std::endl;
 }
 
+void AudioManager::clean() {
+    // Free all loaded audio
+    for (auto& [name, audioPtr] : audio) {
+        MIX_DestroyAudio(audioPtr);
+        audioPtr = nullptr;
+    }
+    audio.clear();
+
+    // Destroy music and SFX tracks
+    if (musicTrack) {
+        MIX_DestroyTrack(musicTrack);
+        musicTrack = nullptr;
+    }
+    if (sfxTrack) {
+        MIX_DestroyTrack(sfxTrack);
+        sfxTrack = nullptr;
+    }
+
+    // Quit SDL_mixer
+    MIX_Quit();
+
+    std::cout << "AudioManager cleaned up successfully." << std::endl;
+}

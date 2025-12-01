@@ -178,6 +178,8 @@
 
     void Game::destroy() {
         TextureManager::clean();
+        AudioManager::clean();
+        AssetManager::clean();
         SDL_DestroyRenderer(renderer);
         SDL_DestroyWindow(window);
         SDL_Quit();

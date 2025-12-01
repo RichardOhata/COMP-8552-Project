@@ -8,8 +8,8 @@
 #include <string>
 #include "SDL3_mixer/SDL_mixer.h"
 class AudioManager {
-    MIX_Mixer *mixer = nullptr;
-    MIX_Track *musicTrack = nullptr;
+    static MIX_Mixer *mixer;
+    static MIX_Track *musicTrack;
     static MIX_Track *sfxTrack;
     static std::unordered_map<std::string, MIX_Audio*> audio;
 
@@ -22,5 +22,7 @@ public:
     void stopMusic() const;
 
     static void playSFX(const std::string& name);
+
+    static void clean();
 };
 #endif //TEST_AUDIOMANAGER_H

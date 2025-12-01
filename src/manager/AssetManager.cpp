@@ -55,3 +55,15 @@ Animation AssetManager::loadAnimationFromXML(const char *path) {
     }
     return anim;
 }
+
+void AssetManager::clean() {
+    for (auto& [name, font] :fonts) {
+        if (font) {
+            TTF_CloseFont(font);
+            font = nullptr;
+        }
+    }
+    fonts.clear();
+    animations.clear();
+
+}

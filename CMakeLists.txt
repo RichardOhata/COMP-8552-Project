@@ -31,7 +31,7 @@ endif()
 add_executable(Test
         src/main.cpp
         src/Game.cpp
-        src/TextureManager.cpp
+        src/manager/TextureManager.cpp
         src/Map.cpp
         src/GameObject.cpp
         src/utils/Vector2D.cpp

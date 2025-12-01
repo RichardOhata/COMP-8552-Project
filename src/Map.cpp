@@ -3,7 +3,7 @@
 //
 
 #include "Map.h"
-#include "TextureManager.h"
+#include "manager/TextureManager.h"
 #include <cmath>
 #include <sstream>
 #include <tinyxml2.h>

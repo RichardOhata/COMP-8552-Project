@@ -41,7 +41,12 @@ public:
             }
         }
 
-        SDL_Texture* itemTex = TextureManager::load("../asset/coin.png");
+        SDL_Texture* itemTex;
+        if (Config::LOCAL_BUILD) {
+            itemTex  = TextureManager::load("../asset/coin.png");
+        } else {
+            itemTex = TextureManager::load("asset/coin.png");
+        }
         for (auto &spawnPoint : world.getMap().itemSpawns) {
             auto& item = world.createEntity();
             auto& itemTransform = item.addComponent<Transform>(Vector2D(spawnPoint.x, spawnPoint.y), 0.0f, 1.0f);

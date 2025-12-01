@@ -10,7 +10,7 @@
 
 #include "Component.h"
 #include "Entity.h"
-#include "TextureManager.h"
+#include "../../manager/TextureManager.h"
 class RenderSystem {
     public:
     void render(std::vector<std::unique_ptr<Entity>>& entities) {

@@ -12,7 +12,7 @@
 #include <SDL3/SDL_rect.h>
 #include "SDL3_ttf/SDL_ttf.h"
 #include "Vector2D.h"
-#include "TextureManager.h"
+#include "../manager/TextureManager.h"
 #include "AnimationClip.h"
 #include "Entity.h"
 
