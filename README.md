@@ -1,6 +1,8 @@
 # Reflex
 
-A 2D platformer built with SDL3, CLion, Tiled, for COMP 8552
+A 2D platformer built with SDL3, C++, CLion, Tiled, for COMP 8552
+
+Game involves precise movement and timings where your objective to navigate through hazard-filled levels and parrying incoming projectiles, all while collect coins in order to progress.
 
 ## How to Install
 1. Install release build 
@@ -8,7 +10,9 @@ A 2D platformer built with SDL3, CLion, Tiled, for COMP 8552
 
 <img width="1230" height="467" alt="image" src="https://github.com/user-attachments/assets/3f63233c-fff3-432a-afbe-3d5dc38be873" />
 
-2. Unzip folder and run Reflex.exe
+2. Unzip downloadable folder
+
+3. Run `Reflex.exe`
 
 
 ## Controls
