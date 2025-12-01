@@ -6,10 +6,16 @@
 #define TEST_PARRYSYSTEM_H
 #include "vector"
 #include "Component.h"
+#include "config/Config.h"
 
 class ParrySystem {
-    SDL_Texture* normalTex = TextureManager::load("../asset/Fine.svg");
-    SDL_Texture* parryCooldownTex = TextureManager::load("../asset/Mad.svg");
+    SDL_Texture* normalTex = TextureManager::load(
+        Config::LOCAL_BUILD ? "../asset/Fine.svg" : "asset/Fine.svg"
+ );
+
+    SDL_Texture* parryCooldownTex = TextureManager::load(
+        Config::LOCAL_BUILD ? "../asset/Mad.svg" : "asset/Mad.svg"
+    );
 public:
     void update(std::vector<std::unique_ptr<Entity>>& entities, float dt) {
         for (auto& player : entities) {

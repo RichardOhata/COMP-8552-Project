@@ -7,14 +7,14 @@
 #include <filesystem>
 #include <fstream>
 
-#include "Map.h"
-    #include <iostream>
-    #include <ostream>
-    #include <SDL3/SDL.h>
+#include <iostream>
+#include <ostream>
+#include <SDL3/SDL.h>
 
 #include "ColliderDebugSystem.h"
 #include "json.hpp"
 #include "JsonLoader.h"
+#include "config/Config.h"
 #include "manager/AssetManager.h"
 #include "manager/AudioManager.h"
 
@@ -62,20 +62,26 @@
         if (TTF_Init() != 1) {
             std::cout << "TTF_Init() failed." << std::endl;
         }
-        AssetManager::loadFont("Bold Pixel", "../asset/font/BoldPixels.ttf", 130);
-        AssetManager::loadFont("Arial", "../asset/font/arial.ttf", 25);
-        AssetManager::loadAnimation("sawblade", "../animations/saw_blade_animations.xml");
 
-        sceneManager.loadScene("Main_Menu","../asset/levels/Main_Menu.tmx", width, height);
-        sceneManager.loadScene("Level_1", "../asset/levels/Level_1.tmx", width, height);
-        sceneManager.loadScene("Level_2", "../asset/levels/Level_2.tmx", width, height);
-        sceneManager.loadScene("Level_3", "../asset/levels/Level_3.tmx", width, height);
-        sceneManager.loadScene("Level_4", "../asset/levels/Level_4.tmx", width, height);
-        sceneManager.loadScene("Level_5", "../asset/levels/Level_5.tmx", width, height);
+        // Load fonts
+        AssetManager::loadFont("Bold Pixel", Config::LOCAL_BUILD ? "../asset/font/BoldPixels.ttf" : "asset/font/BoldPixels.ttf", 130);
+        AssetManager::loadFont("Arial", Config::LOCAL_BUILD ? "../asset/font/arial.ttf" : "asset/font/arial.ttf", 25);
+
+        // Load animations
+        AssetManager::loadAnimation("sawblade", Config::LOCAL_BUILD ? "../animations/saw_blade_animations.xml" : "animations/saw_blade_animations.xml");
+
+        // Load levels
+        sceneManager.loadScene("Main_Menu", Config::LOCAL_BUILD ? "../asset/levels/Main_Menu.tmx" : "asset/levels/Main_Menu.tmx", width, height);
+        sceneManager.loadScene("Level_1", Config::LOCAL_BUILD ? "../asset/levels/Level_1.tmx" : "asset/levels/Level_1.tmx", width, height);
+        sceneManager.loadScene("Level_2", Config::LOCAL_BUILD ? "../asset/levels/Level_2.tmx" : "asset/levels/Level_2.tmx", width, height);
+        sceneManager.loadScene("Level_3", Config::LOCAL_BUILD ? "../asset/levels/Level_3.tmx" : "asset/levels/Level_3.tmx", width, height);
+        sceneManager.loadScene("Level_4", Config::LOCAL_BUILD ? "../asset/levels/Level_4.tmx" : "asset/levels/Level_4.tmx", width, height);
+        sceneManager.loadScene("Level_5", Config::LOCAL_BUILD ? "../asset/levels/Level_5.tmx" : "asset/levels/Level_5.tmx", width, height);
+
+        // Audio
         audioManager = new AudioManager();
-        audioManager->loadAudio("bgm", "../asset/audio/kk_battle31_loop.ogg");
+        audioManager->loadAudio("bgm", Config::LOCAL_BUILD ? "../asset/audio/kk_battle31_loop.ogg" : "asset/audio/kk_battle31_loop.ogg");
         audioManager->playMusic("bgm");
-
 
         sceneManager.changeSceneDeferred("Main_Menu");
 

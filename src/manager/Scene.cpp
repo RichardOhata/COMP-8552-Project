@@ -6,9 +6,13 @@
 
 #include "AssetManager.h"
 #include "JsonLoader.h"
+#include "config/Config.h"
 
 Scene::Scene(const std::string& sceneName, const char* mapPath, const int windowWidth, const int windowHeight, bool isLevel) : name(sceneName) {
-    world.getMap().load(mapPath, TextureManager::load("../asset/levels/Dungeon_Tileset_at.png"));
+    world.getMap().load(
+        mapPath,
+        TextureManager::load(Config::LOCAL_BUILD ? "../asset/levels/Dungeon_Tileset_at.png" : "asset/levels/Dungeon_Tileset_at.png")
+    );
     initCamera(windowWidth, windowHeight);
     if (!isLevel) return;
 
@@ -34,9 +38,9 @@ void Scene::createSawBlades(const std::string& sceneName) {
         } else if (s.motionType == SawbladeMotionType::Circular) {
 
             if (!s.actions.empty()) {
-                auto& a = s.actions[0]; //
-                startPos.x = s.waypoints[0].x + a.radius; //
-                startPos.y = s.waypoints[0].y;           //
+                auto& a = s.actions[0];
+                startPos.x = s.waypoints[0].x + a.radius;
+                startPos.y = s.waypoints[0].y;
             } else {
                 startPos = s.waypoints.empty() ? Vector2D(0,0) : s.waypoints[0];
             }
@@ -45,7 +49,9 @@ void Scene::createSawBlades(const std::string& sceneName) {
         auto& t = saw.addComponent<Transform>(startPos, 0.0f, s.scale);
 
         // Sprite
-        SDL_Texture* sawTex = TextureManager::load("../animations/saw_blade.png");
+        SDL_Texture* sawTex = TextureManager::load(
+            Config::LOCAL_BUILD ? "../animations/saw_blade.png" : "animations/saw_blade.png"
+        );
         SDL_FRect src {0, 0, 25.6f, 25.6f};
         SDL_FRect dest {
             t.position.x - 25.6f / 2.0f,
@@ -118,7 +124,9 @@ void Scene::initPlayer() {
     world.setRespawn(world.getMap().playerSpawn);
 
     player.addComponent<Velocity>(Vector2D(0.f, 0.f), 150.0f);
-    SDL_Texture* tex = TextureManager::load("../asset/Fine.svg");
+    SDL_Texture* tex = TextureManager::load(
+        Config::LOCAL_BUILD ? "../asset/Fine.svg" : "asset/Fine.svg"
+    );
     SDL_FRect playerSrc {0,0,36,36};
     SDL_FRect playerDst {playerTransform.position.x, playerTransform.position.y,36,36};
     player.addComponent<Sprite>(tex, playerSrc, playerDst);
@@ -154,7 +162,9 @@ void Scene::initColliders() {
 }
 
 void Scene::initCoins() {
-    SDL_Texture* itemTex = TextureManager::load("../asset/coin.png");
+    SDL_Texture* itemTex = TextureManager::load(
+        Config::LOCAL_BUILD ? "../asset/coin.png" : "asset/coin.png"
+    );
     for (auto &spawnPoint : world.getMap().itemSpawns) {
         auto& item = world.createEntity();
         auto& itemTransform = item.addComponent<Transform>(
@@ -182,7 +192,9 @@ void Scene::initBulletSpawner() {
         Vector2D spawnPos = bulletSpawns[index];
         auto& bullet = world.createDeferredEntity();
         auto& t = bullet.addComponent<Transform>(spawnPos, 0.0f, 2.0f);
-        SDL_Texture* sawTex = TextureManager::load("../animations/saw_blade.png");
+        SDL_Texture* sawTex = TextureManager::load(
+            Config::LOCAL_BUILD ? "../animations/saw_blade.png" : "animations/saw_blade.png"
+        );
         SDL_FRect src {3, 33, 25.6f, 25.6f};
         SDL_FRect dest {
             t.position.x - 25.6f / 2.0f,

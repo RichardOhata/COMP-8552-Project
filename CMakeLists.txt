@@ -48,6 +48,8 @@ add_executable(Test
         src/manager/AudioManager.cpp
 )
 
+#set_target_properties(Test PROPERTIES WIN32_EXECUTABLE TRUE)
+# Include for release build
 
     target_link_libraries(Test
             SDL3
