@@ -35,9 +35,16 @@ struct SawbladeConfig {
     bool clockwise = false;
 };
 
+struct BulletSpawnerConfig {
+    float frequency = 5.0f;
+    float speed = 150.0f;
+};
+
 class JsonLoader {
 public:
     static std::vector<SawbladeConfig> loadSawblades(const std::string& sceneName);
+
+    static BulletSpawnerConfig loadBulletSpawner(const std::string &sceneName);
 
     static bool isGameCompleted();
 

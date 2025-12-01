@@ -1,4 +1,8 @@
 {
+  "bulletSpawner": {
+    "frequency": 5.0,
+    "speed": 150.0
+  },
   "sawblades": [
     {
       "type": "Circular",

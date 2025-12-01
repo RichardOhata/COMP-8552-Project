@@ -68,12 +68,11 @@ public:
 private:
     std::string name;
     Entity* playerEntity = nullptr;
-    // void createProjectile(Vector2D pos, Vector2D dir, int speed);
     void createSawBlades(const std::string& sceneName);
     void initCamera(int windowWidth, int windowHeight);
     void initPlayer();
     void initColliders();
-    void initBulletSpawner();
+    void initBulletSpawner(const std::string& sceneName);
     void initCoins();
 };
 

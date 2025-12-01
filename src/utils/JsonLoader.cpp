@@ -6,7 +6,6 @@
 #include <fstream>
 #include <iostream>
 #include "vendor/json.hpp"
-// #include <nlohmann/json.hpp>
 #include <filesystem>
 
 #include "config/Config.h"
@@ -68,6 +67,36 @@ std::vector<SawbladeConfig> JsonLoader::loadSawblades(const std::string& sceneNa
 
     return result;
 }
+
+BulletSpawnerConfig JsonLoader::loadBulletSpawner(const std::string& sceneName)
+{
+    BulletSpawnerConfig cfg{}; // default init
+
+    std::string filePath;
+    if (Config::LOCAL_BUILD) {
+        filePath = "../level_data/" + sceneName + ".json";
+    } else {
+        filePath = "level_data/" + sceneName + ".json";
+    }
+
+    std::ifstream file(filePath);
+    if (!file.is_open()) {
+        std::cerr << "Failed to load bullet spawner config file: " << filePath << std::endl;
+        return cfg;
+    }
+
+    json data;
+    file >> data;
+
+    if (data.contains("bulletSpawner")) {
+        auto& b = data["bulletSpawner"];
+        cfg.frequency = b.value("frequency", 5.0f);
+        cfg.speed = b.value("speed", 150.0f);
+    }
+
+    return cfg;
+}
+
 
 bool JsonLoader::isGameCompleted() {
     fs::path filePath;

@@ -19,7 +19,7 @@ Scene::Scene(const std::string& sceneName, const char* mapPath, const int window
     initCoins();
     initPlayer();
     initColliders();
-    initBulletSpawner();
+    initBulletSpawner(sceneName);
     createSawBlades(sceneName);
 
     auto &state(world.createEntity());
@@ -182,9 +182,10 @@ void Scene::initCoins() {
     }
 }
 
-void Scene::initBulletSpawner() {
+void Scene::initBulletSpawner(const std::string& sceneName) {
     auto& spawner(world.createEntity());
-    spawner.addComponent<TimedSpawner>(5.0f, [this] {
+    BulletSpawnerConfig spawnerCfg = JsonLoader::loadBulletSpawner(sceneName);
+    spawner.addComponent<TimedSpawner>(spawnerCfg.frequency, [this, spawnerCfg] {
         auto& bulletSpawns = world.getMap().bulletSpawnAreas;
         if (bulletSpawns.size() == 0) return;
 
@@ -206,7 +207,7 @@ void Scene::initBulletSpawner() {
     Vector2D playerPos = playerEntity->getComponent<Transform>().position;
     Vector2D dir = playerPos - spawnPos;
     dir.normalize();
-    bullet.addComponent<Velocity>(dir, 150.0f);
+    bullet.addComponent<Velocity>(dir, spawnerCfg.speed);
     Animation sawAnim = AssetManager::getAnimation("sawblade");
     auto& animComp = bullet.addComponent<Animation>(sawAnim);
     animComp.speed = 0.1f;

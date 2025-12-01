@@ -1,8 +1,8 @@
-    //
-    // Created by richa on 2025-09-02.
-    //
+//
+// Created by richa on 2025-09-02.
+//
 
-    #include "Game.h"
+#include "Game.h"
 
 #include <filesystem>
 #include <fstream>
@@ -20,7 +20,7 @@
 
 
     std::function<void(std::string)> Game::onSceneChangeRequest;
-    std::vector<std::string> levels = {"Level_1", "Level_2", "Level_3", "Level_4", "Level_5"};
+    std::vector<std::string> levels = {"Level_1", "Level_1.5", "Level_2", "Level_3", "Level_4", "Level_5"};
     bool Game::pendingRespawn = false;
     bool Game::wantToClearRespawnFlag = false;
     bool Game::debugColliders = false;
@@ -73,6 +73,7 @@
         // Load levels
         sceneManager.loadScene("Main_Menu", Config::LOCAL_BUILD ? "../asset/levels/Main_Menu.tmx" : "asset/levels/Main_Menu.tmx", width, height);
         sceneManager.loadScene("Level_1", Config::LOCAL_BUILD ? "../asset/levels/Level_1.tmx" : "asset/levels/Level_1.tmx", width, height);
+        sceneManager.loadScene("Level_1.5", Config::LOCAL_BUILD ? "../asset/levels/Level_1.5.tmx" : "asset/levels/Level_1.5.tmx", width, height);
         sceneManager.loadScene("Level_2", Config::LOCAL_BUILD ? "../asset/levels/Level_2.tmx" : "asset/levels/Level_2.tmx", width, height);
         sceneManager.loadScene("Level_3", Config::LOCAL_BUILD ? "../asset/levels/Level_3.tmx" : "asset/levels/Level_3.tmx", width, height);
         sceneManager.loadScene("Level_4", Config::LOCAL_BUILD ? "../asset/levels/Level_4.tmx" : "asset/levels/Level_4.tmx", width, height);
@@ -84,7 +85,6 @@
         audioManager->playMusic("bgm");
 
         sceneManager.changeSceneDeferred("Main_Menu");
-
         onSceneChangeRequest = [this](std::string sceneName) {
             if (sceneManager.currentScene->getName() == "level5" && sceneName == "level5") {
                 std::cout << "You Win!" << std::endl;
@@ -124,10 +124,7 @@
     }
 
     void Game::handleEvents() {
-
-        // SDL_Event event;
         SDL_PollEvent(&event);
-
 
         switch (event.type) {
             case SDL_EVENT_QUIT:
