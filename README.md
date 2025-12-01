@@ -29,3 +29,28 @@ Game involves precise movement and timings where your objective to navigate thro
 - Dynamic hazards
 - Various level loading built with Tiled maps
 - Custom ECS architecture
+
+## Engine Overview
+
+Reflex was built using a custom 2D game engine written in C++ using SDL3.
+The engine follow an Entity-Component-System (ECS) architecture, where entities are implemented as different parts of the game (ex. sawblades, player, scenestate, etc.) and are composed of different componenets, which the system will all handle.
+
+Relevant Engine Systems:
+- Animation System
+- Collision System
+- SawBlade Movement System
+- Render System
+- Movement System
+- Parry System
+
+Level & Asset Pipeline
+
+Level design entities were loaded in dynamically using custom Tiled Maps which included:
+- Player Start Postion
+- Colliders
+- Coin Spawns
+- Bullet/Projectile Spawners
+- Goal Detection
+and Sawblade & Bullet/Projectiles data were loading using JSON
+
+Sprites, textures, animations, were loaded in with their respective class managers.
