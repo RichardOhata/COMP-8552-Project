@@ -27,7 +27,8 @@ Game involves precise movement and timings where your objective to navigate thro
 - Precise platforming movement
 - Parry system that reflects incoming projectiles
 - Dynamic hazards
-- Various level loading built with Tiled maps
+- One-hit death system
+- Multi-stage level loading built with Tiled maps
 - Custom ECS architecture
 
 ## Engine Overview
