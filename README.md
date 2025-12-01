@@ -48,7 +48,7 @@ The engine follows an Entity-Component-System (ECS) architecture, where gameplay
 
 ### Level & Asset Pipeline
 
-Level design entities were loaded in dynamically using custom Tiled Maps which include:
+Level design entities are loaded in dynamically using custom Tiled Maps which include:
 - Player Start Postion
 - Colliders
 - Coin Spawns
