@@ -2,7 +2,7 @@
 
 [itch.io](https://orange8846.itch.io/reflex)
 
-A 2D platformer built with SDL3, C++, CLion, Tiled, for COMP 8552
+A 2D Top-DOwn Maze/Puzzle game built with SDL3, C++, CLion, Tiled, for COMP 8552
 
 Game involves precise movement and timings where your objective to navigate through hazard-filled levels and parrying incoming projectiles, all while collect coins in order to progress.
 
